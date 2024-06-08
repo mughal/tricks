@@ -3,4 +3,4 @@
 **/node_modules/
 
 # Ignore dist folders in any subdirectory
-**/dist/
+##**/dist/
