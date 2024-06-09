@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "push": "git add . && git commit -m 'Update changes' && git push",
+    "push": "git push",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "repository": {
