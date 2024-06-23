@@ -7,7 +7,7 @@ const AuthorSchema = new Schema ({
     date_of_death: {tyoe: Date},  
 });
 
-AuthorSchema.virtul("name").get(function () {
+AuthorSchema.virtual("name").get(function () {
     let fullname = "";
     if (this.first_name && this.family_name){
         fullname = `${this.family_name}, ${this.first_name}`;
@@ -16,7 +16,7 @@ AuthorSchema.virtul("name").get(function () {
     return fullname;
 });
 
-AuthorSchema.virtul("url").get(function () {
+AuthorSchema.virtual("url").get(function () {
     return `/catalog/author/${this._id}`;
 });
 
