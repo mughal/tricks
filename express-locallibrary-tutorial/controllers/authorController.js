@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 const author = new Author("yasir", "mirza");
 const author_list = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author List");
+    res.send(`NOT IMPLEMENTED: Author List ${author}`);
 });
 
 const author_detail = asyncHandler(async (req, res, next) => {
@@ -34,7 +34,7 @@ const author_update_post = asyncHandler(async (req, res, next) => {
     res.send("NOT IMPLEMENTED: Author Update POST");
 });
 
-exports.module {
+exports.module = {
     author_list,
     author_detail,
     author_create_get,
