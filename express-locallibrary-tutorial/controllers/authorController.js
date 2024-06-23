@@ -1,46 +1,42 @@
-import Author from "../models/author.js";
-import asyncHandler from "express-async-handler";
+const Author = require("../models/author");
+const asyncHandler = require("express-async-handler");
 
-const author = new Author("yasir", "mirza");
-const author_list = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: Author List ${author}`);
+// Display list of all Authors.
+exports.author_list = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author list");
 });
 
-const author_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author Detail: ${req.param.id");
+// Display detail page for a specific Author.
+exports.author_detail = asyncHandler(async (req, res, next) => {
+  res.send(`NOT IMPLEMENTED: Author detail: ${req.params.id}`);
 });
 
-const author_create_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author Create Get");
+// Display Author create form on GET.
+exports.author_create_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author create GET");
 });
 
-const author_create_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author Create post");
+// Handle Author create on POST.
+exports.author_create_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author create POST");
 });
 
-const author_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author delete GET");
+// Display Author delete form on GET.
+exports.author_delete_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author delete GET");
 });
 
-const author_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author delete POST");
+// Handle Author delete on POST.
+exports.author_delete_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author delete POST");
 });
 
-const author_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author Update GET");
+// Display Author update form on GET.
+exports.author_update_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author update GET");
 });
 
-const author_update_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author Update POST");
+// Handle Author update on POST.
+exports.author_update_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Author update POST");
 });
-
-exports.module = {
-    author_list,
-    author_detail,
-    author_create_get,
-    author_create_post,
-    author_delete_get,
-    author_delete_post,
-    author_update_get,
-    author_update_post
-};

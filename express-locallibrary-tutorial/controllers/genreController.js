@@ -1,46 +1,42 @@
-import Genre from "../models/genre.js";
-import asyncHandler from "express-async-handler";
+const Genre = require("../models/genre");
+const asyncHandler = require("express-async-handler");
 
-const genre = new Genre("yasir", "mirza");
-const genre_list = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: genre List ${genre}`);
+// Display list of all Genre.
+exports.genre_list = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre list");
 });
 
-const genre_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre Detail: ${req.param.id");
+// Display detail page for a specific Genre.
+exports.genre_detail = asyncHandler(async (req, res, next) => {
+  res.send(`NOT IMPLEMENTED: Genre detail: ${req.params.id}`);
 });
 
-const genre_create_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre Create Get");
+// Display Genre create form on GET.
+exports.genre_create_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre create GET");
 });
 
-const genre_create_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre Create post");
+// Handle Genre create on POST.
+exports.genre_create_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre create POST");
 });
 
-const genre_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre delete GET");
+// Display Genre delete form on GET.
+exports.genre_delete_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre delete GET");
 });
 
-const genre_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre delete POST");
+// Handle Genre delete on POST.
+exports.genre_delete_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre delete POST");
 });
 
-const genre_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre Update GET");
+// Display Genre update form on GET.
+exports.genre_update_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre update GET");
 });
 
-const genre_update_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: genre Update POST");
+// Handle Genre update on POST.
+exports.genre_update_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Genre update POST");
 });
-
-exports.module = {
-    genre_list,
-    genre_detail,
-    genre_create_get,
-    genre_create_post,
-    genre_delete_get,
-    genre_delete_post,
-    genre_update_get,
-    genre_update_post
-};
