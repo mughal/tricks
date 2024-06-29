@@ -44,9 +44,61 @@ exports.author_create_get = (req, res, next) => {
 };
 
 // Handle Author create on POST.
-exports.author_create_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author create POST");
-});
+exports.author_create_post = [
+    //Validate and Sanitize fields
+    body("first_name")
+      .trim()
+      .isLength({ min: 1})
+      .escape()
+      .withMessage("First Name must be specified")
+      .isAlphanumeric()
+      .withMessage("First Name has non Alpha Numeric Characters"),
+    
+    body("family_name")
+      .trim()
+      .isLength({ min: 1})
+      .escape()
+      .withMessage("Family Name must be specified")
+      .isAlphanumeric()
+      .withMessage("Family Name has non Alpha Numeric Characters"),
+
+    body("date_of_birth", "Invalid date of birth")
+      .optional({values: "falsy"})
+      .isISO8601()
+      .toDate(),
+    
+    body("date_of_death", "Invalid date of death")
+      .optional({values: "falsy"})
+      .isISO8601()
+      .toDate(),
+    
+    //Process after validation and Sanitization
+    asyncHandler(async (req, res, next) => {
+      //Extract validation errors from a request
+      const errors = validationResult(req);
+
+      //Create Author object
+      const author = new Author ({
+        first_name: req.body.first_name,
+        family_name: req.body.family_name,
+        date_of_birth: req.body.date_of_birth,
+        date_of_death: req.body.date_of_death,
+      });
+
+      if (!errors.isEmpty()){
+        res.render("author_form", {
+          title: "Create Author",
+          author: author,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        await author.save();
+        res.redirect(author.url);
+      }
+      
+    }),
+];
 
 // Display Author delete form on GET.
 exports.author_delete_get = asyncHandler(async (req, res, next) => {
