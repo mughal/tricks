@@ -4,3 +4,4 @@
 
 # Ignore dist folders in any subdirectory
 ##**/dist/
+**/.env
