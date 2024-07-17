@@ -1,4 +1,13 @@
-// scripts.js
+import './styles.css';
+import WebFont from 'webfontloader';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+WebFont.load({
+    google: {
+        families: ['Roboto:400,700']
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     // Function to generate random IP address
     function getRandomIp() {
