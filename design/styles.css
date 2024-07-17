@@ -63,7 +63,7 @@ body {
 }
 
 #history li, #logs li {
-    padding: 5px;
+    padding: 2px;
     
 }
 
@@ -75,4 +75,8 @@ h2 {
     margin: 5px 0;
     font-size: 1.2em;
     color: #0056b3;
+}
+
+#other-info {
+    font-size: 0.875rem; /* Smaller font size for other-info */
 }
