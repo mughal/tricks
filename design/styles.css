@@ -1,0 +1,100 @@
+/* styles.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.device-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.device-info p {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.device-info .owner {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333;
+}
+
+.device-info .ip-mac {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #007BFF;
+}
+
+.inventory-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.inventory-info p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.inventory-info strong {
+    color: #333;
+}
+
+.inventory-info #update-inventory {
+    color: #d9534f;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+strong {
+    color: #333;
+}
+
+.history, .logs {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.history ul, .logs ul {
+    list-style: none;
+    padding: 0;
+}
+
+.history li, .logs li {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.history li:last-child, .logs li:last-child {
+    border-bottom: none;
+}

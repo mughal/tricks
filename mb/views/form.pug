@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method="POST" action="/new") 
+    input(type="text" name="messageUser" placeholder="User") 
+    input(type="text" name="messageText" placeholder="Message")
+    button(type="submit")  Submit 
