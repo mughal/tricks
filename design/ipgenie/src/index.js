@@ -88,6 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
         item.addEventListener('click', handleNavigation);
     });
 
-    // Initially populate the dashboard section
-    populateTable('network-section');
+    // Initially show the dashboard section
+    document.getElementById('dashboard-section').classList.remove('hidden');
 });
