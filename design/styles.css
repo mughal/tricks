@@ -1,0 +1,82 @@
+/* styles.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 5px auto;
+    padding: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#device-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#device-info span {
+    font-weight: 400;
+    color: #007BFF;
+}
+
+#device-info #owner {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333;
+}
+
+#other-info > div {
+    background-color: #f8f9fa;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 1.2em;
+}
+
+#inventory-info p, #user-details p, #inventory-info strong, #user-details strong {
+    margin: 0;
+}
+
+#update-inventory {
+    color: #d9534f;
+}
+
+#history ul, #logs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#history li, #logs li {
+    padding: 2px;
+    
+}
+
+#history li:last-child, #logs li:last-child {
+    border-bottom: 1px solid #ccc;
+}
+
+h2 {
+    margin: 5px 0;
+    font-size: 1.2em;
+    color: #0056b3;
+}
+
+#other-info {
+    font-size: 0.875rem; /* Smaller font size for other-info */
+}

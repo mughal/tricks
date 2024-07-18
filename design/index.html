@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Details</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="device-info">
+            <span id="owner"></span> <span id="ip-address"></span> <span id="mac-address"></span>
+        </div>
+        <div id="other-info">
+            <div id="inventory-info">
+                <p>Source: <span id="source"></span></p>
+                <div id="inventory-details">
+                    <p><strong>PO Number:</strong> <span id="po-number"></span></p>
+                    <p><strong>Delivery Date:</strong> <span id="delivery-date"></span></p>
+                    <p><strong>Issue Date:</strong> <span id="issue-date"></span></p>
+                </div>
+                <div id="update-inventory" style="display: none;">
+                    <p>Inventory needs to be updated</p>
+                </div>
+            </div>
+            <div id="user-details">
+                <h2>User Details</h2>
+                <p><strong>Region:</strong> <span id="region"></span></p>
+                <p><strong>Branch Office:</strong> <span id="branch-office"></span></p>
+            </div>
+            <div id="history">
+                <h2>History</h2>
+                <ul id="history-list">
+                    <!-- History items will be dynamically added here -->
+                </ul>
+            </div>
+            <div id="logs">
+                <h2>Logs</h2>
+                <ul id="log-list">
+                    <!-- Log items will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

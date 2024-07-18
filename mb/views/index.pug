@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul 
+    each msg in messages
+      li=msg.user + " sent: " + msg.text + " on " + msg.added
