@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin: 0;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.header .icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.body {
+    padding: 16px;
+    color: #333;
+}
+
+.body p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.body p strong {
+    font-weight: bold;
+}
+
+.card.blue .header {
+    background-color: #007bff;
+}
+
+.card.green .header {
+    background-color: #28a745;
+}
+
+.card.orange .header {
+    background-color: #ff9800;
+}
