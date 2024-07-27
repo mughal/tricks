@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><span class="material-icons icon">update</span> ${data.lastSeen || 'N/A'}</p>
                 <p><span class="material-icons icon">location_city</span> ${data.mainOffice || 'N/A'}</p>
                 <p><span class="material-icons icon">corporate_fare</span> ${data.subOffice || 'N/A'}</p>
+                <p><span class="material-icons icon">sync_alt</span> ${data.source || 'N/A'}</p>
             </div>
         `;
         content.appendChild(card);

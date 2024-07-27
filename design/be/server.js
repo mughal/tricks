@@ -15,6 +15,7 @@ const networkData = {
         lastSeen: '2024-07-26 12:34 PM',
         mainOffice: 'New York',
         subOffice: 'San Francisco',
+        source: '10.0.0.1',
     },
     // Add more entries as needed
 };
