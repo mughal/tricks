@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Info Cards</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Network Info Finder</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <div class="card blue">
-        <div class="header">
-            <span class="material-icons icon">language</span>
-            <h2>IP Address: 192.168.1.1</h2>
-        </div>
-        <div class="body">
-            <p><span class="material-icons icon">lan</span> 00:1A:2B:3C:4D:5E</p>
-            <p><span class="material-icons icon">factory</span> Cisco Systems, Inc.</p>
-            <p><span class="material-icons icon">person</span> John Doe</p>
-            <p><span class="material-icons icon">update</span> 2024-07-26 12:34 PM</p>
-            <p><span class="material-icons icon">location_city</span> Lahore-D</p>
-            <p><span class="material-icons icon">corporate_fare</span>Harbancepura: 10.0.5.3</p>
-        </div>
-    </div>
-    <!-- Add more cards as needed -->
+    <header>
+        <h1>Network Info Finder</h1>
+        <form id="search-form">
+            <input type="text" id="ip-input" placeholder="Enter IP Address" required>
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    <main id="content" class="content"></main>
 </body>
 </html>
