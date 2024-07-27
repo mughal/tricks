@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addCard(data) {
         const card = document.createElement('div');
         card.className = 'card';
+        console.log(data)
 
         card.innerHTML = `
             <div class="header">

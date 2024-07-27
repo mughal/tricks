@@ -23,7 +23,7 @@ const networkData = {
 app.get('/api/network', (req, res) => {
     const ip = req.query.ip;
     if (networkData[ip]) {
-        res.json(networkData[ip]);
+        res.json({ip, ...networkData[ip]});
     } else {
         res.status(404).json({ error: 'IP address not found' });
     }
