@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
@@ -8,6 +8,12 @@ body {
     gap: 20px;
     padding: 20px;
     margin: 0;
+}
+
+.icon {
+    font-size: 24px;
+    margin-right: 8px;
+    vertical-align: middle; /* Aligns the icon with text */
 }
 
 .card {
@@ -28,13 +34,8 @@ body {
     align-items: center;
     padding: 16px;
     color: white;
-    font-size: 1.2em;
+    font-size: 0.75em;
     font-weight: bold;
-}
-
-.header .icon {
-    font-size: 1.5em;
-    margin-right: 10px;
 }
 
 .body {
@@ -43,7 +44,7 @@ body {
 }
 
 .body p {
-    margin: 0;
+    margin: 8px 0;
     line-height: 1.5;
 }
 
@@ -52,7 +53,7 @@ body {
 }
 
 .card.blue .header {
-    background-color: #007bff;
+    background-color: #382b01;
 }
 
 .card.green .header {
