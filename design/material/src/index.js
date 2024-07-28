@@ -1,9 +1,13 @@
 import './styles.css';
 //import './fonts/Roboto/roboto-regular.woff2';
+import { loadDashboard } from './features/dashboard/dashboard';
+import { loadLogin } from './features/login/login';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
     const content = document.getElementById('content');
+    document.getElementById('dashboard-link').addEventListener('click', loadDashboard);
+    document.getElementById('login-link').addEventListener('click', loadLogin);
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
