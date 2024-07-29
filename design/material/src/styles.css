@@ -1,0 +1,141 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#ip-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    color: white;
+    font-size: 0.6em;
+    font-weight: bold;
+}
+
+.body {
+    padding: 16px;
+    color: #333;
+}
+
+.body p {
+    display: flex;
+    margin: 0;
+    line-height: 1.5;
+    align-items: center; /* Vertically center icon and text */
+}
+
+.body p strong {
+    font-weight: bold;
+}
+
+.card .header {
+    background-color: #382b01;
+}
+
+.card.green .header {
+    background-color: #28a745;
+}
+
+.card.orange .header {
+    background-color: #ff9800;
+}
+
+.card p {
+    font-size: 0.8em;
+}
+
+.material-icons {
+    margin-right: 8px; /* Space between icon and text */
+    vertical-align: middle; /* Vertically align with text */
+    font-size: 1.5em; /* Adjust size to match text height if needed */
+}
+
+/* Reset default list styles for navigation */
+header nav ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Display list items inline */
+    gap: 20px; /* Space between navigation items */
+    justify-content: center; /* Center the navigation items */
+}
+
+/* Style individual list items */
+header nav ul li {
+    display: inline; /* Ensure list items are inline */
+}
+
+/* Style navigation links */
+header nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Link color */
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+/* Link hover effect */
+header nav ul li a:hover {
+    background-color: #0056b3; /* Background color on hover */
+    color: white; /* Text color on hover */
+}

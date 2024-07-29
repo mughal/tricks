@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   homeTab: () => (/* binding */ homeTab)\n/* harmony export */ });\n// homeTab.js\r\n\r\n// Define the function separately\r\nfunction homeTab() {\r\n    \r\n    const header = document.createElement('h1');\r\n    const paragraph = document.createElement('p');\r\n    header.textContent = 'Welcome to the Home Page';\r\n    paragraph.textContent = 'This is the home page content.';\r\n\r\n    content.appendChild(header);\r\n    content.appendChild(paragraph);\r\n}\r\n\r\n// Export the function at the end of the module\r\n\r\n\n\n//# sourceURL=webpack://tricks/./src/homeTab.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   homeTab: () => (/* binding */ homeTab)\n/* harmony export */ });\n// homeTab.js\r\n\r\n// Define the function separately\r\nfunction homeTab() {\r\n    \r\n    const header = document.createElement('h1');\r\n    const paragraph = document.createElement('p');\r\n    header.textContent = 'Welcome to the Home Page through git';\r\n    paragraph.textContent = 'This is the home page content.';\r\n\r\n    content.appendChild(header);\r\n    content.appendChild(paragraph);\r\n}\r\n\r\n// Export the function at the end of the module\r\n\r\n\n\n//# sourceURL=webpack://tricks/./src/homeTab.js?");
 
 /***/ }),
 
