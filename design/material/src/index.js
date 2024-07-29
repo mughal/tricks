@@ -1,6 +1,6 @@
 import './styles.css';
 // Assuming your JS file is located at src/index.js and your image is at src/images/welcome.png
-import welcomeImage from './images/welcome.png';
+import welcomeImage from './images/welcome.webp';
 
 //import './fonts/Roboto/roboto-regular.woff2';
 import { loadDashboard } from './features/dashboard/dashboard';
