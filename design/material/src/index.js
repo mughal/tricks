@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${welcomeImage}" alt="Welcome Image" class="welcome-image">
         <h1>Welcome to Curiosity</h1>
         <p>Place where ideas will take shape and have a life of their own with time.</p>
-        <button class="login-button">Login</button>
+        <button class="login-button">Let's Go</button>
             </section>
         `;
     
@@ -72,13 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const content = document.getElementById('content');
         content.innerHTML = `
             <section id="login-section">
+                <h1>Curiozity</h1>
+                <h2>Log in</h2>
                 <form id="login-form">
-                    <label for="email">Email address*</label>
-                    <input type="email" id="email" required>
-                    <label for="password">Password*</label>
-                    <input type="password" id="password" required>
-                    <button type="submit">Log In</button>
-                    <a href="#">Forgot password?</a>
+               
+                <div class="input-container">
+                    <input type="text" id="username" name="username" placeholder=" " required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="password" name="password" placeholder=" " required>
+                    <label for="password">Password</label>
+                </div>
+                <button class="login-button" type="submit">Login</button>
                 </form>
             </section>
         `;
