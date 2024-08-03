@@ -1,6 +1,6 @@
 import './styles.css';
 // Assuming your JS file is located at src/index.js and your image is at src/images/welcome.png
-import welcomeImage from './images/welcome.webp';
+import welcomeImage from './images/welcome-place.jpeg';
 
 //import './fonts/Roboto/roboto-regular.woff2';
 import { loadDashboard } from './features/dashboard/dashboard';
@@ -57,10 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadWelcome() {
         const content = document.getElementById('content');
         content.innerHTML = `
-            <section id="welcome-section">
-                <img src="${welcomeImage}" alt="Welcome to Network Info Finder">
-                <p>We're your trusted network information source, providing detailed data insights and support.</p>
-                <button id="go-to-login">Log In</button>
+        <section id="welcome-section">
+        <img src="${welcomeImage}" alt="Welcome Image" class="welcome-image">
+        <h1>Welcome to Curiosity</h1>
+        <p>Place where ideas will take shape and have a life of their own with time.</p>
+        <button class="login-button">Login</button>
             </section>
         `;
     

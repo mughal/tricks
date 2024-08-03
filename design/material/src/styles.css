@@ -5,19 +5,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
     margin: 0;
 }
 
 header {
+    display: flex;
     text-align: center;
+    justify-content: center;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
+header h1 {
+    margin: 0;
+}
 #search-form {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 #ip-input {
@@ -149,7 +154,7 @@ section {
     width: 100%;
 }
 
-#login-form, #welcome-section {
+#login-form {
     max-width: 300px;
     border: 1px solid #ccc;
     padding: 20px;
@@ -188,8 +193,62 @@ section {
     text-decoration: none;
 }
 
-#welcome-section img {
-    width: 200px;   /* or 100% to make it responsive */
-    height: 250px;  /* maintain aspect ratio or set to auto */
-    object-fit: cover; /* This property ensures the image covers the area without distorting the aspect ratio */
+/* Ensure the entire screen is used */
+
+/* Welcome section styling */
+#welcome-section {
+    width: 30%;
+    height: 40%;
+    background-color: white; /* White background for the box */
+    border: 2px solid #3498db; /* Border color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Padding inside the box */
+}
+
+/* Welcome text styling */
+#welcome-section h1 {
+    font-size: 2.5em;
+    color: #3498db; /* Text color matching the border */
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+/* Explanation text styling */
+#welcome-section p {
+    font-size: 1.2em;
+    color: #333; /* Dark gray text color */
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+/* Login button styling */
+#welcome-section .login-button {
+    background-color: #3498db; /* Button color matching the border */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+#welcome-section .login-button:hover {
+    background-color: #2980b9; /* Darker shade for hover effect */
+}
+
+/* Welcome image styling */
+.welcome-image {
+    width: 250px;
+    height: 300px; /* Adjust this height value to your liking */
+    border-radius: 10px; /* Rounded corners for the image */
+    margin-bottom: 20px; /* Space between the image and text */
+    object-fit: cover; /* Maintain aspect ratio while filling the height */
 }
