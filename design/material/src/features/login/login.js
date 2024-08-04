@@ -28,6 +28,7 @@ export function loadLogin() {
         const password = document.getElementById('password').value;
         console.log('Login with:', username, password);
         setLoggedIn(true);
+        content.innerHTML='';
         // Here, add your authentication logic
     });
 }
