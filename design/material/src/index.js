@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    
     document.getElementById('logout-link').addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default link behavior
         setLoggedIn(false);
