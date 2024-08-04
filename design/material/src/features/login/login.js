@@ -22,13 +22,32 @@ export function loadLogin() {
         </section>
     `;
 
-    document.getElementById('login-form').addEventListener('submit', function(event) {
+    document.getElementById('login-form').addEventListener('submit', async function(event) {
         event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         console.log('Login with:', username, password);
-        setLoggedIn(true);
-        content.innerHTML='';
-        // Here, add your authentication logic
+    
+        try {
+            const response = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+    
+            const data = await response.text();
+    
+            if (data === 'Login successful') {
+                setLoggedIn(true);
+                content.innerHTML = ''; // Update the content as needed
+            } else {
+                alert('Login failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     });
+    
 }
