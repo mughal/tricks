@@ -8,6 +8,7 @@ import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
 
 document.addEventListener('DOMContentLoaded', () => {
+    let fun = false;
     const form = document.getElementById('search-form');
     const content = document.getElementById('content');
     document.getElementById('dashboard-link').addEventListener('click', loadDashboard);
@@ -16,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const ip = document.getElementById('ip-input').value.trim();
+        if (!fun) {
+            content.innerHTML='';
+            fun = true;
+        }
 
         if (!ip) return alert('Please enter a valid IP address.');
         console.log(ip)
