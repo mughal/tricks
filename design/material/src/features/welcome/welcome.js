@@ -1,5 +1,5 @@
 import './welcome.css'
-import welcomeImage from '../../images/welcome-place.jpeg';
+import welcomeImage from '../../images/welcome.png';
 import { loadLogin } from '../login/login';
 export function loadWelcome() {
     const content = document.getElementById('content');
