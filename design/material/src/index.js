@@ -6,9 +6,9 @@ import './styles.css';
 import { loadDashboard } from './features/dashboard/dashboard';
 import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
+import { setFun, getFun } from './features/controlVars';
 
 document.addEventListener('DOMContentLoaded', () => {
-    let fun = false;
     const form = document.getElementById('search-form');
     const content = document.getElementById('content');
     document.getElementById('dashboard-link').addEventListener('click', loadDashboard);
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const ip = document.getElementById('ip-input').value.trim();
-        if (!fun) {
+        if (!getFun()) {
             content.innerHTML='';
-            fun = true;
+            setFun(true);
         }
 
         if (!ip) return alert('Please enter a valid IP address.');
@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'card';
         console.log(data)
+        if (!getFun()) {
+            content.innerHTML='';
+        }
 
         card.innerHTML = `
             <div class="header">

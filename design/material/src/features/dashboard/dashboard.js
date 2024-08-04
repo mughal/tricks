@@ -1,5 +1,7 @@
 import './dashboard.css';
+import { setFun, getFun } from '../controlVars';
 export function loadDashboard() {
+    setFun(false);
     const content = document.getElementById('content');
     content.innerHTML = ''; // Clear existing content
 

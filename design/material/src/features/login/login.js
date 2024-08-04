@@ -1,6 +1,8 @@
 import './login.css';
+import { setFun, getFun } from '../controlVars';
 export function loadLogin() {
     const content = document.getElementById('content');
+    setFun(false);
     content.innerHTML = `
         <section id="login-section">
             <h1>Curiozity</h1>
