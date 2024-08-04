@@ -1,10 +1,11 @@
 import './styles.css';
 // Assuming your JS file is located at src/index.js and your image is at src/images/welcome.png
-import welcomeImage from './images/welcome-place.jpeg';
+
 
 //import './fonts/Roboto/roboto-regular.woff2';
 import { loadDashboard } from './features/dashboard/dashboard';
 import { loadLogin } from './features/login/login';
+import { loadWelcome} from './features/welcome/welcome';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
@@ -54,48 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         content.appendChild(card);
     }
 
-    function loadWelcome() {
-        const content = document.getElementById('content');
-        content.innerHTML = `
-        <section id="welcome-section">
-        <img src="${welcomeImage}" alt="Welcome Image" class="welcome-image">
-        <h1>Welcome to Curiosity</h1>
-        <p>Place where ideas will take shape and have a life of their own with time.</p>
-        <button class="login-button">Let's Go</button>
-            </section>
-        `;
     
-        document.getElementById('go-to-login').addEventListener('click', loadLogin);
-    }
-    
-    function loadLogin() {
-        const content = document.getElementById('content');
-        content.innerHTML = `
-            <section id="login-section">
-                <h1>Curiozity</h1>
-                <h2>Log in</h2>
-                <form id="login-form">
-               
-                <div class="input-container">
-                    <input type="text" id="username" name="username" placeholder=" " required>
-                    <label for="username">Username</label>
-                </div>
-                <div class="input-container">
-                    <input type="password" id="password" name="password" placeholder=" " required>
-                    <label for="password">Password</label>
-                </div>
-                <button class="login-button" type="submit">Login</button>
-                </form>
-            </section>
-        `;
-    
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            console.log('Login with:', email, password);
-            // Here, add your authentication logic
-        });
-    }
     
 });

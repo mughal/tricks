@@ -1,24 +1,30 @@
 import './login.css';
 export function loadLogin() {
     const content = document.getElementById('content');
-    content.innerHTML = ''; // Clear existing content
-
-    const loginContent = document.createElement('div');
-    loginContent.className = 'login';
-    loginContent.innerHTML = `
-        <h2>Curiozity</h2>
-        <h3>Login</h3>
-        <form>
-        <div class="input-container">
-            <input type="text" id="username" name="username" placeholder=" " required>
-            <label for="username">Email Address</label>
-        </div>
-        <div class="input-container">
-            <input type="password" id="password" name="password" placeholder=" " required>
-            <label for="password">Password</label>
-        </div>
-        <button type="submit">Login</button>
-    </form>
+    content.innerHTML = `
+        <section id="login-section">
+            <h1>Curiozity</h1>
+            <h2>Log in</h2>
+            <form id="login-form">
+           
+            <div class="input-container">
+                <input type="text" id="username" name="username" placeholder=" " required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" name="password" placeholder=" " required>
+                <label for="password">Password</label>
+            </div>
+            <button class="login-button" type="submit">Login</button>
+            </form>
+        </section>
     `;
-    content.appendChild(loginContent);
+
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        console.log('Login with:', email, password);
+        // Here, add your authentication logic
+    });
 }
