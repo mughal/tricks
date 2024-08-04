@@ -1,5 +1,5 @@
 import './login.css';
-import { setFun, getFun } from '../controlVars';
+import { setFun, setLoggedIn, updateUI } from '../controlVars';
 export function loadLogin() {
     const content = document.getElementById('content');
     setFun(false);
@@ -24,9 +24,10 @@ export function loadLogin() {
 
     document.getElementById('login-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        const email = document.getElementById('email').value;
+        const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        console.log('Login with:', email, password);
+        console.log('Login with:', username, password);
+        setLoggedIn(true);
         // Here, add your authentication logic
     });
 }

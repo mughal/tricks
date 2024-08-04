@@ -6,7 +6,7 @@ import './styles.css';
 import { loadDashboard } from './features/dashboard/dashboard';
 import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
-import { setFun, getFun } from './features/controlVars';
+import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/controlVars';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
@@ -64,5 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    
+    document.getElementById('logout-link').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        setLoggedIn(false);
+    });
 });
