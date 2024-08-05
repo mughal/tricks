@@ -1,10 +1,57 @@
+const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
+const session = require('express-session');
 const express = require('express');
 const cors = require('cors');
+const User = require('./models/user'); // Adjust the path as necessary
+const authRoutes = require('./routes/auth'); // Adjust the path as needed
+//const Schema = mongoose.Schema;
+mongoose.set("strictQuery",false);
+const mongoDB="mongodb://localhost:27017/localauth";
+// Connect to MongoDB
+mongoose.connect(mongoDB)
+  .then(() => console.log('Successfully connected to MongoDB'))
+  .catch((err) => console.error('MongoDB connection error:', err));
+
+
+// main().catch((err) => console.log(err));
+// async function main() {
+//   await mongoose.connect(mongoDB);
+//   console.log('Successfully connected to MongoDB');
+// }
+// const User = mongoose.model(
+//   "User",
+//   new Schema({
+//     username: {type: String, required: true},
+//     password: {type: String, required: true},
+//   })
+// );
+
+// let localuser = "admin";
+// let localpass = "admin123"
+
+// bcrypt.hash(localpass, 10, async (err, hashedPassword) => {
+//     // if err, do something
+//     // otherwise, store hashedPassword in DB
+//     const user = new User({
+//       username: localuser,
+//       password: hashedPassword
+//     });
+//     const result = await user.save();
+//   }); 
+
 const app = express();
 const port = 3000;
 
+
 // Enable CORS for all routes
 app.use(cors());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }));
+
+app.use('/auth', authRoutes);
 
 // Sample data - In a real-world application, this would come from a database
 const networkData = {
@@ -33,3 +80,6 @@ app.get('/api/network', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+
+

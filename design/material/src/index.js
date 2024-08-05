@@ -1,10 +1,12 @@
 import './styles.css';
 // Assuming your JS file is located at src/index.js and your image is at src/images/welcome.png
-import welcomeImage from './images/welcome.png';
+
 
 //import './fonts/Roboto/roboto-regular.woff2';
 import { loadDashboard } from './features/dashboard/dashboard';
 import { loadLogin } from './features/login/login';
+import { loadWelcome} from './features/welcome/welcome';
+import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/controlVars';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
@@ -15,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const ip = document.getElementById('ip-input').value.trim();
+        if (!getFun()) {
+            content.innerHTML='';
+            setFun(true);
+        }
 
         if (!ip) return alert('Please enter a valid IP address.');
         console.log(ip)
@@ -35,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'card';
         console.log(data)
+        if (!getFun()) {
+            content.innerHTML='';
+        }
 
         card.innerHTML = `
             <div class="header">
@@ -54,41 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
         content.appendChild(card);
     }
 
-    function loadWelcome() {
-        const content = document.getElementById('content');
-        content.innerHTML = `
-            <section id="welcome-section">
-                <img src="${welcomeImage}" alt="Welcome to Network Info Finder">
-                <p>We're your trusted network information source, providing detailed data insights and support.</p>
-                <button id="go-to-login">Log In</button>
-            </section>
-        `;
     
-        document.getElementById('go-to-login').addEventListener('click', loadLogin);
-    }
     
-    function loadLogin() {
-        const content = document.getElementById('content');
-        content.innerHTML = `
-            <section id="login-section">
-                <form id="login-form">
-                    <label for="email">Email address*</label>
-                    <input type="email" id="email" required>
-                    <label for="password">Password*</label>
-                    <input type="password" id="password" required>
-                    <button type="submit">Log In</button>
-                    <a href="#">Forgot password?</a>
-                </form>
-            </section>
-        `;
-    
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            console.log('Login with:', email, password);
-            // Here, add your authentication logic
-        });
-    }
-    
+    document.getElementById('logout-link').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        setLoggedIn(false);
+        content.innerHTML='';
+    });
 });
