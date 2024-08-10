@@ -1,6 +1,6 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
-import createDoughnutChart from '../guicharts/DoughnutChart';
+import { createDoughnutChart, createBarChart } from '../guicharts/CuriozityCharts';
 
 
 export function loadDashboard() {
@@ -44,5 +44,7 @@ export function loadDashboard() {
     
       const flexone = document.getElementById('flex-1');
       flexone.appendChild(createDoughnutChart(doughnutChartData));
+      const flextwo = document.getElementById('flex-2');
+      flextwo.appendChild(createBarChart(doughnutChartData));
 
 }

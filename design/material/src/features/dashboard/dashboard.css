@@ -33,3 +33,8 @@
     margin: 0; /* Ensure no margin inside the flex container */
     padding: 0; /* Ensure no padding inside the flex container */
 }
+
+.flex-container canvas {
+    margin-left: 15px; /* Adjust the value to move the canvas away from the left side */
+}
+
