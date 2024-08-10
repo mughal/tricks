@@ -1,0 +1,33 @@
+/* src/dashboard.css */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0; /* Remove gaps between grid items */
+    width: 100%;
+    height: 100%;
+    padding: 0; /* Remove padding from the grid */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent grid from overflowing */
+}
+
+
+.grid-item {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}

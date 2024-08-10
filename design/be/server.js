@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const User = require('./models/user'); // Adjust the path as necessary
 const authRoutes = require('./routes/auth'); // Adjust the path as needed
+const authMiddleware = require('./middleware/authMiddleware');
 //const Schema = mongoose.Schema;
 mongoose.set("strictQuery",false);
 const mongoDB="mongodb://localhost:27017/localauth";
@@ -66,6 +67,9 @@ const networkData = {
     },
     // Add more entries as needed
 };
+
+// Protect the /api routes with the authentication middleware
+//app.use('/api', authMiddleware);
 
 // Endpoint to get network details by IP
 app.get('/api/network', (req, res) => {
