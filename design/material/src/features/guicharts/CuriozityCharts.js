@@ -71,6 +71,71 @@ export const createDoughnutChart = (data) => {
 };
 
 // Function to create a Bar chart
+export const createBarChartH = (data) => {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  const canvas = document.createElement('canvas');
+  canvas.style.marginLeft = '10px'; // Adjust the value as needed
+  const ctx = canvas.getContext('2d');
+
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Data Values',
+        data: values,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y', 
+      scales: {
+        x: {
+          beginAtZero: true,
+        },
+        y: {
+          beginAtZero: true,
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.raw || 0;
+              return `${label}: ${value}`;
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: 'Bar Chart'
+        }
+      },
+      onClick: (event, elements) => {
+        if (elements.length > 0) {
+          const elementIndex = elements[0].index;
+          const label = labels[elementIndex];
+          const value = values[elementIndex];
+          alert(`Clicked on ${label}: ${value}`);
+        }
+      }
+    }
+  });
+
+  return canvas;
+};
+
+// Function to create a Bar chart
 export const createBarChart = (data) => {
   const labels = Object.keys(data);
   const values = Object.values(data);
@@ -133,4 +198,3 @@ export const createBarChart = (data) => {
 
   return canvas;
 };
-
