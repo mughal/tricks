@@ -1,11 +1,15 @@
 
-body {
+body, html {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 header {
@@ -15,17 +19,25 @@ header {
     margin-bottom: 20px;
     margin-top: 10px;
     height: 40px; 
+    background-color: rgba(0, 0, 255, 0.3); /* Light blue to visualize header */
 }
 
-.content {
-    width: 100%;
-    height: calc(100vh - 70px); /* Subtract the height of the header from the viewport height */
+.content-class {
+    width: calc(100% - 60px);
+    height: 500px; /* Adjust based on header height */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Start content from the top */
     box-sizing: border-box;
-    overflow: hidden; /* Prevent content from overflowing */
+    overflow: auto; /* Allow scrolling within the content area if necessary */
+    padding: 0;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    position: relative; /* Ensure positioning is relative to contain child elements */
+    background-color: lightblue;
 }
+
 header h1 {
     margin: 0;
 }
@@ -56,13 +68,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-.content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 100%;
-}
 
 .card {
     background-color: white;
@@ -76,7 +81,7 @@ button:hover {
 .card:hover {
     transform: translateY(-5px);
 }
-
+ 
 .header {
     display: flex;
     align-items: center;
@@ -97,7 +102,7 @@ button:hover {
     margin: 0;
     line-height: 1.5;
     align-items: center; /* Vertically center icon and text */
-}
+} 
 
 .body p strong {
     font-weight: bold;
@@ -126,41 +131,33 @@ button:hover {
 }
 
 /* Reset default list styles for navigation */
-header nav ul {
+ nav ul { 
     list-style-type: none; /* Remove bullets */
     padding: 0;
     margin: 0;
     display: flex; /* Display list items inline */
     gap: 20px; /* Space between navigation items */
     justify-content: center; /* Center the navigation items */
-}
+} 
 
 /* Style individual list items */
-header nav ul li {
+nav ul li {
     display: inline; /* Ensure list items are inline */
-}
+} 
 
 /* Style navigation links */
-header nav ul li a {
+nav ul li a {
     text-decoration: none; /* Remove underline from links */
     color: #007bff; /* Link color */
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 4px;
     transition: background-color 0.3s;
-}
+} 
 
 /* Link hover effect */
-header nav ul li a:hover {
+nav ul li a:hover {
     background-color: #0056b3; /* Background color on hover */
     color: white; /* Text color on hover */
 }
 
-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    width: 100%;
-}

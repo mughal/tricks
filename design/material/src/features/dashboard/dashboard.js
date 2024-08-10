@@ -1,29 +1,48 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
+import createDoughnutChart from '../guicharts/DoughnutChart';
+
 
 export function loadDashboard() {
-    
     setFun(false);
-    const content = document.getElementById('content');
-    content.innerHTML = ''; // Clear existing content
+    const content = document.getElementById('content-id');
+    
+    // Clear any existing content
+    content.innerHTML = '';
 
-    const dashboardContent = document.createElement('div');
-    dashboardContent.className = 'dashboard-grid';
-
-    // Create a 4x4 grid
-    for (let i = 1; i <= 9; i++) {
+    // Create the dashboard grid
+    const dashboardGrid = document.createElement('div');
+    dashboardGrid.className = 'dashboard-grid';
+    
+    // Adding 16 grid items, each with a flex container inside
+    for (let i = 1; i <= 16; i++) {
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item';
         
-        // Create a flex div inside each grid cell with an ID
-        const flexDiv = document.createElement('div');
-        flexDiv.className = 'flex-container';
-        flexDiv.id = `flex-div-${i}`; // Assign an ID based on the cell number
-        flexDiv.innerText = i; // Display the cell number
+        // Create a flex container inside the grid item
+        const flexContainer = document.createElement('div');
+        flexContainer.className = 'flex-container';
+        flexContainer.id = `flex-${i}`; // Assign a unique ID
         
-        gridItem.appendChild(flexDiv);
-        dashboardContent.appendChild(gridItem);
+        // Optionally, you can add some content inside the flex container
+        //flexContainer.textContent = `Item ${i}`;
+        
+        // Append the flex container to the grid item
+        gridItem.appendChild(flexContainer);
+        dashboardGrid.appendChild(gridItem);
     }
+    
+    // Append the grid to the content area
+    content.appendChild(dashboardGrid);
+    const doughnutChartData = {
+        "Area 1": 2197,
+        "Area 2": 181,
+        "Area 3": 438,
+        "Area 4": 145,
+        "Area 5": 13,
+      };
+    
+      const flexone = document.getElementById('flex-1');
+      flexone.appendChild(createDoughnutChart(doughnutChartData));
 
-    content.appendChild(dashboardContent);
 }

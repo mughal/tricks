@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.13",
+    "chart.js": "^4.4.3",
     "material-symbols": "^0.21.2"
   }
 }
