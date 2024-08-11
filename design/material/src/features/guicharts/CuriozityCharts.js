@@ -12,7 +12,7 @@ const secondaryColor2 = rootStyles.getPropertyValue('--color-secondary2').trim()
 
 const colorArray = [primaryColor1, primaryColor2, primaryColor3, secondaryColor1, secondaryColor2];
 
-function getBarColors(dataLength) {
+function graphColors(dataLength) {
   const barColors = [];
   let previousColorIndex = -1;
   
@@ -36,7 +36,7 @@ export const createDoughnutChart = (data) => {
   const labels = Object.keys(data);
   const values = Object.values(data);
   const total = values.reduce((acc, val) => acc + val, 0);
-
+  const barColors = graphColors(values.length);
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
   const ctx = canvas.getContext('2d');
@@ -47,13 +47,7 @@ export const createDoughnutChart = (data) => {
       labels: labels,
       datasets: [{
         data: values,
-        backgroundColor: [
-          primaryColor1,
-          primaryColor2,
-          primaryColor3,
-          secondaryColor1,
-          secondaryColor2,
-        ],
+        backgroundColor: barColors,
         borderColor: [
           primaryColor2,
           primaryColor2,
@@ -103,7 +97,7 @@ export const createDoughnutChart = (data) => {
 export const createBarChartH = (data) => {
   const labels = Object.keys(data);
   const values = Object.values(data);
-  const barColors = getBarColors(values.length);
+  const barColors = graphColors(values.length);
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
   const ctx = canvas.getContext('2d');
@@ -168,7 +162,7 @@ export const createBarChartH = (data) => {
 export const createBarChart = (data) => {
   const labels = Object.keys(data);
   const values = Object.values(data);
-  const barColors = getBarColors(values.length);
+  const barColors = graphColors(values.length);
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
   const ctx = canvas.getContext('2d');
@@ -232,15 +226,15 @@ export const createBubbleChart = (data) => {
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
   const ctx = canvas.getContext('2d');
-
+  const bubbleColors = graphColors(data.length);
   const chart = new Chart(ctx, {
     type: 'bubble',
     data: {
       datasets: [{
         label: 'Bubble Dataset',
         data: data, // data should be an array of objects like [{x: 20, y: 30, r: 15}, ...]
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: bubbleColors,
+        borderColor: primaryColor1,
         borderWidth: 1
       }]
     },
@@ -488,4 +482,79 @@ export const createMixedChart = (data) => {
 
   return canvas;
 };
+
+export const createStackedBarChart = (data) => {
+  const labels = Object.keys(data); // Labels for the sites
+  const totalDevices = Object.values(data).map(site => site.total);
+  const visibleToday = Object.values(data).map(site => site.visibleToday);
+  const appearedToday = Object.values(data).map(site => site.appearedToday);
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: labels,
+          datasets: [
+              {
+                  label: 'Not Visible Today',
+                  data: totalDevices.map((t, i) => t - visibleToday[i]),
+                  backgroundColor: secondaryColor1, // Color for not visible today
+                  borderColor: primaryColor2,
+                  borderWidth: 1
+              },
+              {
+                label: 'Visible Today',
+                data: visibleToday.map((v, i) => v - appearedToday[i]),
+                backgroundColor: secondaryColor2, // Color for visible today but not appeared today
+                borderColor: primaryColor2,
+                borderWidth: 1
+            },
+              {
+                label: 'Appeared Today',
+                data: appearedToday,
+                backgroundColor: primaryColor1, // Color for appeared today
+                borderColor: primaryColor2,
+                borderWidth: 1
+            }
+          ]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              x: {
+                  beginAtZero: true,
+                  stacked: true // Stacked bars
+              },
+              y: {
+                  beginAtZero: true,
+                  stacked: true // Stacked bars
+              }
+          },
+          plugins: {
+              legend: {
+                  position: 'top',
+                  labels: {
+                      color: '#FFFFFF' // Legend text color
+                  }
+              },
+              tooltip: {
+                  backgroundColor: '#3E2723', // Tooltip background color
+                  titleColor: '#FFFFFF', // Tooltip title color
+                  bodyColor: '#FFFFFF', // Tooltip body color
+              },
+              title: {
+                  display: true,
+                  text: 'Stacked Bar Chart',
+                  color: '#FFFFFF' // Title text color
+              }
+          }
+      }
+  });
+
+  return canvas;
+};
+
 

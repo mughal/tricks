@@ -52,6 +52,16 @@ export const siteStatusData = {
     zero_arp: 10
 };
 
+export const stackdata = {
+    "Lahore-D": { total: 200, visibleToday: 100, appearedToday: 10 },
+    "Islamabad": { total: 320, visibleToday: 150, appearedToday: 5 },
+    "Rawalpindi": { total: 120, visibleToday: 90, appearedToday: 20 },
+    "Peshawar": { total: 132, visibleToday: 50, appearedToday: 20 },
+    "Gujranwala": { total: 293, visibleToday: 200, appearedToday: 30 },
+    // more sites...
+};
+
+
 const deviceDataByRegion = [
     { region: "North", totalDevices: 150, newDevices: 15 },
     { region: "South", totalDevices: 300, newDevices: 30 },

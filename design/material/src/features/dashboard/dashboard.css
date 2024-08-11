@@ -18,6 +18,24 @@
     border: 1px solid red;
 }
 
+/* Example: Merging the first two cells in a row */
+.grid-item-large-horizontal {
+    grid-column: span 2; /* Span across two columns */
+    grid-row: span 1;     /* Span across one row */
+}
+
+/* Example: Merging the first two cells in a column */
+.grid-item-large-vertical {
+    grid-column: span 1;  /* Span across one column */
+    grid-row: span 2;      /* Span across two rows */
+}
+
+/* Example: Merging four cells (2x2 area) */
+.grid-item-large-square {
+    grid-column: span 2;  /* Span across two columns */
+    grid-row: span 2;      /* Span across two rows */
+}
+
 .flex-container {
     position: absolute;
     top: 0;
