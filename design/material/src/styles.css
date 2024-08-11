@@ -1,4 +1,15 @@
 
+:root {
+    --color-primary1: #f38c6c; /* Dark brown */
+    --color-primary2: #f7ac95; /* Dark brown */
+    --color-primary3: #bda8a1; /* Dark brown */
+    --color-secondary1: #8D6E63; /* Lighter brown */
+    --color-secondary2: #dac1b8; /* Lighter brown */
+    --color-accent: #D7CCC8; /* Light accent color */
+    --color-background: #3E2723; /* Background color */
+    --color-text: #FFFFFF; /* Text color */
+    --color-border: #BCAAA4; /* Border color */
+}
 body, html {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;

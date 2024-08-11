@@ -2,6 +2,35 @@ import { BubbleController, PointElement,  Chart, DoughnutController, BarControll
 
 Chart.register(BubbleController, PointElement, DoughnutController, BarController, BarElement, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
 
+// Access CSS variables
+const rootStyles = getComputedStyle(document.documentElement);
+const primaryColor1 = rootStyles.getPropertyValue('--color-primary1').trim();
+const primaryColor2 = rootStyles.getPropertyValue('--color-primary2').trim();
+const primaryColor3 = rootStyles.getPropertyValue('--color-primary3').trim();
+const secondaryColor1 = rootStyles.getPropertyValue('--color-secondary1').trim();
+const secondaryColor2 = rootStyles.getPropertyValue('--color-secondary2').trim();
+
+const colorArray = [primaryColor1, primaryColor2, primaryColor3, secondaryColor1, secondaryColor2];
+
+function getBarColors(dataLength) {
+  const barColors = [];
+  let previousColorIndex = -1;
+  
+  for (let i = 0; i < dataLength; i++) {
+      let colorIndex;
+      
+      // Ensure no two successive bars have the same color
+      do {
+          colorIndex = Math.floor(Math.random() * colorArray.length);
+      } while (colorIndex === previousColorIndex);
+      
+      barColors.push(colorArray[colorIndex]);
+      previousColorIndex = colorIndex;
+  }
+  
+  return barColors;
+}
+
 // Function to create a Doughnut chart
 export const createDoughnutChart = (data) => {
   const labels = Object.keys(data);
@@ -19,18 +48,18 @@ export const createDoughnutChart = (data) => {
       datasets: [{
         data: values,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
+          primaryColor1,
+          primaryColor2,
+          primaryColor3,
+          secondaryColor1,
+          secondaryColor2,
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
+          primaryColor2,
+          primaryColor2,
+          primaryColor2,
+          primaryColor2,
+          primaryColor2,
         ],
         borderWidth: 1
       }]
@@ -74,7 +103,7 @@ export const createDoughnutChart = (data) => {
 export const createBarChartH = (data) => {
   const labels = Object.keys(data);
   const values = Object.values(data);
-
+  const barColors = getBarColors(values.length);
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
   const ctx = canvas.getContext('2d');
@@ -86,8 +115,8 @@ export const createBarChartH = (data) => {
       datasets: [{
         label: 'Data Values',
         data: values,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: barColors,
+        borderColor: primaryColor1,
         borderWidth: 1
       }]
     },
@@ -139,7 +168,7 @@ export const createBarChartH = (data) => {
 export const createBarChart = (data) => {
   const labels = Object.keys(data);
   const values = Object.values(data);
-
+  const barColors = getBarColors(values.length);
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
   const ctx = canvas.getContext('2d');
@@ -151,8 +180,8 @@ export const createBarChart = (data) => {
       datasets: [{
         label: 'Data Values',
         data: values,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: barColors,
+        borderColor: primaryColor1,
         borderWidth: 1
       }]
     },
