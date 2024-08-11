@@ -61,6 +61,14 @@ export const stackdata = {
     // more sites...
 };
 
+export const dualData = {
+    "Site 1": { numberOfDevices: 120, secondaryMetric: 50 }, // Network traffic in GB
+    "Site 2": { numberOfDevices: 200, secondaryMetric: 120 },
+    "Site 3": { numberOfDevices: 150, secondaryMetric: 80 },
+    "Site 4": { numberOfDevices: 300, secondaryMetric: 200 },
+    "Site 5": { numberOfDevices: 180, secondaryMetric: 90 },
+};
+
 
 const deviceDataByRegion = [
     { region: "North", totalDevices: 150, newDevices: 15 },

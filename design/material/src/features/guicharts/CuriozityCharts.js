@@ -1,6 +1,35 @@
-import { BubbleController, PointElement,  Chart, DoughnutController, BarController, BarElement, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale } from 'chart.js';
+import { 
+  BubbleController, 
+  PointElement,  
+  Chart, 
+  DoughnutController, 
+  BarController,
+  BarElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  CategoryScale,
+  LinearScale,
+  LineController,
+  LineElement 
+} from 'chart.js';
 
-Chart.register(BubbleController, PointElement, DoughnutController, BarController, BarElement, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale);
+Chart.register(
+  BubbleController,
+  PointElement,
+  DoughnutController,
+  BarController,
+  BarElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  CategoryScale,
+  LinearScale,
+  LineController,
+  LineElement
+  );
 
 // Access CSS variables
 const rootStyles = getComputedStyle(document.documentElement);
@@ -573,6 +602,121 @@ export const createStackedBarChart = (data) => {
                   left: 0,
                   right: 0,
                   bottom: 0
+              }
+          }
+      }
+  });
+
+  return canvas;
+};
+
+export const createDualAxisBarChart = (data) => {
+  const labels = Object.keys(data); // Labels for the sites
+
+  const numberOfDevices = Object.values(data).map(site => site.numberOfDevices);
+  const secondaryMetric = Object.values(data).map(site => site.secondaryMetric);
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: labels,
+          datasets: [
+              {
+                  label: 'Number of Devices', // Label for the left y-axis
+                  data: numberOfDevices,
+                  backgroundColor: primaryColor1, // Color for the number of devices
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1,
+                  yAxisID: 'y' // Link this dataset to the left y-axis
+              },
+              {
+                  label: 'Secondary Metric', // Label for the right y-axis
+                  data: secondaryMetric,
+                  backgroundColor: secondaryColor1, // Color for the secondary metric
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1,
+                  yAxisID: 'y1' // Link this dataset to the right y-axis
+              }
+          ]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  position: 'left', // Left y-axis
+                  title: {
+                      display: true,
+                      text: 'Number of Devices',
+                      color: primaryColor2,
+                      font: {
+                          family: 'Arial, sans-serif',
+                          size: 14,
+                          weight: 'bold',
+                      },
+                  },
+                  ticks: {
+                      color: '#FFFFFF' // Y-axis text color
+                  }
+              },
+              y1: {
+                  beginAtZero: true,
+                  position: 'right', // Right y-axis
+                  title: {
+                      display: true,
+                      text: 'Secondary Metric',
+                      color: secondaryColor2,
+                      font: {
+                          family: 'Arial, sans-serif',
+                          size: 14,
+                          weight: 'bold',
+                      },
+                  },
+                  grid: {
+                      drawOnChartArea: false, // Only draw grid lines for one y-axis
+                  },
+                  ticks: {
+                      color: '#FFFFFF' // Y1-axis text color
+                  }
+              },
+              x: {
+                  beginAtZero: true,
+                  ticks: {
+                      color: '#FFFFFF' // X-axis text color
+                  }
+              }
+          },
+          plugins: {
+              legend: {
+                  position: 'top', // Position the legend at the top
+                  labels: {
+                      color: primaryColor3, // Legend text color
+                      boxWidth: 12,     // Adjust box width
+                      padding: 2,       // Adjust padding between legend items
+                  }
+              },
+              tooltip: {
+                  backgroundColor: '#3E2723', // Tooltip background color
+                  titleColor: '#FFFFFF', // Tooltip title color
+                  bodyColor: '#FFFFFF', // Tooltip body color
+              },
+              title: {
+                  display: true,
+                  text: 'Dual Axis Bar Chart',
+                  color: primaryColor1, // Title text color
+                  font: {
+                      family: 'Arial, sans-serif',
+                      size: 20, // Customize font size
+                      weight: 'bold', // Customize font weight
+                  },
+                  padding: {
+                      top: 10,
+                      bottom: 30
+                  },
               }
           }
       }

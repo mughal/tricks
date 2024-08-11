@@ -1,7 +1,7 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
-import { createDoughnutChart, createBarChart, createBarChartH, createBubbleChart, createStackedBarChart  } from '../guicharts/CuriozityCharts';
-import { stackdata, doughnutChartData, macVendors, siteStatusData, bubbleChartData  } from '../../dummy/dummyData';
+import { createDualAxisBarChart, createDoughnutChart, createBarChart, createBarChartH, createBubbleChart, createStackedBarChart  } from '../guicharts/CuriozityCharts';
+import { dualData, stackdata, doughnutChartData, macVendors, siteStatusData, bubbleChartData  } from '../../dummy/dummyData';
 
 export function loadDashboard() {
     setFun(false);
@@ -50,5 +50,7 @@ export function loadDashboard() {
       flex6.appendChild(createBubbleChart(bubbleChartData));
       const flex7 = document.getElementById('flex-7');
       flex7.appendChild(createStackedBarChart(stackdata));
+      const flex8 = document.getElementById('flex-8');
+      flex8.appendChild(createDualAxisBarChart(dualData));
 
 }
