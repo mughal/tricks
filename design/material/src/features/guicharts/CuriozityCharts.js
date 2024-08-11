@@ -482,12 +482,15 @@ export const createMixedChart = (data) => {
 
   return canvas;
 };
-
 export const createStackedBarChart = (data) => {
   const labels = Object.keys(data); // Labels for the sites
   const totalDevices = Object.values(data).map(site => site.total);
   const visibleToday = Object.values(data).map(site => site.visibleToday);
   const appearedToday = Object.values(data).map(site => site.appearedToday);
+
+  const notVisibleToday = totalDevices.map((t, i) => t - visibleToday[i]);
+  const olderVisibleDevices = visibleToday.map((v, i) => v - appearedToday[i]);
+  const newDevicesToday = appearedToday;
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -498,26 +501,28 @@ export const createStackedBarChart = (data) => {
           labels: labels,
           datasets: [
               {
-                  label: 'Not Visible Today',
-                  data: totalDevices.map((t, i) => t - visibleToday[i]),
-                  backgroundColor: secondaryColor1, // Color for not visible today
-                  borderColor: primaryColor2,
+                  label: 'New',
+                  data: appearedToday,
+                  backgroundColor: 'rgba(255, 99, 132, 0.8)', // Color for appeared today
+                  borderColor: 'rgba(255, 99, 132, 1)',
                   borderWidth: 1
               },
               {
-                label: 'Visible Today',
-                data: visibleToday.map((v, i) => v - appearedToday[i]),
-                backgroundColor: secondaryColor2, // Color for visible today but not appeared today
-                borderColor: primaryColor2,
-                borderWidth: 1
-            },
+                  label: 'Active',
+                  //data: visibleToday.map((v, i) => v - appearedToday[i]),
+                  data: olderVisibleDevices,
+                  backgroundColor: 'rgba(54, 162, 235, 0.8)', // Color for visible today but not appeared today
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1
+              },
               {
-                label: 'Appeared Today',
-                data: appearedToday,
-                backgroundColor: primaryColor1, // Color for appeared today
-                borderColor: primaryColor2,
-                borderWidth: 1
-            }
+                  label: 'Not Active',
+                  //data: totalDevices.map((t, i) => t - visibleToday[i]),
+                  data: notVisibleToday,
+                  backgroundColor: 'rgba(75, 192, 192, 0.8)', // Color for not visible today
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              }
           ]
       },
       options: {
@@ -535,9 +540,11 @@ export const createStackedBarChart = (data) => {
           },
           plugins: {
               legend: {
-                  position: 'top',
+                  position: 'top', // Position the legend at the top
                   labels: {
-                      color: '#FFFFFF' // Legend text color
+                      color: primaryColor2, // Legend text color
+                      boxWidth: 20,     // Width of the color box
+                      padding: 2,      // Padding around each legend item
                   }
               },
               tooltip: {
@@ -547,8 +554,25 @@ export const createStackedBarChart = (data) => {
               },
               title: {
                   display: true,
-                  text: 'Stacked Bar Chart',
-                  color: '#FFFFFF' // Title text color
+                  text: 'Stacked',
+                  color: primaryColor1, // Title text color
+                  font: {
+                      family: 'Arial, sans-serif', // Customize font family
+                      size: 20, // Customize font size
+                      weight: 'bold', // Customize font weight
+                  },
+                  padding: {
+                      top: 0,
+                      bottom: 5
+                  },
+              }
+          },
+          layout: {
+              padding: {
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0
               }
           }
       }
@@ -556,5 +580,3 @@ export const createStackedBarChart = (data) => {
 
   return canvas;
 };
-
-
