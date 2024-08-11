@@ -1,3 +1,18 @@
+/* Add this to your main CSS file or within a <style> tag in your HTML file */
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Regular.ttf') format('truetype'); /* Updated to use .ttf */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Bold.ttf') format('truetype'); /* Updated to use .ttf */
+  font-weight: 700;
+  font-style: normal;
+}
 
 :root {
     --color-primary1: #f38c6c; /* Dark brown */

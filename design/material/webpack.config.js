@@ -18,6 +18,13 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif|webp)$/,
                 use: ['file-loader'],
             },
+            {
+                test: /\.(woff|woff2|ttf)$/,
+                type: 'asset/resource',
+                generator: {
+                  filename: 'fonts/[name][ext]'
+                }
+            },
         ],
     },
     plugins: [
