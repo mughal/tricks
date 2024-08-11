@@ -1,7 +1,7 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
-import { createDoughnutChart, createBarChart, createBarChartH  } from '../guicharts/CuriozityCharts';
-
+import { createDoughnutChart, createBarChart, createBarChartH, createBubbleChart  } from '../guicharts/CuriozityCharts';
+import { doughnutChartData, macVendors, siteStatusData, bubbleChartData  } from '../../dummy/dummyData';
 
 export function loadDashboard() {
     setFun(false);
@@ -34,13 +34,7 @@ export function loadDashboard() {
     
     // Append the grid to the content area
     content.appendChild(dashboardGrid);
-    const doughnutChartData = {
-        "Area 1": 2197,
-        "Area 2": 181,
-        "Area 3": 438,
-        "Area 4": 145,
-        "Area 5": 13,
-      };
+    
     
       const flexone = document.getElementById('flex-1');
       flexone.appendChild(createDoughnutChart(doughnutChartData));
@@ -48,5 +42,11 @@ export function loadDashboard() {
       flextwo.appendChild(createBarChart(doughnutChartData));
       const flex3 = document.getElementById('flex-3');
       flex3.appendChild(createBarChartH(doughnutChartData));
+      const flex4 = document.getElementById('flex-4');
+      flex4.appendChild(createDoughnutChart(macVendors));
+      const flex5 = document.getElementById('flex-5');
+      flex5.appendChild(createDoughnutChart(siteStatusData));
+      const flex6 = document.getElementById('flex-6');
+      flex6.appendChild(createBubbleChart(bubbleChartData));
 
 }
