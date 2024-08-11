@@ -69,6 +69,14 @@ export const dualData = {
     "Site 5": { numberOfDevices: 180, secondaryMetric: 90 },
 };
 
+export const devices_in_cities = [
+    { name: 'Karachi', lat: 24.8607, lng: 67.0011, devices: 150 },
+    { name: 'Lahore', lat: 31.5497, lng: 74.3436, devices: 200 },
+    { name: 'Islamabad', lat: 33.6844, lng: 73.0479, devices: 100 },
+    { name: 'Peshawar', lat: 34.0151, lng: 71.5249, devices: 80 },
+    { name: 'Quetta', lat: 30.1798, lng: 66.9750, devices: 60 }
+];
+
 
 const deviceDataByRegion = [
     { region: "North", totalDevices: 150, newDevices: 15 },
