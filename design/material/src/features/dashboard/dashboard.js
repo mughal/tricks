@@ -1,7 +1,7 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
 import {addMap} from '../gis/mapModule';
-import { curiozdbRow } from '../curiozdb/curiozdb.js';
+import { curiozdbRow, combineCellsForChart } from '../curiozdb/curiozdb.js';
 import { 
     createDualAxisBarChart,
     createDoughnutChart,
@@ -50,11 +50,22 @@ export function loadDashboard() {
         dashboardGrid.appendChild(gridItem);
     }
     
-    // Append the grid to the content area
-    content.appendChild(curiozdbRow());
-    content.appendChild(curiozdbRow());
-    content.appendChild(curiozdbRow());
-    content.appendChild(curiozdbRow());
+    const gridContainer = document.createElement('div');
+    gridContainer.className = 'curiozdb-container';
+
+    // Append rows to the grid container
+    gridContainer.appendChild(curiozdbRow('row1'));
+    gridContainer.appendChild(curiozdbRow('row2'));
+    gridContainer.appendChild(curiozdbRow('row3'));
+    gridContainer.appendChild(curiozdbRow('row4'));
+
+    // Append the grid container to the content area
+    content.appendChild(gridContainer);
+    //combineCellsForChart('chart1', 'row1-cell2-large', 'row2-cell2-large');
+
+    //createCuriozdbChart('chart1', 'row1', 'row2');
+
+    //createCuriozdbChart('chart1', 'row1', 'row2');
     //content.appendChild(curiozdbRow());
     // content.appendChild(dashboardGrid);
     

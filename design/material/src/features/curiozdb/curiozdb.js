@@ -1,14 +1,18 @@
 import './curiozdb.css';
 import '@fortawesome/fontawesome-free/css/all.css'; // Import Font Awesome CSS
 
-export function curiozdbRow() {
+export function curiozdbRow(rowId) {
     // Create row container
     const row = document.createElement('div');
     row.className = 'curiozdb-row';
+    if (rowId) {
+        row.id = rowId;
+    }
 
     // Create cell1 with title, icon, and quantity
     const cell1 = document.createElement('div');
     cell1.className = 'curiozdb-cell cell-small';
+    cell1.id = `${rowId}-cell1-small`;
 
     const cell1Title = document.createElement('div');
     cell1Title.className = 'cell-title';
@@ -33,10 +37,12 @@ export function curiozdbRow() {
     // Create cell2 (we will add the graph later)
     const cell2 = document.createElement('div');
     cell2.className = 'curiozdb-cell cell-large';
+    cell2.id = `${rowId}-cell2-large`;
 
     // Create cell3 with title, icon, and quantity
     const cell3 = document.createElement('div');
     cell3.className = 'curiozdb-cell cell-small';
+    cell3.id = `${rowId}-cell3-small`;
 
     const cell3Title = document.createElement('div');
     cell3Title.className = 'cell-title';
@@ -64,4 +70,23 @@ export function curiozdbRow() {
     row.appendChild(cell3);
 
     return row;
+}
+
+export function combineCellsForChart(chartId, cell1Id, cell2Id) {
+    const cell1 = document.getElementById(cell1Id);
+    const cell2 = document.getElementById(cell2Id);
+
+    // Create the chart container
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'curiozdb-chart';
+    chartContainer.id = chartId;
+    chartContainer.textContent = 'Bar Chart Area';
+
+    // Remove the existing large cells
+    cell1.parentNode.removeChild(cell1);
+    cell2.parentNode.removeChild(cell2);
+
+    // Insert the chart container in place of the removed cells
+    const row1 = document.getElementById(cell1Id.replace('-cell2-large', ''));
+    row1.appendChild(chartContainer);
 }
