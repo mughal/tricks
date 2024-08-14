@@ -15,6 +15,12 @@
 }
 
 :root {
+    --cell-height: 8rem; 
+    --primary-color: #333;
+    --background-color: #f0f0f0;
+    --border-color: #ddd;
+    --text-color: #000000;
+    --icon-color: #007bff; /* Example color for the icon */
     --color-primary1: #f38c6c; /* Dark brown */
     --color-primary2: #f7ac95; /* Dark brown */
     --color-primary3: #bda8a1; /* Dark brown */
@@ -52,7 +58,8 @@ header {
     width: calc(100% - 60px);
     height: 500px; /* Adjust based on header height */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     align-items: flex-start; /* Start content from the top */
     box-sizing: border-box;
     overflow: auto; /* Allow scrolling within the content area if necessary */

@@ -1,0 +1,55 @@
+
+.curiozdb-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px; /* Adjust this value as needed */
+    box-sizing: border-box; /* Ensures padding and borders are included in the element's total width and height */
+}
+
+.curiozdb-cell {
+    padding: 1rem; /* Adjust padding using rem for consistency */
+    background-color: var(--background-color); /* Use the background color variable from main CSS */
+    border: 1px solid var(--border-color); /* Use the border color variable from main CSS */
+    font-size: 1rem; /* Base font size for the cell, 1rem equals the root font size */
+    box-sizing: border-box; /* Ensures padding and borders are included in the element's total width and height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Ensure positioning context for absolute elements */
+    flex-grow: 1;
+    height: var(--cell-height); /* Set the height using a responsive unit */
+}
+
+.curiozdb-cell .cell-title {
+    position: absolute;
+    top: 0.5rem; /* Positioned using rem for consistency */
+    left: 0.5rem;
+    font-size: 0.8rem; /* Slightly smaller text for the title */
+}
+
+.curiozdb-cell .cell-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* Align children (icon and quantity) horizontally */
+    text-align: center;
+    width: 100%;
+}
+
+.curiozdb-cell .cell-icon {
+    font-size: 1.5rem; /* Icon size controlled using rem */
+    margin-right: 0.5rem; /* Space between icon and number */
+}
+
+.curiozdb-cell .cell-quantity {
+    font-size: 1.5rem; /* Text size controlled using rem */
+}
+
+.cell-small {
+    flex: 1; /* Takes 1 part of the available width */
+}
+
+.cell-large {
+    flex: 3; /* Takes 3 parts of the available width */
+}

@@ -1,6 +1,7 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
 import {addMap} from '../gis/mapModule';
+import { curiozdbRow } from '../curiozdb/curiozdb.js';
 import { 
     createDualAxisBarChart,
     createDoughnutChart,
@@ -50,26 +51,31 @@ export function loadDashboard() {
     }
     
     // Append the grid to the content area
-    content.appendChild(dashboardGrid);
+    content.appendChild(curiozdbRow());
+    content.appendChild(curiozdbRow());
+    content.appendChild(curiozdbRow());
+    content.appendChild(curiozdbRow());
+    //content.appendChild(curiozdbRow());
+    // content.appendChild(dashboardGrid);
     
     
-      const flexone = document.getElementById('flex-1');
-      flexone.appendChild(createDoughnutChart(doughnutChartData));
-      const flextwo = document.getElementById('flex-2');
-      flextwo.appendChild(createBarChart(doughnutChartData));
-      const flex3 = document.getElementById('flex-3');
-      flex3.appendChild(createBarChartH(doughnutChartData));
-      const flex4 = document.getElementById('flex-4');
-      flex4.appendChild(createDoughnutChart(macVendors));
-      const flex5 = document.getElementById('flex-5');
-      flex5.appendChild(createDoughnutChart(siteStatusData));
-      const flex6 = document.getElementById('flex-6');
-      flex6.appendChild(createBubbleChart(bubbleChartData));
-      const flex7 = document.getElementById('flex-7');
-      flex7.appendChild(createStackedBarChart(stackdata));
-      const flex8 = document.getElementById('flex-8');
-      flex8.appendChild(createDualAxisBarChart(dualData));
-      const flex9 = document.getElementById('flex-9');
-      flex9.appendChild(addMap(devices_in_cities));
+    //   const flexone = document.getElementById('flex-1');
+    //   flexone.appendChild(createDoughnutChart(doughnutChartData));
+    //   const flextwo = document.getElementById('flex-2');
+    //   flextwo.appendChild(createBarChart(doughnutChartData));
+    //   const flex3 = document.getElementById('flex-3');
+    //   flex3.appendChild(createBarChartH(doughnutChartData));
+    //   const flex4 = document.getElementById('flex-4');
+    //   flex4.appendChild(createDoughnutChart(macVendors));
+    //   const flex5 = document.getElementById('flex-5');
+    //   flex5.appendChild(createDoughnutChart(siteStatusData));
+    //   const flex6 = document.getElementById('flex-6');
+    //   flex6.appendChild(createBubbleChart(bubbleChartData));
+    //   const flex7 = document.getElementById('flex-7');
+    //   flex7.appendChild(createStackedBarChart(stackdata));
+    //   const flex8 = document.getElementById('flex-8');
+    //   flex8.appendChild(createDualAxisBarChart(dualData));
+    //   const flex9 = document.getElementById('flex-9');
+    //   flex9.appendChild(addMap(devices_in_cities));
 
 }
