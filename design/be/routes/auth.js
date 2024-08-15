@@ -12,6 +12,8 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ username });
         if (user && await bcrypt.compare(password, user.password)) {
             // Here, you would normally set the user session
+            req.session.userId = user._id;
+            console.log(`setting session ${req.session.userId} `)
             res.status(200).send('Login successful');
         } else {
             res.status(400).send('Invalid credentials');

@@ -10,7 +10,7 @@ import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/co
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
-    const content = document.getElementById('content');
+    const content = document.getElementById('content-id');
     document.getElementById('dashboard-link').addEventListener('click', loadDashboard);
     document.getElementById('login-link').addEventListener('click', loadLogin);
     loadWelcome();
