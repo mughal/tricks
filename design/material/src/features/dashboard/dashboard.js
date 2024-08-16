@@ -7,7 +7,8 @@ import {
     createCuriozdbCellContent,
     clearCellContent,
     curiozType3,
-    createCuriozDashRow
+    createCuriozDashRow,
+    addCharts
 } from '../curiozdb/curiozdb.js';
 
 import { 
@@ -83,6 +84,15 @@ export function loadDashboard() {
     cellContent = createCuriozdbCellContent('lower', 'fa-chart-bar', '53');
     lowerRight.appendChild(cellContent);
     //lowerRight.appendChild(cellContent);
+
+    // Work on charts
+    const magicChart = document.getElementById('magic-chart');
+    clearCellContent(magicChart);
+    const chart1 = createBarChart(doughnutChartData);
+    const chart2 = createBarChart(doughnutChartData);
+    // Use the addCharts function to combine them into a single container
+    const combinedChartContainer = addCharts(chart1, chart2);
+    magicChart.appendChild(combinedChartContainer);
     
 
     // Clear existing content in the cell

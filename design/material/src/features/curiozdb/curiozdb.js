@@ -289,3 +289,27 @@ export function createCuriozDashRow(rowId) {
 
     return row;
 }
+
+export function addCharts(chart1, chart2) {
+    // Create a container div for the two charts
+    const container = document.createElement('div');
+    container.className = 'curioz-hcharts2';
+
+    // Create two divs to hold each chart
+    const upperChartDiv = document.createElement('div');
+    upperChartDiv.className = 'upper-chart';
+    upperChartDiv.style.gridRow = '1 / 2'; // Place in the first row
+    upperChartDiv.appendChild(chart1); // Append the first chart
+
+    const lowerChartDiv = document.createElement('div');
+    lowerChartDiv.className = 'lower-chart';
+    lowerChartDiv.style.gridRow = '2 / 3'; // Place in the second row
+    lowerChartDiv.appendChild(chart2); // Append the second chart
+
+    // Append the two chart divs to the container
+    container.appendChild(upperChartDiv);
+    container.appendChild(lowerChartDiv);
+
+    // Return the container with the two charts
+    return container;
+}
