@@ -17,10 +17,10 @@
 :root {
     --cell-height: 10rem; 
     --primary-color: #333;
-    --background-color: #dbbdbd;
+    --background-color: lightgrey;
     --border-color: #ddd;
     --text-color: #000000;
-    --icon-color: #007bff; /* Example color for the icon */
+    --icon-color: #07519b; /* Example color for the icon */
     --color-primary1: #f38c6c; /* Dark brown */
     --color-primary2: #f7ac95; /* Dark brown */
     --color-primary3: #bda8a1; /* Dark brown */
