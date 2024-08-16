@@ -15,9 +15,9 @@
 }
 
 :root {
-    --cell-height: 8rem; 
+    --cell-height: 10rem; 
     --primary-color: #333;
-    --background-color: #f0f0f0;
+    --background-color: #dbbdbd;
     --border-color: #ddd;
     --text-color: #000000;
     --icon-color: #007bff; /* Example color for the icon */

@@ -80,22 +80,37 @@ export function createCuriozdbSpecialRow(rowId, chartId) {
         row.id = rowId;
     }
 
-    const cell1 = document.createElement('div');
-    cell1.className = 'curiozdb-special-cell cell-small';
-    cell1.id = `${rowId}-cell1-small`;
+    // Create the upper left cell
+    const upperLeftCell = document.createElement('div');
+    upperLeftCell.className = 'curiozdb-special-cell upper-left';
+    upperLeftCell.id = `${rowId}-upper-left`;
 
+    // Create the lower left cell
+    const lowerLeftCell = document.createElement('div');
+    lowerLeftCell.className = 'curiozdb-special-cell lower-left';
+    lowerLeftCell.id = `${rowId}-lower-left`;
+
+    // Create the chart container for the middle large cell
     const chartContainer = document.createElement('div');
-    chartContainer.className = 'curiozdb-chart curiozdb-special-cell'; // Ensure it uses the special cell class
+    chartContainer.className = 'curiozdb-chart';
     chartContainer.id = chartId;
-    chartContainer.textContent = 'Bar Chart Area';
 
-    const cell3 = document.createElement('div');
-    cell3.className = 'curiozdb-special-cell cell-small';
-    cell3.id = `${rowId}-cell3-small`;
+    // Create the upper right cell
+    const upperRightCell = document.createElement('div');
+    upperRightCell.className = 'curiozdb-special-cell upper-right';
+    upperRightCell.id = `${rowId}-upper-right`;
 
-    row.appendChild(cell1);
+    // Create the lower right cell
+    const lowerRightCell = document.createElement('div');
+    lowerRightCell.className = 'curiozdb-special-cell lower-right';
+    lowerRightCell.id = `${rowId}-lower-right`;
+
+    // Append the cells to the row
+    row.appendChild(upperLeftCell);
+    row.appendChild(lowerLeftCell);
     row.appendChild(chartContainer);
-    row.appendChild(cell3);
+    row.appendChild(upperRightCell);
+    row.appendChild(lowerRightCell);
 
     return row;
 }
@@ -153,4 +168,124 @@ export function clearCellContent(cell) {
     while (cell.firstChild) {
         cell.removeChild(cell.firstChild);
     }
+}
+
+export function curiozType3(rowId) {
+    const row = document.createElement('div');
+    row.className = 'curiozdb-special-row-three';
+    if (rowId) {
+        row.id = rowId;
+    }
+
+    // Create the upper left cell
+    const upperLeftCell = document.createElement('div');
+    upperLeftCell.className = 'curiozdb-special-cell upper-left';
+    upperLeftCell.id = `${rowId}-upper-left`;
+
+    // Create the middle left cell
+    const middleLeftCell = document.createElement('div');
+    middleLeftCell.className = 'curiozdb-special-cell middle-left';
+    middleLeftCell.id = `${rowId}-middle-left`;
+
+    // Create the lower left cell
+    const lowerLeftCell = document.createElement('div');
+    lowerLeftCell.className = 'curiozdb-special-cell lower-left';
+    lowerLeftCell.id = `${rowId}-lower-left`;
+
+    // Create the chart container for the middle large cell
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'curiozdb-chart-three';
+    chartContainer.id = `${rowId}-chart`;
+    chartContainer.textContent = 'Bar Chart Area';
+
+    // Create the upper right cell
+    const upperRightCell = document.createElement('div');
+    upperRightCell.className = 'curiozdb-special-cell upper-right';
+    upperRightCell.id = `${rowId}-upper-right`;
+
+    // Create the middle right cell
+    const middleRightCell = document.createElement('div');
+    middleRightCell.className = 'curiozdb-special-cell middle-right';
+    middleRightCell.id = `${rowId}-middle-right`;
+
+    // Create the lower right cell
+    const lowerRightCell = document.createElement('div');
+    lowerRightCell.className = 'curiozdb-special-cell lower-right';
+    lowerRightCell.id = `${rowId}-lower-right`;
+
+    // Append all cells to the row
+    row.appendChild(upperLeftCell);
+    row.appendChild(middleLeftCell);
+    row.appendChild(lowerLeftCell);
+    row.appendChild(chartContainer);
+    row.appendChild(upperRightCell);
+    row.appendChild(middleRightCell);
+    row.appendChild(lowerRightCell);
+
+    return row;
+}
+
+export function createCuriozDashRow(rowId) {
+    const row = document.createElement('div');
+    row.className = 'curioz-dash-row';
+    if (rowId) {
+        row.id = rowId;
+    }
+
+    // First column (left)
+    const upperLeftCell = document.createElement('div');
+    upperLeftCell.className = 'curioz-dash-cell upper-left';
+    upperLeftCell.id = `${rowId}-upper-left`;
+
+    const middleLeftCell = document.createElement('div');
+    middleLeftCell.className = 'curioz-dash-cell middle-left';
+    middleLeftCell.id = `${rowId}-middle-left`;
+
+    const lowerLeftCell = document.createElement('div');
+    lowerLeftCell.className = 'curioz-dash-cell lower-left';
+    lowerLeftCell.id = `${rowId}-lower-left`;
+
+    // Merged middle column with inner grid
+    const middleCell = document.createElement('div');
+    middleCell.className = 'curioz-dash-cell';
+    middleCell.style.gridColumn = '2 / 5'; /* Span columns 2, 3, 4 */
+
+    const innerGrid = document.createElement('div');
+    innerGrid.className = 'curioz-dash-inner';
+
+    const upperMiddleCell = document.createElement('div');
+    upperMiddleCell.className = 'curioz-dash-inner upper-middle';
+    upperMiddleCell.id = `${rowId}-upper-middle`;
+
+    const lowerMiddleCell = document.createElement('div');
+    lowerMiddleCell.className = 'curioz-dash-inner lower-middle';
+    lowerMiddleCell.id = `${rowId}-lower-middle`;
+
+    innerGrid.appendChild(upperMiddleCell);
+    innerGrid.appendChild(lowerMiddleCell);
+    middleCell.appendChild(innerGrid);
+
+    // Last column (right)
+    const upperRightCell = document.createElement('div');
+    upperRightCell.className = 'curioz-dash-cell upper-right';
+    upperRightCell.id = `${rowId}-upper-right`;
+
+    const middleRightCell = document.createElement('div');
+    middleRightCell.className = 'curioz-dash-cell middle-right';
+    middleRightCell.id = `${rowId}-middle-right`;
+
+    const lowerRightCell = document.createElement('div');
+    lowerRightCell.className = 'curioz-dash-cell lower-right';
+    lowerRightCell.id = `${rowId}-lower-right`;
+
+    // Append all cells to the row
+    row.appendChild(upperLeftCell);
+    row.appendChild(middleLeftCell);
+    row.appendChild(lowerLeftCell);
+    row.appendChild(middleCell);
+    row.appendChild(upperRightCell);
+    row.appendChild(middleRightCell);
+    row.appendChild(lowerRightCell);
+
+    return row;
 }
