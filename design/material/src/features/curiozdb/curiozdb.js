@@ -111,3 +111,46 @@ export function createCuriozdbSpecialRow(rowId, chartId) {
 
 // // Continue appending other rows as needed
 // content.appendChild(curiozdbRow('row4'));
+export function createCuriozdbCellContent(title, iconClass, number) {
+    // Create the main container div
+    const container = document.createElement('div');
+    container.className = 'curiozdb-cell-content'; // Apply a class for styling
+
+    // Create the title div
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'curiozdb-cell-title';
+    titleDiv.textContent = title;
+
+    // Create the content div that will hold the icon and number
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'curiozdb-cell-data';
+
+    // Create the icon element using Font Awesome
+    const iconElement = document.createElement('i');
+    iconElement.className = `fas ${iconClass} curiozdb-cell-icon`; // Use Font Awesome class
+
+    // Create the number element
+    const numberElement = document.createElement('div');
+    numberElement.className = 'curiozdb-cell-number';
+    numberElement.textContent = number;
+
+    // Append the icon and number to the content div
+    contentDiv.appendChild(iconElement);
+    contentDiv.appendChild(numberElement);
+
+    // Append the title and content divs to the main container
+    container.appendChild(titleDiv);
+    container.appendChild(contentDiv);
+
+    return container;
+}
+
+export function clearCellContent(cell) {
+    if (!cell) {
+        console.error('Cell not found');
+        return;
+    }
+    while (cell.firstChild) {
+        cell.removeChild(cell.firstChild);
+    }
+}

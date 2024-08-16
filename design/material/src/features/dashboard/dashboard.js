@@ -1,7 +1,13 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
 import {addMap} from '../gis/mapModule';
-import { curiozdbRow, createCuriozdbSpecialRow } from '../curiozdb/curiozdb.js';
+import { 
+    curiozdbRow,
+    createCuriozdbSpecialRow,
+    createCuriozdbCellContent,
+    clearCellContent
+} from '../curiozdb/curiozdb.js';
+
 import { 
     createDualAxisBarChart,
     createDoughnutChart,
@@ -38,6 +44,17 @@ export function loadDashboard() {
     container.appendChild(curiozdbRow('row4'));
     container.appendChild(curiozdbRow('row5'));
     content.appendChild(container);
+    const cell1 = document.getElementById('row1-cell1-small');
+
+    // Clear existing content in the cell
+    clearCellContent(cell1);
+
+    // Create the content div
+    const cellContent = createCuriozdbCellContent('Yasir', 'fa-chart-bar', '53');
+
+    // Append the new content to the cell
+    cell1.appendChild(cellContent);
+    
     // // Continue appending other rows as needed
     // content.appendChild(curiozdbRow('row4'));
 
