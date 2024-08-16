@@ -1,8 +1,8 @@
 import './curiozdb.css';
 import '@fortawesome/fontawesome-free/css/all.css'; // Import Font Awesome CSS
 
+// Function to create a normal row
 export function curiozdbRow(rowId) {
-    // Create row container
     const row = document.createElement('div');
     row.className = 'curiozdb-row';
     if (rowId) {
@@ -34,7 +34,7 @@ export function curiozdbRow(rowId) {
     cell1.appendChild(cell1Title);
     cell1.appendChild(cell1Content);
 
-    // Create cell2 (we will add the graph later)
+    // Create cell2 (for the large cell)
     const cell2 = document.createElement('div');
     cell2.className = 'curiozdb-cell cell-large';
     cell2.id = `${rowId}-cell2-large`;
@@ -72,21 +72,42 @@ export function curiozdbRow(rowId) {
     return row;
 }
 
-export function combineCellsForChart(chartId, cell1Id, cell2Id) {
-    const cell1 = document.getElementById(cell1Id);
-    const cell2 = document.getElementById(cell2Id);
+// Function to create a special row with a chart
+export function createCuriozdbSpecialRow(rowId, chartId) {
+    const row = document.createElement('div');
+    row.className = 'curiozdb-special-row';
+    if (rowId) {
+        row.id = rowId;
+    }
 
-    // Create the chart container
+    const cell1 = document.createElement('div');
+    cell1.className = 'curiozdb-special-cell cell-small';
+    cell1.id = `${rowId}-cell1-small`;
+
     const chartContainer = document.createElement('div');
-    chartContainer.className = 'curiozdb-chart';
+    chartContainer.className = 'curiozdb-chart curiozdb-special-cell'; // Ensure it uses the special cell class
     chartContainer.id = chartId;
     chartContainer.textContent = 'Bar Chart Area';
 
-    // Remove the existing large cells
-    cell1.parentNode.removeChild(cell1);
-    cell2.parentNode.removeChild(cell2);
+    const cell3 = document.createElement('div');
+    cell3.className = 'curiozdb-special-cell cell-small';
+    cell3.id = `${rowId}-cell3-small`;
 
-    // Insert the chart container in place of the removed cells
-    const row1 = document.getElementById(cell1Id.replace('-cell2-large', ''));
-    row1.appendChild(chartContainer);
+    row.appendChild(cell1);
+    row.appendChild(chartContainer);
+    row.appendChild(cell3);
+
+    return row;
 }
+// Example of usage
+// const content = document.getElementById('content');
+
+// // Create and append normal rows
+// content.appendChild(curiozdbRow('row1'));
+// content.appendChild(curiozdbRow('row2'));
+
+// // Create and append the special row with a chart
+// content.appendChild(createCuriozdbSpecialRow('row3', 'chart1'));
+
+// // Continue appending other rows as needed
+// content.appendChild(curiozdbRow('row4'));

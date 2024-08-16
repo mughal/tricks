@@ -62,7 +62,7 @@ header {
     /* justify-content: center; */
     align-items: flex-start; /* Start content from the top */
     box-sizing: border-box;
-    overflow: auto; /* Allow scrolling within the content area if necessary */
+    overflow: visible; /* Allow scrolling within the content area if necessary */
     padding: 0;
     margin-top: 10px;
     margin-left: 30px;

@@ -1,72 +1,60 @@
+
 .curiozdb-container {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr; /* Three columns: small-large-small */
-    gap: 10px; /* Spacing between grid items */
+    grid-template-columns: 1fr; /* Single column grid to stack rows */
+    gap: 5px; /* Gap between rows */
     width: 100%;
     box-sizing: border-box;
+    overflow: visible; /* Ensure the container doesn't cause scrolling */
 }
 
 .curiozdb-row {
-    display: contents; /* Allows rows to be used within the grid */
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr; /* Three columns: small-large-small */
+    gap: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    height: var(--cell-height); /* Ensure each row has the correct height */
+    overflow: visible; /* Ensure no hidden overflow triggers scrollbar */
 }
 
-.curiozdb-cell {
-    padding: 1rem; /* Adjust padding using rem for consistency */
-    background-color: var(--background-color); /* Use the background color variable from main CSS */
-    border: 1px solid var(--border-color); /* Use the border color variable from main CSS */
-    font-size: 1rem; /* Base font size for the cell, 1rem equals the root font size */
-    box-sizing: border-box; /* Ensures padding and borders are included in the element's total width and height */
+.curiozdb-special-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr; /* Same three-column layout */
+    gap: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(var(--cell-height) * 2); /* Double the height of a normal row */
+    overflow: visible; /* Ensure no hidden overflow triggers scrollbar */
+}
+
+.curiozdb-cell,
+.curiozdb-special-cell {
+    padding: 1rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    font-size: 1rem;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative; /* Ensure positioning context for absolute elements */
-    flex-grow: 1;
-    height: var(--cell-height); /* Set the height using a responsive unit */
+    overflow: visible; /* Ensure content doesn't trigger overflow */
 }
 
-.cell-small {
-    flex: 1; /* Takes 1 part of the available width */
-}
-
-.cell-large {
-    flex: 3; /* Takes 3 parts of the available width */
-}
-
-.curiozdb-cell .cell-title {
-    position: absolute;
-    top: 0.5rem; /* Positioned using rem for consistency */
-    left: 0.5rem;
-    font-size: 0.8rem; /* Slightly smaller text for the title */
-}
-
-.curiozdb-cell .cell-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row; /* Align children (icon and quantity) horizontally */
-    text-align: center;
-    width: 100%;
-}
-
-.curiozdb-cell .cell-icon {
-    font-size: 1.5rem; /* Icon size controlled using rem */
-    margin-right: 0.5rem; /* Space between icon and number */
-}
-
-.curiozdb-cell .cell-quantity {
-    font-size: 1.5rem; /* Text size controlled using rem */
+.curiozdb-special-cell {
+    height: 100%; /* Full height of the special row */
 }
 
 .curiozdb-chart {
-    grid-column: 2 / span 2; /* Span across the large cell and the following small cell */
-    grid-row: span 2; /* Span across two rows */
+    grid-column: 2 / span 1; /* Span across the large cell */
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(var(--cell-height) * 2 + 10px); /* Adjust height to match two rows */
+    height: 100%; /* Full height of the special row */
     box-sizing: border-box;
+    overflow: visible; /* Ensure no hidden overflow triggers scrollbar */
 }

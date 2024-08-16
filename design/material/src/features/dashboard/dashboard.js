@@ -1,7 +1,7 @@
 import './dashboard.css';
 import { setFun, getFun } from '../controlVars';
 import {addMap} from '../gis/mapModule';
-import { curiozdbRow, combineCellsForChart } from '../curiozdb/curiozdb.js';
+import { curiozdbRow, createCuriozdbSpecialRow } from '../curiozdb/curiozdb.js';
 import { 
     createDualAxisBarChart,
     createDoughnutChart,
@@ -27,47 +27,20 @@ export function loadDashboard() {
     
     // Clear any existing content
     content.innerHTML = '';
-
+    const container = document.createElement('div');
+    container.className = 'curiozdb-container';
     // Create the dashboard grid
-    const dashboardGrid = document.createElement('div');
-    dashboardGrid.className = 'dashboard-grid';
+    container.appendChild(curiozdbRow('row1'));
+    container.appendChild(curiozdbRow('row2'));
     
-    // Adding 16 grid items, each with a flex container inside
-    for (let i = 1; i <= 16; i++) {
-        const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item';
-        
-        // Create a flex container inside the grid item
-        const flexContainer = document.createElement('div');
-        flexContainer.className = 'flex-container';
-        flexContainer.id = `flex-${i}`; // Assign a unique ID
-        
-        // Optionally, you can add some content inside the flex container
-        //flexContainer.textContent = `Item ${i}`;
-        
-        // Append the flex container to the grid item
-        gridItem.appendChild(flexContainer);
-        dashboardGrid.appendChild(gridItem);
-    }
-    
-    const gridContainer = document.createElement('div');
-    gridContainer.className = 'curiozdb-container';
+    // // Create and append the special row with a chart
+    container.appendChild(createCuriozdbSpecialRow('row3', 'chart1'));
+    container.appendChild(curiozdbRow('row4'));
+    container.appendChild(curiozdbRow('row5'));
+    content.appendChild(container);
+    // // Continue appending other rows as needed
+    // content.appendChild(curiozdbRow('row4'));
 
-    // Append rows to the grid container
-    gridContainer.appendChild(curiozdbRow('row1'));
-    gridContainer.appendChild(curiozdbRow('row2'));
-    gridContainer.appendChild(curiozdbRow('row3'));
-    gridContainer.appendChild(curiozdbRow('row4'));
-
-    // Append the grid container to the content area
-    content.appendChild(gridContainer);
-    //combineCellsForChart('chart1', 'row1-cell2-large', 'row2-cell2-large');
-
-    //createCuriozdbChart('chart1', 'row1', 'row2');
-
-    //createCuriozdbChart('chart1', 'row1', 'row2');
-    //content.appendChild(curiozdbRow());
-    // content.appendChild(dashboardGrid);
     
     
     //   const flexone = document.getElementById('flex-1');
