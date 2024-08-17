@@ -27,7 +27,10 @@ import {
     doughnutChartData,
     macVendors,
     siteStatusData,
-    bubbleChartData
+    bubbleChartData,
+    macTotal,
+    macToday,
+    macNew
 } from '../../dummy/dummyData';
 
 export function loadDashboard() {
@@ -50,8 +53,9 @@ export function loadDashboard() {
     //container.appendChild(createCuriozdbSpecialRow('row3', 'chart1'));
     // container.appendChild(curiozdbRow('row4'));
     // container.appendChild(curiozdbRow('row5'));
+ 
     content.appendChild(container);
-    let cellContent = createCuriozdbCellContent('Yasir', 'fa-chart-bar', '53');
+    let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
     console.log(cellContent);
     const upperLeft = document.getElementById('magic-upper-left');
     clearCellContent(upperLeft);
@@ -59,37 +63,37 @@ export function loadDashboard() {
 
     const middleLeft = document.getElementById('magic-middle-left');
     clearCellContent(middleLeft);
-    cellContent = createCuriozdbCellContent('Middle', 'fa-chart-bar', '53');
+    cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
     middleLeft.appendChild(cellContent);
-
+    
     const lowerLeft = document.getElementById('magic-lower-left');
     clearCellContent(lowerLeft);
-    cellContent = createCuriozdbCellContent('Lower', 'fa-chart-bar', '53');
+    cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
     lowerLeft.appendChild(cellContent);
     
     const upperRight = document.getElementById('magic-upper-right');
     clearCellContent(upperRight);
-    cellContent = createCuriozdbCellContent('Right', 'fa-chart-bar', '53');
+    cellContent = createCuriozdbCellContent('Sites - Active', 'fa-globe', '244');
     upperRight.appendChild(cellContent);
     upperRight.appendChild(cellContent);
     
     const middleRight = document.getElementById('magic-middle-right');
     clearCellContent(middleRight);
-    cellContent = createCuriozdbCellContent('Middle', 'fa-chart-bar', '53');
+    cellContent = createCuriozdbCellContent('Sites - Zero Devices', 'fa-exclamation-circle', '26');
     middleRight.appendChild(cellContent);
     //middleRight.appendChild(cellContent);
     
     const lowerRight = document.getElementById('magic-lower-right');
     clearCellContent(lowerRight);
-    cellContent = createCuriozdbCellContent('lower', 'fa-chart-bar', '53');
+    cellContent = createCuriozdbCellContent('Sites - Not Reachable ', 'fa-times-circle', '104');
     lowerRight.appendChild(cellContent);
     //lowerRight.appendChild(cellContent);
 
     // Work on charts
     const magicChart = document.getElementById('magic-chart');
     clearCellContent(magicChart);
-    const chart1 = createBarChart(doughnutChartData);
-    const chart2 = createBarChart(doughnutChartData);
+    const chart1 = createBarChart(macTotal.cities);
+    const chart2 = createBarChart(macTotal.manufacture);
     // Use the addCharts function to combine them into a single container
     const combinedChartContainer = addCharts(chart1, chart2);
     magicChart.appendChild(combinedChartContainer);

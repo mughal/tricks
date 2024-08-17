@@ -33,11 +33,11 @@ Chart.register(
 
 // Access CSS variables
 const rootStyles = getComputedStyle(document.documentElement);
-const primaryColor1 = rootStyles.getPropertyValue('--color-primary1').trim();
-const primaryColor2 = rootStyles.getPropertyValue('--color-primary2').trim();
-const primaryColor3 = rootStyles.getPropertyValue('--color-primary3').trim();
-const secondaryColor1 = rootStyles.getPropertyValue('--color-secondary1').trim();
-const secondaryColor2 = rootStyles.getPropertyValue('--color-secondary2').trim();
+const primaryColor1 = rootStyles.getPropertyValue('--color-graph1').trim();
+const primaryColor2 = rootStyles.getPropertyValue('--color-graph2').trim();
+const primaryColor3 = rootStyles.getPropertyValue('--color-graph3').trim();
+const secondaryColor1 = rootStyles.getPropertyValue('--color-graph4').trim();
+const secondaryColor2 = rootStyles.getPropertyValue('--color-graph5').trim();
 
 const colorArray = [primaryColor1, primaryColor2, primaryColor3, secondaryColor1, secondaryColor2];
 
@@ -222,6 +222,7 @@ export const createBarChart = (data) => {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         tooltip: {
           callbacks: {
@@ -233,7 +234,7 @@ export const createBarChart = (data) => {
           }
         },
         title: {
-          display: true,
+          display: false,
           text: 'Bar Chart'
         }
       },

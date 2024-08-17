@@ -165,14 +165,15 @@
 }
 
 .curiozdb-cell-icon {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-right: 0.5rem; /* Space between the icon and the number */
     color: var(--icon-color); /* Customize with your icon color */
 }
 
 .curiozdb-cell-number {
-    font-size: 3rem;
-    color: var(--number-color); /* Customize with your number color */
+    font-size: 2rem;
+    /*color: var(--number-color); /* Customize with your number color */
+    color: var(--icon-color); 
 }
 
 

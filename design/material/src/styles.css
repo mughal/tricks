@@ -17,8 +17,7 @@
 :root {
     --cell-height: 10rem; 
     --primary-color: #333;
-    --background-color: lightgrey;
-    --border-color: #ddd;
+    --background-color: rgb(247, 242, 242);
     --text-color: #000000;
     --icon-color: #07519b; /* Example color for the icon */
     --color-primary1: #f38c6c; /* Dark brown */
@@ -30,6 +29,11 @@
     --color-background: #3E2723; /* Background color */
     --color-text: #FFFFFF; /* Text color */
     --color-border: #BCAAA4; /* Border color */
+    --color-graph1: #A3C6FF;  /* Light Sky Blue */
+    --color-graph2: #C9E4FF;  /* Pale Blue */
+    --color-graph3: #B2D0FF;  /* Soft Light Blue */
+    --color-graph4: #8BBFFF;  /* Light Steel Blue */
+    --color-graph5: #D6EDFF;  /* Very Light Blue */
 }
 body, html {
     font-family: 'Roboto', sans-serif;
