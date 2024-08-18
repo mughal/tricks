@@ -328,3 +328,83 @@ export const macNew = {
         "F5 Networks": 0
     }
 }
+
+
+export const sitesActive = {
+    "sites": 244,
+    "cities": {
+        "New York": 17,
+        "Los Angeles": 18,
+        "Chicago": 16,
+        "Houston": 19,
+        "Phoenix": 16,
+        "Philadelphia": 14,
+        "San Antonio": 13,
+        "San Diego": 12,
+        "Dallas": 15,
+        "San Jose": 13,
+        "Austin": 9,
+        "Jacksonville": 10,
+        "Fort Worth": 11,
+        "Columbus": 8,
+        "San Francisco": 9,
+        "Charlotte": 7,
+        "Indianapolis": 6,
+        "Seattle": 9,
+        "Denver": 8,
+        "Washington": 9
+    }
+};
+
+export const sitesUnreachable = {
+    "sites": 103,
+    "cities": {
+        "New York": 9,
+        "Los Angeles": 10,
+        "Chicago": 8,
+        "Houston": 10,
+        "Phoenix": 9,
+        "Philadelphia": 6,
+        "San Antonio": 6,
+        "San Diego": 5,
+        "Dallas": 7,
+        "San Jose": 6,
+        "Austin": 4,
+        "Jacksonville": 4,
+        "Fort Worth": 3,
+        "Columbus": 4,
+        "San Francisco": 3,
+        "Charlotte": 3,
+        "Indianapolis": 3,
+        "Seattle": 4,
+        "Denver": 5,
+        "Washington": 4
+    }
+};
+
+export const sitesZeroDevices = {
+    "sites": 33,
+    "cities": {
+        "New York": 4,
+        "Los Angeles": 3,
+        "Chicago": 0,
+        "Houston": 4,
+        "Phoenix": 2,
+        "Philadelphia": 0,
+        "San Antonio": 2,
+        "San Diego": 2,
+        "Dallas": 3,
+        "San Jose": 0,
+        "Austin": 0,
+        "Jacksonville": 2,
+        "Fort Worth": 0,
+        "Columbus": 0,
+        "San Francisco": 1,
+        "Charlotte": 0,
+        "Indianapolis": 1,
+        "Seattle": 1,
+        "Denver": 3,
+        "Washington": 1
+    }
+};
+

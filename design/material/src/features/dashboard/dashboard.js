@@ -30,7 +30,10 @@ import {
     bubbleChartData,
     macTotal,
     macToday,
-    macNew
+    macNew,
+    sitesActive,
+    sitesUnreachable,
+    sitesZeroDevices
 } from '../../dummy/dummyData';
 
 export function loadDashboard() {
@@ -55,50 +58,7 @@ export function loadDashboard() {
     // container.appendChild(curiozdbRow('row5'));
  
     content.appendChild(container);
-    let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
-    console.log(cellContent);
-    const upperLeft = document.getElementById('magic-upper-left');
-    clearCellContent(upperLeft);
-    upperLeft.appendChild(cellContent);
-
-    const middleLeft = document.getElementById('magic-middle-left');
-    clearCellContent(middleLeft);
-    cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
-    middleLeft.appendChild(cellContent);
-    
-    const lowerLeft = document.getElementById('magic-lower-left');
-    clearCellContent(lowerLeft);
-    cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
-    lowerLeft.appendChild(cellContent);
-    
-    const upperRight = document.getElementById('magic-upper-right');
-    clearCellContent(upperRight);
-    cellContent = createCuriozdbCellContent('Sites - Active', 'fa-globe', '244');
-    upperRight.appendChild(cellContent);
-    upperRight.appendChild(cellContent);
-    
-    const middleRight = document.getElementById('magic-middle-right');
-    clearCellContent(middleRight);
-    cellContent = createCuriozdbCellContent('Sites - Zero Devices', 'fa-exclamation-circle', '26');
-    middleRight.appendChild(cellContent);
-    //middleRight.appendChild(cellContent);
-    
-    const lowerRight = document.getElementById('magic-lower-right');
-    clearCellContent(lowerRight);
-    cellContent = createCuriozdbCellContent('Sites - Not Reachable ', 'fa-times-circle', '104');
-    lowerRight.appendChild(cellContent);
-    //lowerRight.appendChild(cellContent);
-
-    // Work on charts
-    const magicChart = document.getElementById('magic-chart');
-    clearCellContent(magicChart);
-    const chart1 = createBarChart(macTotal.cities);
-    const chart2 = createBarChart(macTotal.manufacture);
-    // Use the addCharts function to combine them into a single container
-    const combinedChartContainer = addCharts(chart1, chart2);
-    magicChart.appendChild(combinedChartContainer);
-    
-
+    initializeDashboard();
     // Clear existing content in the cell
     // clearCellContent(cell1);
 
@@ -133,3 +93,146 @@ export function loadDashboard() {
     //   flex9.appendChild(addMap(devices_in_cities));
 
 }
+
+function initializeDashboard() {
+    let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
+    console.log(cellContent);
+    const upperLeft = document.getElementById('magic-upper-left');
+    clearCellContent(upperLeft);
+    upperLeft.appendChild(cellContent);
+
+    const middleLeft = document.getElementById('magic-middle-left');
+    clearCellContent(middleLeft);
+    cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
+    middleLeft.appendChild(cellContent);
+    
+    const lowerLeft = document.getElementById('magic-lower-left');
+    clearCellContent(lowerLeft);
+    cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
+    lowerLeft.appendChild(cellContent);
+    
+    const upperRight = document.getElementById('magic-upper-right');
+    clearCellContent(upperRight);
+    cellContent = createCuriozdbCellContent(
+        'Sites - Active',
+        'fa-globe',
+        sitesActive.sites
+        );
+    upperRight.appendChild(cellContent);
+    upperRight.appendChild(cellContent);
+    
+    const middleRight = document.getElementById('magic-middle-right');
+    clearCellContent(middleRight);
+    cellContent = createCuriozdbCellContent(
+        'Sites - Zero Devices',
+        'fa-exclamation-circle',
+        sitesZeroDevices.sites
+        );
+    middleRight.appendChild(cellContent);
+    //middleRight.appendChild(cellContent);
+    
+    const lowerRight = document.getElementById('magic-lower-right');
+    clearCellContent(lowerRight);
+    cellContent = createCuriozdbCellContent(
+        'Sites - Unreachable ',
+        'fa-times-circle',
+        sitesUnreachable.sites
+        );
+    lowerRight.appendChild(cellContent);
+    //lowerRight.appendChild(cellContent);
+
+    // Work on charts
+    //renderChart(macTotal.cities, macTotal.manufacture);
+    renderSingleChart(sitesActive.cities);
+    addCellListeners();
+}
+
+// Function to render a chart dynamically based on data
+function renderChart(chartData1, chartData2) {
+    const magicChart = document.getElementById('magic-chart');
+    clearCellContent(magicChart);
+
+    const chart1 = createBarChart(chartData1);
+    const chart2 = createBarChart(chartData2);
+
+    const combinedChartContainer = addCharts(chart1, chart2);
+    magicChart.appendChild(combinedChartContainer);
+
+}
+
+function renderSingleChart(chartData) {
+    const magicChart = document.getElementById('magic-chart');
+    clearCellContent(magicChart);
+
+    const chart = createBarChart(chartData); // Create the single chart
+
+    magicChart.appendChild(chart); // Directly append the single chart to the container
+}
+// Function to add event listeners to cells
+function addCellListeners() {
+    const upperLeft = document.getElementById('magic-upper-left');
+    upperLeft.addEventListener('click', () => {
+        renderChart(macTotal.cities, macTotal.manufacture);
+    });
+
+    const middleLeft = document.getElementById('magic-middle-left');
+    middleLeft.addEventListener('click', () => {
+        renderChart(macNew.cities, macNew.manufacture);
+    });
+
+    const lowerLeft = document.getElementById('magic-lower-left');
+    lowerLeft.addEventListener('click', () => {
+        renderChart(macToday.cities, macToday.manufacture);
+    });
+    
+    const upperRight = document.getElementById('magic-upper-right');
+    upperRight.addEventListener('click', () => {
+        console.log(sitesActive.sites);
+        console.log(sitesActive.cities);
+        renderSingleChart(sitesActive.cities);
+    });
+
+    const middleRight = document.getElementById('magic-lower-right');
+    middleRight.addEventListener('click', () => {
+        console.log(sitesUnreachable.sites);
+        console.log(sitesUnreachable.cities);
+        renderSingleChart(sitesUnreachable.cities);
+    });
+
+    const lowerRight = document.getElementById('magic-middle-right');
+    lowerRight.addEventListener('click', () => {
+        console.log(sitesZeroDevices.sites);
+        console.log(sitesZeroDevices.cities);
+        renderSingleChart(sitesZeroDevices.cities);
+    });
+
+}
+
+// Initialize the dashboard
+// function initializeDashboard() {
+//     // Upper left cell: MACs - Total Collection
+//     let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
+//     const upperLeft = document.getElementById('magic-upper-left');
+//     clearCellContent(upperLeft);
+//     upperLeft.appendChild(cellContent);
+
+//     // Middle left cell: MACs - New Today
+//     cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
+//     const middleLeft = document.getElementById('magic-middle-left');
+//     clearCellContent(middleLeft);
+//     middleLeft.appendChild(cellContent);
+
+//     // Lower left cell: MACs - Visible Today
+//     cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
+//     const lowerLeft = document.getElementById('magic-lower-left');
+//     clearCellContent(lowerLeft);
+//     lowerLeft.appendChild(cellContent);
+
+//     // Initially render the chart for macTotal
+    
+
+//     // Add listeners for dynamic chart updates
+//     
+// }
+
+// // Call the initialize function
