@@ -150,7 +150,7 @@
 }
 
 .curiozdb-cell-selected {
-    background-color: lightblue;
+    background-color: var(--selected-background-color); 
 }
 
 .curiozdb-cell-title {

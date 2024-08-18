@@ -223,10 +223,13 @@ function renderSingleChart(chartData) {
 // }
 
 function addCellListeners() {
+    const magicCells = document.querySelectorAll('.curiozdb-special-cell');
     const upperLeft = document.getElementById('magic-upper-left');
     console.log(`upperLeft element:`, upperLeft); // Check if element is found
     if (upperLeft) {
         upperLeft.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            upperLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in upper left ${upperLeft.id}`);
             renderChart(macTotal.cities, macTotal.manufacture);
         });
@@ -236,6 +239,8 @@ function addCellListeners() {
     console.log(`middleLeft element:`, middleLeft); // Check if element is found
     if (middleLeft) {
         middleLeft.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            middleLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in middle left ${middleLeft.id}`);
             setSelectedCellId(middleLeft.id);
             renderChart(macNew.cities, macNew.manufacture);
@@ -246,6 +251,8 @@ function addCellListeners() {
     console.log(`lowerLeft element:`, lowerLeft); // Check if element is found
     if (lowerLeft) {
         lowerLeft.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            lowerLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in lower left ${lowerLeft.id}`);
             renderChart(macToday.cities, macToday.manufacture);
         });
@@ -255,6 +262,8 @@ function addCellListeners() {
     console.log(`upperRight element:`, upperRight); // Check if element is found
     if (upperRight) {
         upperRight.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            upperRight.classList.add('curiozdb-cell-selected');
             console.log(`I am in upper right ${upperRight.id}`);
             console.log(sitesActive.sites);
             console.log(sitesActive.cities);
@@ -266,6 +275,8 @@ function addCellListeners() {
     console.log(`middleRight element:`, middleRight); // Check if element is found
     if (middleRight) {
         middleRight.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            middleRight.classList.add('curiozdb-cell-selected');
             console.log(`I am in middle right ${middleRight.id}`);
             console.log(sitesUnreachable.sites);
             console.log(sitesUnreachable.cities);
@@ -277,6 +288,8 @@ function addCellListeners() {
     console.log(`lowerRight element:`, lowerRight); // Check if element is found
     if (lowerRight) {
         lowerRight.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            lowerRight.classList.add('curiozdb-cell-selected');
             console.log(`I am in lower right ${lowerRight.id}`);
             console.log(sitesZeroDevices.sites);
             console.log(sitesZeroDevices.cities);

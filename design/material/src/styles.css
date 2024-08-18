@@ -18,6 +18,7 @@
     --cell-height: 10rem; 
     --primary-color: #333;
     --background-color: rgb(247, 242, 242);
+    --selected-background-color: rgb(230, 220, 220);
     --text-color: #000000;
     --icon-color: #07519b; /* Example color for the icon */
     --color-primary1: #f38c6c; /* Dark brown */
