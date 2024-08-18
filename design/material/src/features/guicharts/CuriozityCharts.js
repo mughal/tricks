@@ -217,6 +217,11 @@ export const createBarChart = (data) => {
         },
         y: {
           beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+                return Number.isInteger(value) ? value : ''; // Display only integer values
+            }
+          }
         }
       },
       plugins: {

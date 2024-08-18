@@ -1,5 +1,10 @@
 import './dashboard.css';
-import { setFun, getFun } from '../controlVars';
+import { 
+    setFun,
+    getFun,
+    setSelectedCellId,
+    getSelectedCellId
+} from '../controlVars';
 import {addMap} from '../gis/mapModule';
 import { 
     curiozdbRow,
@@ -169,43 +174,115 @@ function renderSingleChart(chartData) {
     magicChart.appendChild(chart); // Directly append the single chart to the container
 }
 // Function to add event listeners to cells
+// function addCellListeners() {
+//     const upperLeft = document.getElementById('magic-upper-left');
+//     console.log(`upperLeft element:`, upperLeft); // Check if element is found
+//     upperLeft.addEventListener('click', () => {
+//         console.log(`I am in upperleft ${upperLeft.id}`);
+//         renderChart(macTotal.cities, macTotal.manufacture);
+//     });
+
+//     const middleLeft = document.getElementById('magic-middle-left');
+//     console.log(`middleLeft element:`, middleLeft); // Check if element is found
+//     middleLeft.addEventListener('click', () => {
+//         console.log(`I am in middle left ${middleLeft.id}`);
+//         setSelectedCellId(middleLeft.id);
+//         renderChart(macNew.cities, macNew.manufacture);
+//     });
+
+//     const lowerLeft = document.getElementById('magic-lower-left');
+//     lowerLeft.addEventListener('click', () => {
+//         console.log(`I am in middle left ${lowerLeft.id}`);
+//         renderChart(macToday.cities, macToday.manufacture);
+//     });
+    
+//     const upperRight = document.getElementById('magic-upper-right');
+//     upperRight.addEventListener('click', () => {
+//         console.log(`I am in middle left ${upperRight.id}`);
+//         console.log(sitesActive.sites);
+//         console.log(sitesActive.cities);
+//         renderSingleChart(sitesActive.cities);
+//     });
+
+//     const middleRight = document.getElementById('magic-lower-right');
+//     middleRight.addEventListener('click', () => {
+//         console.log(`I am in middle left ${middleRight.id}`);
+//         console.log(sitesUnreachable.sites);
+//         console.log(sitesUnreachable.cities);
+//         renderSingleChart(sitesUnreachable.cities);
+//     });
+
+//     const lowerRight = document.getElementById('magic-middle-right');
+//     lowerRight.addEventListener('click', () => {
+//         console.log(`I am in middle left ${lowerRight.id}`);
+//         console.log(sitesZeroDevices.sites);
+//         console.log(sitesZeroDevices.cities);
+//         renderSingleChart(sitesZeroDevices.cities);
+//     });
+
+// }
+
 function addCellListeners() {
     const upperLeft = document.getElementById('magic-upper-left');
-    upperLeft.addEventListener('click', () => {
-        renderChart(macTotal.cities, macTotal.manufacture);
-    });
+    console.log(`upperLeft element:`, upperLeft); // Check if element is found
+    if (upperLeft) {
+        upperLeft.addEventListener('click', () => {
+            console.log(`I am in upper left ${upperLeft.id}`);
+            renderChart(macTotal.cities, macTotal.manufacture);
+        });
+    }
 
     const middleLeft = document.getElementById('magic-middle-left');
-    middleLeft.addEventListener('click', () => {
-        renderChart(macNew.cities, macNew.manufacture);
-    });
+    console.log(`middleLeft element:`, middleLeft); // Check if element is found
+    if (middleLeft) {
+        middleLeft.addEventListener('click', () => {
+            console.log(`I am in middle left ${middleLeft.id}`);
+            setSelectedCellId(middleLeft.id);
+            renderChart(macNew.cities, macNew.manufacture);
+        });
+    }
 
     const lowerLeft = document.getElementById('magic-lower-left');
-    lowerLeft.addEventListener('click', () => {
-        renderChart(macToday.cities, macToday.manufacture);
-    });
-    
+    console.log(`lowerLeft element:`, lowerLeft); // Check if element is found
+    if (lowerLeft) {
+        lowerLeft.addEventListener('click', () => {
+            console.log(`I am in lower left ${lowerLeft.id}`);
+            renderChart(macToday.cities, macToday.manufacture);
+        });
+    }
+
     const upperRight = document.getElementById('magic-upper-right');
-    upperRight.addEventListener('click', () => {
-        console.log(sitesActive.sites);
-        console.log(sitesActive.cities);
-        renderSingleChart(sitesActive.cities);
-    });
+    console.log(`upperRight element:`, upperRight); // Check if element is found
+    if (upperRight) {
+        upperRight.addEventListener('click', () => {
+            console.log(`I am in upper right ${upperRight.id}`);
+            console.log(sitesActive.sites);
+            console.log(sitesActive.cities);
+            renderSingleChart(sitesActive.cities);
+        });
+    }
 
     const middleRight = document.getElementById('magic-lower-right');
-    middleRight.addEventListener('click', () => {
-        console.log(sitesUnreachable.sites);
-        console.log(sitesUnreachable.cities);
-        renderSingleChart(sitesUnreachable.cities);
-    });
+    console.log(`middleRight element:`, middleRight); // Check if element is found
+    if (middleRight) {
+        middleRight.addEventListener('click', () => {
+            console.log(`I am in middle right ${middleRight.id}`);
+            console.log(sitesUnreachable.sites);
+            console.log(sitesUnreachable.cities);
+            renderSingleChart(sitesUnreachable.cities);
+        });
+    }
 
     const lowerRight = document.getElementById('magic-middle-right');
-    lowerRight.addEventListener('click', () => {
-        console.log(sitesZeroDevices.sites);
-        console.log(sitesZeroDevices.cities);
-        renderSingleChart(sitesZeroDevices.cities);
-    });
-
+    console.log(`lowerRight element:`, lowerRight); // Check if element is found
+    if (lowerRight) {
+        lowerRight.addEventListener('click', () => {
+            console.log(`I am in lower right ${lowerRight.id}`);
+            console.log(sitesZeroDevices.sites);
+            console.log(sitesZeroDevices.cities);
+            renderSingleChart(sitesZeroDevices.cities);
+        });
+    }
 }
 
 // Initialize the dashboard

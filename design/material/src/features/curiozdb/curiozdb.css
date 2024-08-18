@@ -146,6 +146,11 @@
     padding: 0.5rem;
     box-sizing: border-box;
     position: relative;
+    
+}
+
+.curiozdb-cell-selected {
+    background-color: lightblue;
 }
 
 .curiozdb-cell-title {
@@ -168,6 +173,7 @@
     font-size: 2rem;
     margin-right: 0.5rem; /* Space between the icon and the number */
     color: var(--icon-color); /* Customize with your icon color */
+    cursor: pointer;
 }
 
 .curiozdb-cell-number {
@@ -175,6 +181,7 @@
     /*color: var(--number-color); /* Customize with your number color */
     color: var(--icon-color); 
     font-weight: 700;
+    cursor: pointer;
 }
 
 
