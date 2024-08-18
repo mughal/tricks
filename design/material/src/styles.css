@@ -29,11 +29,12 @@
     --color-background: #3E2723; /* Background color */
     --color-text: #FFFFFF; /* Text color */
     --color-border: #BCAAA4; /* Border color */
-    --color-graph1: #A3C6FF;  /* Light Sky Blue */
-    --color-graph2: #C9E4FF;  /* Pale Blue */
-    --color-graph3: #B2D0FF;  /* Soft Light Blue */
-    --color-graph4: #8BBFFF;  /* Light Steel Blue */
-    --color-graph5: #D6EDFF;  /* Very Light Blue */
+    --color-graph1: #4A90E2;  /* Bright Sky Blue */
+    --color-graph2: #F5A623;  /* Warm Amber */
+    --color-graph3: #E94E77;  /* Vibrant Coral */
+    --color-graph4: #50E3C2;  /* Aqua Mint */
+    --color-graph5: #BD10E0;  /* Soft Purple */
+
 }
 body, html {
     font-family: 'Roboto', sans-serif;
