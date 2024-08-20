@@ -1,7 +1,21 @@
 import './dashboard.css';
-import { setFun, getFun } from '../controlVars';
+import { 
+    setFun,
+    getFun,
+    setSelectedCellId,
+    getSelectedCellId
+} from '../controlVars';
 import {addMap} from '../gis/mapModule';
-import { curiozdbRow, combineCellsForChart } from '../curiozdb/curiozdb.js';
+import { 
+    curiozdbRow,
+    createCuriozdbSpecialRow,
+    createCuriozdbCellContent,
+    clearCellContent,
+    curiozType3,
+    createCuriozDashRow,
+    addCharts
+} from '../curiozdb/curiozdb.js';
+
 import { 
     createDualAxisBarChart,
     createDoughnutChart,
@@ -18,7 +32,13 @@ import {
     doughnutChartData,
     macVendors,
     siteStatusData,
-    bubbleChartData
+    bubbleChartData,
+    macTotal,
+    macToday,
+    macNew,
+    sitesActive,
+    sitesUnreachable,
+    sitesZeroDevices
 } from '../../dummy/dummyData';
 
 export function loadDashboard() {
@@ -27,47 +47,35 @@ export function loadDashboard() {
     
     // Clear any existing content
     content.innerHTML = '';
-
+    const container = document.createElement('div');
+    container.className = 'curiozdb-container';
+    const dashRow = createCuriozDashRow('dashRow1');
+    const specialRowThree = curiozType3('magic');
     // Create the dashboard grid
-    const dashboardGrid = document.createElement('div');
-    dashboardGrid.className = 'dashboard-grid';
+    //container.appendChild(dashRow);
+    container.appendChild(specialRowThree);
+    // container.appendChild(curiozdbRow('row1'));
+    // container.appendChild(curiozdbRow('row2'));
     
-    // Adding 16 grid items, each with a flex container inside
-    for (let i = 1; i <= 16; i++) {
-        const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item';
-        
-        // Create a flex container inside the grid item
-        const flexContainer = document.createElement('div');
-        flexContainer.className = 'flex-container';
-        flexContainer.id = `flex-${i}`; // Assign a unique ID
-        
-        // Optionally, you can add some content inside the flex container
-        //flexContainer.textContent = `Item ${i}`;
-        
-        // Append the flex container to the grid item
-        gridItem.appendChild(flexContainer);
-        dashboardGrid.appendChild(gridItem);
-    }
+    // // Create and append the special row with a chart
+    //container.appendChild(createCuriozdbSpecialRow('row3', 'chart1'));
+    // container.appendChild(curiozdbRow('row4'));
+    // container.appendChild(curiozdbRow('row5'));
+ 
+    content.appendChild(container);
+    initializeDashboard();
+    // Clear existing content in the cell
+    // clearCellContent(cell1);
+
+    // // Create the content div
+    // const cellContent = createCuriozdbCellContent('Yasir', 'fa-chart-bar', '53');
+
+    // // Append the new content to the cell
+    // cell1.appendChild(cellContent);
     
-    const gridContainer = document.createElement('div');
-    gridContainer.className = 'curiozdb-container';
+    // // Continue appending other rows as needed
+    // content.appendChild(curiozdbRow('row4'));
 
-    // Append rows to the grid container
-    gridContainer.appendChild(curiozdbRow('row1'));
-    gridContainer.appendChild(curiozdbRow('row2'));
-    gridContainer.appendChild(curiozdbRow('row3'));
-    gridContainer.appendChild(curiozdbRow('row4'));
-
-    // Append the grid container to the content area
-    content.appendChild(gridContainer);
-    //combineCellsForChart('chart1', 'row1-cell2-large', 'row2-cell2-large');
-
-    //createCuriozdbChart('chart1', 'row1', 'row2');
-
-    //createCuriozdbChart('chart1', 'row1', 'row2');
-    //content.appendChild(curiozdbRow());
-    // content.appendChild(dashboardGrid);
     
     
     //   const flexone = document.getElementById('flex-1');
@@ -90,3 +98,231 @@ export function loadDashboard() {
     //   flex9.appendChild(addMap(devices_in_cities));
 
 }
+
+function initializeDashboard() {
+    let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
+    console.log(cellContent);
+    const upperLeft = document.getElementById('magic-upper-left');
+    clearCellContent(upperLeft);
+    upperLeft.appendChild(cellContent);
+
+    const middleLeft = document.getElementById('magic-middle-left');
+    clearCellContent(middleLeft);
+    cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
+    middleLeft.appendChild(cellContent);
+    
+    const lowerLeft = document.getElementById('magic-lower-left');
+    clearCellContent(lowerLeft);
+    cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
+    lowerLeft.appendChild(cellContent);
+    
+    const upperRight = document.getElementById('magic-upper-right');
+    clearCellContent(upperRight);
+    cellContent = createCuriozdbCellContent(
+        'Sites - Active',
+        'fa-globe',
+        sitesActive.sites
+        );
+    upperRight.appendChild(cellContent);
+    upperRight.appendChild(cellContent);
+    
+    const middleRight = document.getElementById('magic-middle-right');
+    clearCellContent(middleRight);
+    cellContent = createCuriozdbCellContent(
+        'Sites - Zero Devices',
+        'fa-exclamation-circle',
+        sitesZeroDevices.sites
+        );
+    middleRight.appendChild(cellContent);
+    //middleRight.appendChild(cellContent);
+    
+    const lowerRight = document.getElementById('magic-lower-right');
+    clearCellContent(lowerRight);
+    cellContent = createCuriozdbCellContent(
+        'Sites - Unreachable ',
+        'fa-times-circle',
+        sitesUnreachable.sites
+        );
+    lowerRight.appendChild(cellContent);
+    //lowerRight.appendChild(cellContent);
+
+    // Work on charts
+    //renderChart(macTotal.cities, macTotal.manufacture);
+    renderSingleChart(sitesActive.cities);
+    addCellListeners();
+}
+
+// Function to render a chart dynamically based on data
+function renderChart(chartData1, chartData2) {
+    const magicChart = document.getElementById('magic-chart');
+    clearCellContent(magicChart);
+
+    const chart1 = createBarChart(chartData1);
+    const chart2 = createBarChart(chartData2);
+
+    const combinedChartContainer = addCharts(chart1, chart2);
+    magicChart.appendChild(combinedChartContainer);
+
+}
+
+function renderSingleChart(chartData) {
+    const magicChart = document.getElementById('magic-chart');
+    clearCellContent(magicChart);
+
+    const chart = createBarChart(chartData); // Create the single chart
+
+    magicChart.appendChild(chart); // Directly append the single chart to the container
+}
+// Function to add event listeners to cells
+// function addCellListeners() {
+//     const upperLeft = document.getElementById('magic-upper-left');
+//     console.log(`upperLeft element:`, upperLeft); // Check if element is found
+//     upperLeft.addEventListener('click', () => {
+//         console.log(`I am in upperleft ${upperLeft.id}`);
+//         renderChart(macTotal.cities, macTotal.manufacture);
+//     });
+
+//     const middleLeft = document.getElementById('magic-middle-left');
+//     console.log(`middleLeft element:`, middleLeft); // Check if element is found
+//     middleLeft.addEventListener('click', () => {
+//         console.log(`I am in middle left ${middleLeft.id}`);
+//         setSelectedCellId(middleLeft.id);
+//         renderChart(macNew.cities, macNew.manufacture);
+//     });
+
+//     const lowerLeft = document.getElementById('magic-lower-left');
+//     lowerLeft.addEventListener('click', () => {
+//         console.log(`I am in middle left ${lowerLeft.id}`);
+//         renderChart(macToday.cities, macToday.manufacture);
+//     });
+    
+//     const upperRight = document.getElementById('magic-upper-right');
+//     upperRight.addEventListener('click', () => {
+//         console.log(`I am in middle left ${upperRight.id}`);
+//         console.log(sitesActive.sites);
+//         console.log(sitesActive.cities);
+//         renderSingleChart(sitesActive.cities);
+//     });
+
+//     const middleRight = document.getElementById('magic-lower-right');
+//     middleRight.addEventListener('click', () => {
+//         console.log(`I am in middle left ${middleRight.id}`);
+//         console.log(sitesUnreachable.sites);
+//         console.log(sitesUnreachable.cities);
+//         renderSingleChart(sitesUnreachable.cities);
+//     });
+
+//     const lowerRight = document.getElementById('magic-middle-right');
+//     lowerRight.addEventListener('click', () => {
+//         console.log(`I am in middle left ${lowerRight.id}`);
+//         console.log(sitesZeroDevices.sites);
+//         console.log(sitesZeroDevices.cities);
+//         renderSingleChart(sitesZeroDevices.cities);
+//     });
+
+// }
+
+function addCellListeners() {
+    const magicCells = document.querySelectorAll('.curiozdb-special-cell');
+    const upperLeft = document.getElementById('magic-upper-left');
+    console.log(`upperLeft element:`, upperLeft); // Check if element is found
+    if (upperLeft) {
+        upperLeft.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            upperLeft.classList.add('curiozdb-cell-selected');
+            console.log(`I am in upper left ${upperLeft.id}`);
+            renderChart(macTotal.cities, macTotal.manufacture);
+        });
+    }
+
+    const middleLeft = document.getElementById('magic-middle-left');
+    console.log(`middleLeft element:`, middleLeft); // Check if element is found
+    if (middleLeft) {
+        middleLeft.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            middleLeft.classList.add('curiozdb-cell-selected');
+            console.log(`I am in middle left ${middleLeft.id}`);
+            setSelectedCellId(middleLeft.id);
+            renderChart(macNew.cities, macNew.manufacture);
+        });
+    }
+
+    const lowerLeft = document.getElementById('magic-lower-left');
+    console.log(`lowerLeft element:`, lowerLeft); // Check if element is found
+    if (lowerLeft) {
+        lowerLeft.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            lowerLeft.classList.add('curiozdb-cell-selected');
+            console.log(`I am in lower left ${lowerLeft.id}`);
+            renderChart(macToday.cities, macToday.manufacture);
+        });
+    }
+
+    const upperRight = document.getElementById('magic-upper-right');
+    console.log(`upperRight element:`, upperRight); // Check if element is found
+    if (upperRight) {
+        upperRight.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            upperRight.classList.add('curiozdb-cell-selected');
+            console.log(`I am in upper right ${upperRight.id}`);
+            console.log(sitesActive.sites);
+            console.log(sitesActive.cities);
+            renderSingleChart(sitesActive.cities);
+        });
+    }
+
+    const middleRight = document.getElementById('magic-lower-right');
+    console.log(`middleRight element:`, middleRight); // Check if element is found
+    if (middleRight) {
+        middleRight.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            middleRight.classList.add('curiozdb-cell-selected');
+            console.log(`I am in middle right ${middleRight.id}`);
+            console.log(sitesUnreachable.sites);
+            console.log(sitesUnreachable.cities);
+            renderSingleChart(sitesUnreachable.cities);
+        });
+    }
+
+    const lowerRight = document.getElementById('magic-middle-right');
+    console.log(`lowerRight element:`, lowerRight); // Check if element is found
+    if (lowerRight) {
+        lowerRight.addEventListener('click', () => {
+            magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
+            lowerRight.classList.add('curiozdb-cell-selected');
+            console.log(`I am in lower right ${lowerRight.id}`);
+            console.log(sitesZeroDevices.sites);
+            console.log(sitesZeroDevices.cities);
+            renderSingleChart(sitesZeroDevices.cities);
+        });
+    }
+}
+
+// Initialize the dashboard
+// function initializeDashboard() {
+//     // Upper left cell: MACs - Total Collection
+//     let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
+//     const upperLeft = document.getElementById('magic-upper-left');
+//     clearCellContent(upperLeft);
+//     upperLeft.appendChild(cellContent);
+
+//     // Middle left cell: MACs - New Today
+//     cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
+//     const middleLeft = document.getElementById('magic-middle-left');
+//     clearCellContent(middleLeft);
+//     middleLeft.appendChild(cellContent);
+
+//     // Lower left cell: MACs - Visible Today
+//     cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
+//     const lowerLeft = document.getElementById('magic-lower-left');
+//     clearCellContent(lowerLeft);
+//     lowerLeft.appendChild(cellContent);
+
+//     // Initially render the chart for macTotal
+    
+
+//     // Add listeners for dynamic chart updates
+//     
+// }
+
+// // Call the initialize function

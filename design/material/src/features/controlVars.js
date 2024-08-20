@@ -1,7 +1,8 @@
 // state.js
 let state = {
     fun: false,
-    loggedIn: false
+    loggedIn: false,
+    selectedCellId: null // Track the ID of the currently selected cell
 };
 
 export const setFun = (value) => {
@@ -37,4 +38,13 @@ export const updateUI = () => {
         loginLink.style.display = 'block';
         logoutLink.style.display = 'none';
     }
+};
+
+// Functions to manage the selected cell ID
+export const setSelectedCellId = (cellId) => {
+    state.selectedCellId = cellId;
+};
+
+export const getSelectedCellId = () => {
+    return state.selectedCellId;
 };

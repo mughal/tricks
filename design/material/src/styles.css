@@ -15,12 +15,12 @@
 }
 
 :root {
-    --cell-height: 8rem; 
+    --cell-height: 10rem; 
     --primary-color: #333;
-    --background-color: #f0f0f0;
-    --border-color: #ddd;
+    --background-color: rgb(247, 242, 242);
+    --selected-background-color: rgb(230, 220, 220);
     --text-color: #000000;
-    --icon-color: #007bff; /* Example color for the icon */
+    --icon-color: #07519b; /* Example color for the icon */
     --color-primary1: #f38c6c; /* Dark brown */
     --color-primary2: #f7ac95; /* Dark brown */
     --color-primary3: #bda8a1; /* Dark brown */
@@ -30,6 +30,12 @@
     --color-background: #3E2723; /* Background color */
     --color-text: #FFFFFF; /* Text color */
     --color-border: #BCAAA4; /* Border color */
+    --color-graph1: #4A90E2;  /* Bright Sky Blue */
+    --color-graph2: #F5A623;  /* Warm Amber */
+    --color-graph3: #E94E77;  /* Vibrant Coral */
+    --color-graph4: #50E3C2;  /* Aqua Mint */
+    --color-graph5: #BD10E0;  /* Soft Purple */
+
 }
 body, html {
     font-family: 'Roboto', sans-serif;
@@ -62,7 +68,7 @@ header {
     /* justify-content: center; */
     align-items: flex-start; /* Start content from the top */
     box-sizing: border-box;
-    overflow: auto; /* Allow scrolling within the content area if necessary */
+    overflow: visible; /* Allow scrolling within the content area if necessary */
     padding: 0;
     margin-top: 10px;
     margin-left: 30px;
