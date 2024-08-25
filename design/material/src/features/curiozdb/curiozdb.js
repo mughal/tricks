@@ -126,7 +126,17 @@ export function createCuriozdbSpecialRow(rowId, chartId) {
 
 // // Continue appending other rows as needed
 // content.appendChild(curiozdbRow('row4'));
-export function createCuriozdbCellContent(title, iconClass, number) {
+
+/**
+ * Creates cell content for Curiozdb with optional footer data.
+ * @param {string} title - The title of the cell.
+ * @param {string} iconClass - The CSS class for the icon.
+ * @param {number} number - The numerical value or identifier.
+ * @param {Object|null} footer - Optional JSON object for footer content or null if not needed.
+ * @returns {Element} The newly created cell element.
+ */
+
+export function createCuriozdbCellContent(title, iconClass, number, footer = null) {
     // Create the main container div
     const container = document.createElement('div');
     container.className = 'curiozdb-cell-content'; // Apply a class for styling
@@ -156,6 +166,13 @@ export function createCuriozdbCellContent(title, iconClass, number) {
     // Append the title and content divs to the main container
     container.appendChild(titleDiv);
     container.appendChild(contentDiv);
+
+     // Static JSON data for the footer
+     const footerData = {eis: 345, dhcp: 249};
+
+     // Generate the footer using the createFooter function
+     footer = createFooter(footerData);
+     container.append(footer);
 
     return container;
 }
@@ -312,4 +329,41 @@ export function addCharts(chart1, chart2) {
 
     // Return the container with the two charts
     return container;
+}
+
+/**
+ * Creates a footer element with content based on provided JSON data.
+ * @param {Object} footerData - JSON object containing data for the footer.
+ * @returns {Element} The footer DOM element.
+ */
+ function createFooter(footerData) {
+    // Create the footer element
+    const footer = document.createElement('div');
+    footer.className = 'curiozdb-cell-footer';
+
+    // Check if footerData contains the required keys
+    if (footerData && typeof footerData === 'object') {
+        // Create left element in the footer
+        const leftSpan = document.createElement('span');
+        leftSpan.className = 'left';
+        if (footerData.eis !== undefined) {
+            leftSpan.textContent = `EIS (${footerData.eis})`;
+        }
+
+        // Create right element in the footer
+        const rightSpan = document.createElement('span');
+        rightSpan.className = 'right';
+        if (footerData.dhcp !== undefined) {
+            rightSpan.textContent = `DHCP (${footerData.dhcp})`;
+        }
+
+        // Append spans to footer
+        footer.appendChild(leftSpan);
+        footer.appendChild(rightSpan);
+    } else {
+        // If data is not provided or invalid, maybe add a default message
+        footer.textContent = 'No data available';
+    }
+
+    return footer;
 }
