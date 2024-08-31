@@ -98,24 +98,45 @@ function calculateMacsData(enrichedIpMacs) {
 }
 
 // Function to calculate active sites and their breakdown by region
-async function getActiveSitesData() {
+async function getSitesData() {
   try {
     // Step 1: Find all documents where active is true
-    const activeSites = await Sources.find({ active: true });
+    const sngplActiveSites = await Sources.find({ active: true });
+    const reachableSites = sngplActiveSites.filter((record) => {
+        return (!record.reachable && 
+            (new Date(record.last_polled_date) >= new Date('2024-08-30')));
+      });
+    const zeroArpSites = sngplActiveSites.filter((record) => {
+        return (
+            record.success &&  // Check if success is true
+            new Date(record.last_success_date) >= new Date('2024-08-30') &&  // Check if last_success_date is on or after August 30, 2024
+            record.arp_count === 0  // Check if arp_count is equal to 0
+          );
+    });
+    
+    sites_active = sitesResult(sngplActiveSites);
+    sites_unreachable = sitesResult(reachableSites);
+    sites_arpzero = sitesResult(zeroArpSites);
+    return {sites_active, sites_unreachable, sites_arpzero }
 
-    // Step 2: Calculate total number of active sites
-    const totalActiveSites = activeSites.length;
+  } catch (error) {
+    console.error('Error fetching active sites data:', error);
+    throw error;
+  }
+}
+
+
+function sitesResult(sngplSites){
+    const totalActiveSites = sngplSites.length;
     //console.log(activeSites);
     // Step 3: Calculate the number of active sites by region
-    const regionData = activeSites.reduce((acc, site) => {
+    const regionData = sngplSites.reduce((acc, site) => {
       const { region } = site;
       if (region) {
         acc[region] = (acc[region] || 0) + 1;
       }
       return acc;
     }, {});
-    console.log(regionData);
-    // Step 4: Construct the final JSON object
     const result = {
       sites: {
         active: totalActiveSites,
@@ -124,16 +145,14 @@ async function getActiveSitesData() {
     };
 
     return result;
-  } catch (error) {
-    console.error('Error fetching active sites data:', error);
-    throw error;
-  }
 }
+// Function to calculate reachable sites with specific criteria
+
+
 
 
 module.exports = {
   fetchAndEnrichIpMacs,
   calculateMacsData,
-  getActiveSitesData
-
+  getSitesData,
 };

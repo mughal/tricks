@@ -6,7 +6,7 @@ const DhcpRecords = require('../models/dhcprecords'); // Model for the 'dhcpreco
 const {
     fetchAndEnrichIpMacs,
     calculateMacsData,
-    getActiveSitesData,
+    getSitesData,
 } = require('../utils/helpers'); 
 
 const router = express.Router();
@@ -27,14 +27,17 @@ router.get('/mac_total', async (req, res) => {
       });
    
     const macs_new = calculateMacsData(filteredIpMacsNew);
-    const active_sites = await getActiveSitesData();
-    console.log("I am in main");
-    console.log(active_sites);
-    console.log("I shoul dget it");
+    const sngpl_sites = await getSitesData();
+  
 
-    macTotalData = {active_sites, macs_total, macs_today, macs_new};
+    dashBoardData = {
+        ...sngpl_sites,
+        macs_total,
+        macs_today,
+        macs_new
+    };
     // Send the constructed JSON response
-    res.json(macTotalData);
+    res.json(dashBoardData);
   } catch (err) {
     console.error('Error fetching mac_dash data:', err);
     res.status(500).json({ error: 'Internal Server Error' });
