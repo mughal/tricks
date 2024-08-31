@@ -184,6 +184,18 @@
     cursor: pointer;
 }
 
+.curiozdb-cell-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0; /* Position at the bottom of the container */
+    left: 0; /* Align to the left edge of the container */
+    right: 0; /* Stretch across the container */
+    padding: 0.5rem; /* Adjust padding to ensure it's positioned at the bottom */
+    font-size: 0.7rem;
+    color: var(--icon-color); 
+}
 
 .curioz-dash-row {
     display: grid;
