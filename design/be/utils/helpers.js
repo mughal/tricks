@@ -97,7 +97,43 @@ function calculateMacsData(enrichedIpMacs) {
   return macTotalData;
 }
 
+// Function to calculate active sites and their breakdown by region
+async function getActiveSitesData() {
+  try {
+    // Step 1: Find all documents where active is true
+    const activeSites = await Sources.find({ active: true });
+
+    // Step 2: Calculate total number of active sites
+    const totalActiveSites = activeSites.length;
+    //console.log(activeSites);
+    // Step 3: Calculate the number of active sites by region
+    const regionData = activeSites.reduce((acc, site) => {
+      const { region } = site;
+      if (region) {
+        acc[region] = (acc[region] || 0) + 1;
+      }
+      return acc;
+    }, {});
+    console.log(regionData);
+    // Step 4: Construct the final JSON object
+    const result = {
+      sites: {
+        active: totalActiveSites,
+        region: regionData
+      }
+    };
+
+    return result;
+  } catch (error) {
+    console.error('Error fetching active sites data:', error);
+    throw error;
+  }
+}
+
+
 module.exports = {
   fetchAndEnrichIpMacs,
-  calculateMacsData
+  calculateMacsData,
+  getActiveSitesData
+
 };

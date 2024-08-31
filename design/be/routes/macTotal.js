@@ -3,7 +3,11 @@ const IpMacs = require('../models/ipmacs'); // Adjust the path to your model fil
 const Sources = require('../models/sources'); // Adjust the path to your model file
 const Eis = require('../models/eis'); // Model for the 'eis' collection
 const DhcpRecords = require('../models/dhcprecords'); // Model for the 'dhcprecords' collection
-const { fetchAndEnrichIpMacs, calculateMacsData } = require('../utils/helpers'); 
+const {
+    fetchAndEnrichIpMacs,
+    calculateMacsData,
+    getActiveSitesData,
+} = require('../utils/helpers'); 
 
 const router = express.Router();
 
@@ -23,7 +27,12 @@ router.get('/mac_total', async (req, res) => {
       });
    
     const macs_new = calculateMacsData(filteredIpMacsNew);
-    macTotalData = {macs_total, macs_today, macs_new};
+    const active_sites = await getActiveSitesData();
+    console.log("I am in main");
+    console.log(active_sites);
+    console.log("I shoul dget it");
+
+    macTotalData = {active_sites, macs_total, macs_today, macs_new};
     // Send the constructed JSON response
     res.json(macTotalData);
   } catch (err) {
