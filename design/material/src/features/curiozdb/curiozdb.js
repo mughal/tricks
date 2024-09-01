@@ -168,7 +168,17 @@ export function createCuriozdbCellContent(title, iconClass, number, footer = nul
     container.appendChild(contentDiv);
 
      // Static JSON data for the footer
-     const footerData = {eis: 345, dhcp: 249};
+     const footerData = {
+        left: {
+            name: "Yasir",
+            value: 350
+        },
+        
+        right: {
+            name: "DHCP",
+            value: 43
+        }
+    };
 
      // Generate the footer using the createFooter function
      footer = createFooter(footerData);
@@ -346,15 +356,15 @@ export function addCharts(chart1, chart2) {
         // Create left element in the footer
         const leftSpan = document.createElement('span');
         leftSpan.className = 'left';
-        if (footerData.eis !== undefined) {
-            leftSpan.textContent = `EIS (${footerData.eis})`;
+        if (footerData.left !== undefined) {
+            leftSpan.textContent = `${footerData.left.name} (${footerData.left.value})`;
         }
 
         // Create right element in the footer
         const rightSpan = document.createElement('span');
         rightSpan.className = 'right';
-        if (footerData.dhcp !== undefined) {
-            rightSpan.textContent = `DHCP (${footerData.dhcp})`;
+        if (footerData.right !== undefined) {
+            rightSpan.textContent = `${footerData.right.name} (${footerData.right.value})`;
         }
 
         // Append spans to footer
