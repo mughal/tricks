@@ -166,7 +166,17 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'Sites - Unreachable ',
         'fa-times-circle',
-        dashboardData.sites_unreachable.sites.active
+        dashboardData.sites_unreachable.sites.active,
+        { 
+            left: {
+                name: "Never Reached",
+                value: dashboardData.sites_unreachable.sites_neverReached
+            },
+            right:{
+                name: "Previosuly Reached",
+                value: dashboardData.sites_unreachable.sites_previouslyReached
+            }
+        }
         );
     lowerRight.appendChild(cellContent);
     //lowerRight.appendChild(cellContent);
