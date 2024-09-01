@@ -117,7 +117,8 @@ function initializeDashboard() {
     let cellContent = createCuriozdbCellContent(
         'MACs - Total Collection', 
         'fa-network-wired', 
-        dashboardData.macs_total.devices
+        dashboardData.macs_total.devices,
+        makeFooter(dashboardData.macs_total, "mac")
         );
     console.log(cellContent);
     const upperLeft = document.getElementById('magic-upper-left');
@@ -129,7 +130,8 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'MACs - New Today',
         'fa-calendar-plus',
-        dashboardData.macs_new.devices
+        dashboardData.macs_new.devices,
+        makeFooter(dashboardData.macs_new, "mac")
         );
     middleLeft.appendChild(cellContent);
     
@@ -138,7 +140,9 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'MACs - Visible Today',
         'fa-binoculars',
-        dashboardData.macs_today.devices);
+        dashboardData.macs_today.devices,
+        makeFooter(dashboardData.macs_today, "mac")
+        );
     lowerLeft.appendChild(cellContent);
     
     const upperRight = document.getElementById('magic-upper-right');
@@ -146,7 +150,8 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'Sites - Active',
         'fa-globe',
-        dashboardData.sites_active.sites.active
+        dashboardData.sites_active.sites.active,
+        makeFooter(dashboardData.sites_active, "sites")
         );
     upperRight.appendChild(cellContent);
     upperRight.appendChild(cellContent);
@@ -167,16 +172,7 @@ function initializeDashboard() {
         'Sites - Unreachable ',
         'fa-times-circle',
         dashboardData.sites_unreachable.sites.active,
-        { 
-            left: {
-                name: "Never Reached",
-                value: dashboardData.sites_unreachable.sites_neverReached
-            },
-            right:{
-                name: "Previosuly Reached",
-                value: dashboardData.sites_unreachable.sites_previouslyReached
-            }
-        }
+        makeFooter(dashboardData.sites_unreachable, "unreachable")
         );
     lowerRight.appendChild(cellContent);
     //lowerRight.appendChild(cellContent);
@@ -187,6 +183,48 @@ function initializeDashboard() {
     addCellListeners();
 }
 
+// Prepare data for footer
+function makeFooter(footerData,mac_or_sites){
+    console.log(footerData);
+    switch (mac_or_sites) {
+        case "mac": 
+            return { 
+                left: {
+                    name: "EIS",
+                    value: footerData.eis
+                },
+                right:{
+                    name: "DHCP",
+                    value: footerData.dhcp
+                }
+            };
+        case "sites": 
+            return { 
+                left: {
+                    name: "Total Planned",
+                    value: footerData.sngplPlannedSites
+                },
+                right:{
+                    name: "Future Designated",
+                    value: footerData.sngplFutureSites
+                }
+            };
+        case "unreachable":
+            return { 
+                left: {
+                    name: "Never Reached",
+                    value: footerData.sites_neverReached
+                },
+                right:{
+                    name: "Previosuly Reached",
+                    value: footerData.sites_previouslyReached
+                }
+            };
+           
+        case "zeroarp": break;
+    }
+
+}
 // Function to render a chart dynamically based on data
 function renderChart(chartData1, chartData2) {
     const magicChart = document.getElementById('magic-chart');
