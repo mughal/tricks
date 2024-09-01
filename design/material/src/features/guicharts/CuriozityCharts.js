@@ -41,7 +41,7 @@ const secondaryColor2 = rootStyles.getPropertyValue('--color-graph5').trim();
 
 const colorArray = [primaryColor1, primaryColor2, primaryColor3, secondaryColor1, secondaryColor2];
 
-const MAX_CAP = 300; // Define a cap for large values
+const MAX_CAP = 1000; // Define a cap for large values
 
 // Function to cap data
 function capData(value) {

@@ -304,7 +304,8 @@ function addCellListeners() {
             magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
             upperLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in upper left ${upperLeft.id}`);
-            renderChart(dashboardData.macs_total.region, dashboardData.macs_total.manufacturer);
+            //renderChart(dashboardData.macs_total.region, dashboardData.macs_total.manufacturer);
+            renderSingleChart(dashboardData.macs_total.region);
         });
     }
 
@@ -316,7 +317,8 @@ function addCellListeners() {
             middleLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in middle left ${middleLeft.id}`);
             setSelectedCellId(middleLeft.id);
-            renderChart(dashboardData.macs_new.region, dashboardData.macs_new.manufacturer);
+            //renderChart(dashboardData.macs_new.region, dashboardData.macs_new.manufacturer);
+            renderSingleChart(dashboardData.macs_new.region);
         });
     }
 
@@ -327,7 +329,8 @@ function addCellListeners() {
             magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
             lowerLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in lower left ${lowerLeft.id}`);
-            renderChart(dashboardData.macs_today.region, dashboardData.macs_today.manufacturer);
+            //renderChart(dashboardData.macs_today.region, dashboardData.macs_today.manufacturer);
+            renderSingleChart(dashboardData.macs_today.region);
         });
     }
 
