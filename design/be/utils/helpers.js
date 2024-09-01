@@ -102,6 +102,8 @@ async function getSitesData() {
   try {
     // Step 1: Find all documents where active is true
     const sngplActiveSites = await Sources.find({ active: true });
+    const sngplPlannedSites = await Sources.countDocuments();
+    const sngplFutureSites = sngplPlannedSites - sngplActiveSites.length;
     const reachableSites = sngplActiveSites.filter((record) => {
         return (!record.reachable && 
             (new Date(record.last_polled_date) >= new Date('2024-08-30')));
@@ -115,9 +117,31 @@ async function getSitesData() {
     });
     
     sites_active = sitesResult(sngplActiveSites);
+    
     sites_unreachable = sitesResult(reachableSites);
+    sites_neverReached = await Sources.countDocuments({ active: true, last_success_date: null });
+    sites_previouslyReached = await Sources.countDocuments({ 
+        active: true, 
+        last_success_date: { $ne: null },
+        reachable: false
+    });
+    
     sites_arpzero = sitesResult(zeroArpSites);
-    return {sites_active, sites_unreachable, sites_arpzero }
+
+
+    return {
+        sites_active: {
+            ...sites_active,        // Spread properties of sites_active
+            sngplPlannedSites,      // Add new key sngplPlannedSites
+            sngplFutureSites        // Add new key sngplFutureSites
+          },
+        sites_unreachable: {
+            ...sites_unreachable,
+            sites_neverReached,
+            sites_previouslyReached
+        },
+        sites_arpzero
+    }
 
   } catch (error) {
     console.error('Error fetching active sites data:', error);

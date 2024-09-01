@@ -18,3 +18,63 @@ db.sources.updateMany(
   { region: "Shiekhupura" },  // Filter to match documents where region is "newyork"
   { $set: { region: "Sheikhupura" } }  // Update to set region to "washington"
 );
+
+
+# Step 1: Connect to MongoDB using mongosh
+
+# Step 2: Select your database
+use your_database_name;  // Replace with your actual database name
+
+# Step 3: Get total sites count
+db.sources.countDocuments({});
+db.sources.countDocuments({ active: true, reachable: true });
+db.sources.countDocuments({ active: true, last_success_date: null });
+
+# Step 4: Get sites count which are active and reachable
+db.sources.countDocuments({ active: true, reachable: true });
+
+# Step 5: Get sites count which are active and have last_success_date as null
+db.sources.countDocuments({ active: true, last_success_date: null });
+
+
+db.sources.countDocuments({ 
+  active: true, 
+  last_success_date: { $ne: null }, 
+  reachable: true 
+});
+
+
+db.sources.countDocuments({ 
+  active: true, 
+  last_success_date: { $ne: null }, 
+  reachable: false 
+});
+
+
+
+db.sources.aggregate([
+  {
+    $match: { arp_count: 0 }  // Step 1: Filter sources with zero MAC count
+  },
+  {
+    $lookup: {                // Step 2: Lookup in the 'mac' collection
+      from: 'ipmacs',            // The 'mac' collection to join with
+      localField: 'source',   // Field in the 'sources' collection
+      foreignField: 'source', // Field in the 'mac' collection to match
+      as: 'macs'              // Output array field to hold matching MACs
+    }
+  },
+  {
+    $project: {               // Step 3: Project required fields
+      source: 1,              // Include 'source' field from 'sources' collection
+      mac_count: { $size: '$macs' }  // Count the number of MACs from the 'mac' collection
+    }
+  },
+  {
+    $match: { mac_count: { $gt: 0 } }  // Step 4: Filter to show only those that have a previous count > 0
+  }
+]);
+
+
+db.sources.find({ source: "172.16.203.254" }, { arp_count: 1, _id: 0 });
+db.sources.find({ source: "172.22.50.40" }, { arp_count: 1, _id: 0 });
