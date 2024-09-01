@@ -168,20 +168,20 @@ export function createCuriozdbCellContent(title, iconClass, number, footer = nul
     container.appendChild(contentDiv);
 
      // Static JSON data for the footer
-     const footerData = {
-        left: {
-            name: "Yasir",
-            value: 350
-        },
+    //  const footerData = {
+    //     left: {
+    //         name: "Yasir",
+    //         value: 350
+    //     },
         
-        right: {
-            name: "DHCP",
-            value: 43
-        }
-    };
+    //     right: {
+    //         name: "DHCP",
+    //         value: 43
+    //     }
+    // };
 
      // Generate the footer using the createFooter function
-     footer = createFooter(footerData);
+     footer = createFooter(footer);
      container.append(footer);
 
     return container;

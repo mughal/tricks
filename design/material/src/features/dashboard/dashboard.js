@@ -41,7 +41,9 @@ import {
     sitesZeroDevices
 } from '../../dummy/dummyData';
 
-export function loadDashboard() {
+let dashboardData = {}; // Variable to store fetched dashboard data
+
+export async function loadDashboard() {
     setFun(false);
     const content = document.getElementById('content-id');
     
@@ -49,7 +51,7 @@ export function loadDashboard() {
     content.innerHTML = '';
     const container = document.createElement('div');
     container.className = 'curiozdb-container';
-    const dashRow = createCuriozDashRow('dashRow1');
+    //const dashRow = createCuriozDashRow('dashRow1');
     const specialRowThree = curiozType3('magic');
     // Create the dashboard grid
     //container.appendChild(dashRow);
@@ -63,6 +65,18 @@ export function loadDashboard() {
     // container.appendChild(curiozdbRow('row5'));
  
     content.appendChild(container);
+
+    const response = await fetch('http://localhost:3000/api/dashboard'); // Replace with your API endpoint
+
+    // Check if the response is okay
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Parse the response JSON
+    const { data, lastUpdated } = await response.json();
+    console.log(data);
+    dashboardData = data;
     initializeDashboard();
     // Clear existing content in the cell
     // clearCellContent(cell1);
@@ -100,7 +114,11 @@ export function loadDashboard() {
 }
 
 function initializeDashboard() {
-    let cellContent = createCuriozdbCellContent('MACs - Total Collection', 'fa-network-wired', macTotal.devices);
+    let cellContent = createCuriozdbCellContent(
+        'MACs - Total Collection', 
+        'fa-network-wired', 
+        dashboardData.macs_total.devices
+        );
     console.log(cellContent);
     const upperLeft = document.getElementById('magic-upper-left');
     clearCellContent(upperLeft);
@@ -108,12 +126,19 @@ function initializeDashboard() {
 
     const middleLeft = document.getElementById('magic-middle-left');
     clearCellContent(middleLeft);
-    cellContent = createCuriozdbCellContent('MACs - New Today', 'fa-calendar-plus', macNew.devices);
+    cellContent = createCuriozdbCellContent(
+        'MACs - New Today',
+        'fa-calendar-plus',
+        dashboardData.macs_new.devices
+        );
     middleLeft.appendChild(cellContent);
     
     const lowerLeft = document.getElementById('magic-lower-left');
     clearCellContent(lowerLeft);
-    cellContent = createCuriozdbCellContent('MACs - Visible Today', 'fa-binoculars', macToday.devices);
+    cellContent = createCuriozdbCellContent(
+        'MACs - Visible Today',
+        'fa-binoculars',
+        dashboardData.macs_today.devices);
     lowerLeft.appendChild(cellContent);
     
     const upperRight = document.getElementById('magic-upper-right');
@@ -121,7 +146,7 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'Sites - Active',
         'fa-globe',
-        sitesActive.sites
+        dashboardData.sites_active.sites.active
         );
     upperRight.appendChild(cellContent);
     upperRight.appendChild(cellContent);
@@ -131,7 +156,7 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'Sites - Zero Devices',
         'fa-exclamation-circle',
-        sitesZeroDevices.sites
+        dashboardData.sites_arpzero.sites.active
         );
     middleRight.appendChild(cellContent);
     //middleRight.appendChild(cellContent);
@@ -141,14 +166,14 @@ function initializeDashboard() {
     cellContent = createCuriozdbCellContent(
         'Sites - Unreachable ',
         'fa-times-circle',
-        sitesUnreachable.sites
+        dashboardData.sites_unreachable.sites.active
         );
     lowerRight.appendChild(cellContent);
     //lowerRight.appendChild(cellContent);
 
     // Work on charts
     //renderChart(macTotal.cities, macTotal.manufacture);
-    renderSingleChart(sitesActive.cities);
+    renderSingleChart(dashboardData.sites_active.sites.region);
     addCellListeners();
 }
 
@@ -231,7 +256,7 @@ function addCellListeners() {
             magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
             upperLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in upper left ${upperLeft.id}`);
-            renderChart(macTotal.cities, macTotal.manufacture);
+            renderChart(dashboardData.macs_total.region, dashboardData.macs_total.manufacturer);
         });
     }
 
@@ -243,7 +268,7 @@ function addCellListeners() {
             middleLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in middle left ${middleLeft.id}`);
             setSelectedCellId(middleLeft.id);
-            renderChart(macNew.cities, macNew.manufacture);
+            renderChart(dashboardData.macs_new.region, dashboardData.macs_new.manufacturer);
         });
     }
 
@@ -254,7 +279,7 @@ function addCellListeners() {
             magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
             lowerLeft.classList.add('curiozdb-cell-selected');
             console.log(`I am in lower left ${lowerLeft.id}`);
-            renderChart(macToday.cities, macToday.manufacture);
+            renderChart(dashboardData.macs_today.region, dashboardData.macs_today.manufacturer);
         });
     }
 
@@ -265,9 +290,9 @@ function addCellListeners() {
             magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
             upperRight.classList.add('curiozdb-cell-selected');
             console.log(`I am in upper right ${upperRight.id}`);
-            console.log(sitesActive.sites);
-            console.log(sitesActive.cities);
-            renderSingleChart(sitesActive.cities);
+            // console.log(sitesActive.sites);
+            // console.log(sitesActive.cities);
+            renderSingleChart(dashboardData.sites_active.sites.region);
         });
     }
 
@@ -280,7 +305,7 @@ function addCellListeners() {
             console.log(`I am in middle right ${middleRight.id}`);
             console.log(sitesUnreachable.sites);
             console.log(sitesUnreachable.cities);
-            renderSingleChart(sitesUnreachable.cities);
+            renderSingleChart(dashboardData.sites_unreachable.sites.region);
         });
     }
 
@@ -291,9 +316,9 @@ function addCellListeners() {
             magicCells.forEach(c => c.classList.remove('curiozdb-cell-selected'));
             lowerRight.classList.add('curiozdb-cell-selected');
             console.log(`I am in lower right ${lowerRight.id}`);
-            console.log(sitesZeroDevices.sites);
-            console.log(sitesZeroDevices.cities);
-            renderSingleChart(sitesZeroDevices.cities);
+            // console.log(sitesZeroDevices.sites);
+            // console.log(sitesZeroDevices.cities);
+            renderSingleChart(dashboardData.sites_arpzero.sites.region);
         });
     }
 }
