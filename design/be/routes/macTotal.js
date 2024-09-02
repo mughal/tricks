@@ -7,6 +7,7 @@ const {
     fetchAndEnrichIpMacs,
     calculateMacsData,
     getSitesData,
+    fetchIpMacs,
 } = require('../utils/helpers'); 
 
 const router = express.Router();
@@ -44,4 +45,14 @@ router.get('/mac_total', async (req, res) => {
   }
 });
 
+// Add a new endpoint in the same router
+router.get('/fetch-ip-macs', async (req, res) => {
+    try {
+        // Logic to fetch IP MACs, assuming fetchIpMacs() is your function
+        const data = await fetchIpMacs(); // You need to define or import this function
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 module.exports = router;
