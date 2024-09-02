@@ -41,6 +41,12 @@ const secondaryColor2 = rootStyles.getPropertyValue('--color-graph5').trim();
 
 const colorArray = [primaryColor1, primaryColor2, primaryColor3, secondaryColor1, secondaryColor2];
 
+const MAX_CAP = 1000; // Define a cap for large values
+
+// Function to cap data
+function capData(value) {
+  return Math.min(value, MAX_CAP); // Cap the value to the MAX_CAP
+}
 function graphColors(dataLength) {
   const barColors = [];
   let previousColorIndex = -1;
@@ -58,6 +64,13 @@ function graphColors(dataLength) {
   }
   
   return barColors;
+}
+
+// Function to normalize data using Min-Max Normalization
+function normalizeData(data) {
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  return data.map(value => (value - min) / (max - min)); // Normalize each value
 }
 
 // Function to create a Doughnut chart
@@ -190,7 +203,26 @@ export const createBarChartH = (data) => {
 // Function to create a Bar chart
 export const createBarChart = (data) => {
   const labels = Object.keys(data);
+  
+  const transformedLabels = labels.map(label => {
+    if (label.toLowerCase().includes('manufacturer')) {
+      return getFirstWord(label); // Apply transformation to shorten the label
+    }
+    // Future-proof with switch case or other conditions here
+    // Example:
+    // switch (true) {
+    //   case label.toLowerCase().includes('anotherType'):
+    //     return transformAnotherType(label);
+    //   default:
+    //     return label;
+    // }
+
+    return label; // Return the label unchanged if no transformation is needed
+  });
+
   const values = Object.values(data);
+  const transformedvalues = values.map(capData); 
+  // const transformedvalues = normalizeData(values); 
   const barColors = graphColors(values.length);
   const canvas = document.createElement('canvas');
   canvas.style.marginLeft = '10px'; // Adjust the value as needed
@@ -199,10 +231,10 @@ export const createBarChart = (data) => {
   const chart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: labels,
+      labels: transformedLabels,
       datasets: [{
         label: 'Data Values',
-        data: values,
+        data: transformedvalues,
         backgroundColor: barColors,
         borderColor: primaryColor1,
         borderWidth: 1
@@ -214,6 +246,13 @@ export const createBarChart = (data) => {
       scales: {
         x: {
           beginAtZero: true,
+          ticks: {
+            callback: function (value, index, values) {
+              // Apply transformedLabel logic to x-axis labels
+              const label = this.getLabelForValue(value);
+              return getFirstWord(label); // Use transformed label
+            }
+          }
         },
         y: {
           beginAtZero: true,
@@ -232,9 +271,14 @@ export const createBarChart = (data) => {
         tooltip: {
           callbacks: {
             label: function(context) {
-              const label = context.label || '';
-              const value = context.raw || 0;
-              return `${label}: ${value}`;
+              const label = getFirstWord(context.label || ''); 
+              // const rawValue = context.raw || 0;
+              // const isCapped = rawValue > MAX_CAP; // Check if the value is capped
+              // const displayValue = isCapped ? `> ${MAX_CAP}` : rawValue; // Show capped value in tooltip
+              // return `${label}: ${rawValue}`; // Tooltip text
+              const index = context.dataIndex; // Get the index of the current data point
+              const actualValue = values[index]; // Get the actual value from the original data
+              return `${label}: ${actualValue}`; // Show the actual value in the tooltip
             }
           }
         },
@@ -730,3 +774,10 @@ export const createDualAxisBarChart = (data) => {
 
   return canvas;
 };
+
+
+// Helper function to get the first word of a label
+function getFirstWord(label) {
+  return label.split(' ')[0]; // Split by space and return the first word
+}
+

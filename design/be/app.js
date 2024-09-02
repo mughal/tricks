@@ -8,6 +8,16 @@ const authRoutes = require('./routes/auth'); // Adjust the path as needed
 const macTotalRoute = require('./routes/macTotal'); // Import the macTotal route
 const authMiddleware = require('./middleware/authMiddleware');
 const macDashRoute = require('./routes/macDash'); // Import the macDash route
+
+// Import the helper functions from the helpers file
+const { 
+    startDashboardDataUpdateInterval, 
+    dashboardDataCache 
+  } = require('./helpers/dashboardDataHelper');
+  
+  // Start the periodic update of dashboard data
+startDashboardDataUpdateInterval();
+
 //const Schema = mongoose.Schema;
 mongoose.set("strictQuery",false);
 const mongoDB="mongodb://localhost:27017/ipmacgeniedb";
