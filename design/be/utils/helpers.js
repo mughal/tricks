@@ -41,6 +41,46 @@ async function fetchAndEnrichIpMacs() {
   return enrichedIpMacs;
 }
 
+// Function to fetch and enrich IPMacs records
+async function fetchIpMacs() {
+    // Step 1: Fetch all records from ipmacs collection
+    const ipMacsRecords = await IpMacs.find({});
+  
+    const eisRecords = await Eis.find();
+    const dhcpRecords = await DhcpRecords.find();
+   // Convert arrays to maps for efficient lookup
+    const eisMap = new Map(eisRecords.map(record => [record.mac, record]));
+    const dhcpMap = new Map(dhcpRecords.map(record => [record.mac, record]));
+  
+    // Step 3: Enrich each ipmacs record temporarily using the 'source' IP
+    const enrichedIpMacs = await Promise.all(
+      ipMacsRecords.map(async (record) => {
+        const { mac, source } = record;
+  
+        // Find the corresponding source document for region and location using the 'source' IP
+        const sourceData = await Sources.findOne({ source }); // Match the source IP
+        const region = sourceData ? sourceData.region : null;
+        const location = sourceData ? sourceData.location : null;
+  
+        // Check if MAC is in 'eis' and 'dhcprecords'
+        const eisRecord = eisMap.get(mac);
+        const seekDhcpRecord = dhcpMap.get(mac);
+        const dhcpNames = dhcpSeeker(record, seekDhcpRecord);
+        let dhcpNamesString = dhcpNames.length > 0 ? dhcpNames.join(' ') : null;
+        return {
+          ...record.toObject(), // Convert Mongoose document to plain object
+          region,
+          location,
+          eis: eisRecord ? { ...eisRecord.toObject() } : null,
+          dhcp: dhcpNamesString
+        };
+      })
+    );
+  
+    return enrichedIpMacs;
+  }
+  
+
 // Function to calculate macs data from enrichedIpMacs
 function calculateMacsData(enrichedIpMacs) {
   // 1. Calculate total number of devices
@@ -172,11 +212,30 @@ function sitesResult(sngplSites){
 }
 // Function to calculate reachable sites with specific criteria
 
-
+function dhcpSeeker(ipMacRecord, dhcpRecord) {
+    let dhcpNames = [];
+  
+    if (dhcpRecord && ipMacRecord) {
+      // Loop through each IP in the ipMacs record
+      ipMacRecord.ips.forEach(ip => {
+        // Assuming dhcpRecord.dhcpRecords is an array of objects with an 'ip' and 'name'
+        dhcpRecord.dhcpRecords.forEach(dhcpEntry => {
+          if (dhcpEntry.ip === ip) {
+            // If the IP matches, add the name from the DHCP entry to the array
+            dhcpNames.push(dhcpEntry.name); // Collect only the names
+          }
+        });
+      });
+    }
+  
+    return dhcpNames;
+}
+  
 
 
 module.exports = {
   fetchAndEnrichIpMacs,
   calculateMacsData,
   getSitesData,
+  fetchIpMacs,
 };
