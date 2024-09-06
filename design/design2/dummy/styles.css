@@ -1,0 +1,89 @@
+:root {
+    --primary-color: #2A9D8F;   /* Primary green */
+    --secondary-color: #56C596; /* Light green */
+    --neutral-color: #F9F9F9;   /* Light gray background */
+    --font-color: #333333;      /* Dark gray font */
+    --header-font-color: #2A9D8F; /* Header color */
+}
+
+body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.network-card {
+    width: 500px; /* Card width */
+    background-color: var(--neutral-color);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures content stays within rounded corners */
+    display: flex;
+}
+
+.main-section {
+    display: flex; /* Flexbox to align left and right sections */
+    width: 100%;
+    align-items: stretch; /* Ensures both parts grow equally */
+    margin: 0; /* No padding between sections */
+}
+
+.left-color-shard {
+    width: 25%; /* Shard width */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradient background */
+}
+
+.right-data-section {
+    width: 75%; /* Content width */
+    background-color: var(--neutral-color); /* Same color as header and footer */
+    padding: 15px; /* Adds space from the left shard */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 15px; /* Space between data sections */
+}
+
+.title-section,
+.footer-section {
+    width: 100%;
+    color: var(--font-color);
+    font-weight: normal;
+    text-align: left; /* Left alignment */
+    margin-bottom: 10px; /* Margin between title/footer and content */
+}
+
+.title-section strong,
+.footer-section strong {
+    font-weight: bold; /* Bold titles for emphasis */
+}
+
+.data-section {
+    background-color: var(--neutral-color); /* Removed border and box-shadow */
+}
+
+.card-item {
+    display: flex; /* Flexbox for aligning label and data */
+    align-items: center; /* Align items vertically center */
+    margin-bottom: 8px; /* Space between items */
+}
+
+.label {
+    width: 40%; /* Fixed width for labels to align data */
+    color: var(--font-color);
+}
+
+.data {
+    width: 60%; /* Remaining width for data */
+    color: var(--font-color);
+    text-align: left; /* Align text to the left */
+}
+
+.card-item strong {
+    font-weight: bold;
+    color: var(--header-font-color);
+    margin-right: 5px;
+}
