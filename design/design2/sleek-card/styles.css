@@ -59,7 +59,7 @@ body {
     padding-top: 20px;
     background-color: var(--secondary-color);
     justify-content: space-between; /* Distribute space between items */
-    height: 5rem;
+    min-height: 5rem;
     border: 1px solid var(--border-color); /* Add border to differentiate records */
     border-radius: 8px; /* Optional: Rounded corners for a softer look */
     margin: 5px; /* Add margin to separate records visually */
