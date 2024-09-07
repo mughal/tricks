@@ -1,0 +1,134 @@
+:root {
+    --primary-color: #333;              /* Primary color: Dark gray */
+    --secondary-color: #e5e5e5;         /* Secondary color: Light neutral gray */
+    --neutral-color: #f3e8e8;           /* Neutral background: White */
+    --font-color: #333;                 /* Font color: Consistent with primary color */
+    --header-font-color: #2A9D8F;       /* Header color: Greenish-teal */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color: Subtle black */
+    --border-color: #ddd;               /* Border color: Slightly darker gray for subtle contrast */
+    --icon-color: #666;   
+}
+
+body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to start vertically */
+    height: 100vh;
+    margin: 0;
+    padding-top: 30px; /* Add padding to prevent content from being hidden */
+}
+
+/* Main Card Styles */
+.ip-details-card {
+    background-color: var(--neutral-color);
+    width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+/* Header Section */
+.card-header {
+    background-color: var(--primary-color);
+    color: var(--neutral-color);
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    gap: 10px; /* Space between icon and IP address */
+}
+
+.icon {
+    font-size: 24px; /* Adjust icon size */
+}
+
+.ip-address {
+    font-weight: bold;
+}
+
+/* Content Section */
+.card-content {
+    display: flex;
+    flex-direction: row; /* Two columns side by side */
+    padding: 5px;
+    padding-right: 20px;
+    padding-top: 20px;
+    background-color: var(--secondary-color);
+    justify-content: space-between; /* Distribute space between items */
+    height: 5rem;
+    border: 1px solid var(--border-color); /* Add border to differentiate records */
+    border-radius: 8px; /* Optional: Rounded corners for a softer look */
+    margin: 5px; /* Add margin to separate records visually */
+}
+
+.content-column {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    flex: 1; /* Equal width for each column */
+    justify-content: space-between; /* Distribute space evenly between items */
+    flex-grow: 1; /* Allows columns to grow and fill the available space */
+    min-height: 4rem; /* Minimum height to provide initial spacing */
+}
+
+.entity { /* Replacing entity-border class if needed */
+    padding: 10px; /* Maintain padding for better spacing */
+    background-color: var(--neutral-color); /* Background for entity */
+    width: 100%; /* Make sure each div takes full width */
+}
+
+.dates-details ul {
+    padding-left: 20px;
+    margin: 0;
+    list-style-type: disc;
+}
+
+/* Footer Section */
+.card-footer {
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 1px solid var(--primary-color);
+}
+
+.dhcp-details {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 10px;
+    gap: 10px;
+}
+
+.card-content .icon {
+    color: #2A9D8F;
+    margin-top: 5px;
+    font-size: 1rem;
+}
+.dhcp-text {
+    margin-top: 5px;
+    font-size: 0.75rem;
+}
+
+.clight0 {
+    font-weight: bold;
+}
+
+.c-icon-content {
+
+    display: flex;
+
+}
+
+.c-icon-content .icon {
+    display: flex; /* Use flexbox to align icon */
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    color: var(--icon-color); /* Optional: add background color */
+    border-radius: 50%; /* Optional: make icon container circular */
+}

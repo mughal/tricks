@@ -1,0 +1,76 @@
+:root {
+    --primary-color: #2A9D8F;   /* Primary green */
+    --neutral-color: #FFFFFF;   /* White background */
+    --font-color: #333333;      /* Dark gray font */
+    --header-font-color: #2A9D8F; /* Header color */
+    --secondary-color: #d8f1ef;   /* Primary green */
+}
+
+body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.diagonal-card {
+    width: 400px; /* Card width */
+    background: linear-gradient(135deg, var(--primary-color) 50%, var(--secondary-color) 50%); /* Half color, half white */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: var(--secondary-color);
+    overflow: hidden; /* Ensures content stays within rounded corners */
+    position: relative;
+}
+
+.card-content {
+    background-color: var(--neutral-color); /* Background for content to contrast against diagonal */
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 1; /* Makes sure content is above the gradient */
+    position: relative;
+}
+
+.title-section,
+.footer-section {
+    width: 100%;
+    color: var(--font-color);
+    font-weight: normal;
+    text-align: left; /* Left alignment */
+    margin-bottom: 10px; /* Margin between title/footer and content */
+}
+
+.title-section strong,
+.footer-section strong {
+    font-weight: bold; /* Bold titles for emphasis */
+}
+
+.data-section {
+    padding: 10px 0; /* Padding for spacing */
+}
+
+.card-item {
+    display: flex; /* Flexbox for aligning label and data */
+    align-items: center; /* Align items vertically center */
+    margin-bottom: 8px; /* Space between items */
+}
+
+.label {
+    width: 40%; /* Fixed width for labels to align data */
+    color: var(--font-color);
+}
+
+.data {
+    width: 60%; /* Remaining width for data */
+    color: var(--font-color);
+    text-align: left; /* Align text to the left */
+}
+
+.card-item strong {
+    font-weight: bold;
+    color: var(--header-font-color);
+}
