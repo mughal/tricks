@@ -24,14 +24,14 @@ body {
 .ip-details-card {
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    width: 500px; /* Fixed width for demonstration */
+    width: 500px; /* Define a fixed width */
     padding: 0; /* Remove padding to avoid conflict */
     background-color: red; /* Visualize the parent container */
     border-radius: 12px;
     box-shadow: 0 4px 8px var(--shadow-color);
-    overflow: hidden; /* Ensure content doesn't overflow */
+    overflow: hidden; /* Ensure no content spills out */
     margin: 5px;
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box; /* Include padding in width and height calculation */
 }
 
 /* Header Section */
@@ -41,28 +41,21 @@ body {
     display: flex;
     align-items: center;
     padding: 15px; /* Padding for internal content */
-    width: 100%; /* Full width */
+    width: calc(100% - 30px); /* Adjusted width for padding */
     box-sizing: border-box; /* Include padding in width calculation */
     border-bottom: 1px solid #ddd; /* Optional: Add border to distinguish header from content */
-    margin: 0; /* Remove margin to align with parent */
-    background-color: var(--primary-color);
-    color: var(--neutral-color);
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    gap: 10px; /* Space between icon and IP address */
+    margin: 0 auto; /* Center align */
 }
 
 /* Grid Section */
 .ym-grid {
     display: grid;
     grid-template-columns: 35% 65%; /* Define column widths */
-    width: 100%; /* Full width */
+    width: calc(100% - 30px); /* Adjusted width for padding */
     align-items: stretch; /* Stretch grid items to fill the height */
-    gap: 15px; /* Use gap for spacing instead of padding */
+    padding: 15px; /* Padding for internal content */
     box-sizing: border-box; /* Include padding and borders in width and height */
-    padding: 0; /* Remove padding to avoid width mismatch */
-    margin: 0; /* Remove margin for consistent alignment */
+    margin: 0 auto; /* Center align */
 }
 
 .icon {
