@@ -439,7 +439,12 @@ function setupWebSocket() {
 
 // Function to update the dashboard with new data received from WebSocket
 function updateDashboard(data) {
+    const activeSites = document.querySelector('#magic-upper-right .curiozdb-cell-number');
+    activeSites.textContent = data.data.sites_active.sites.active;
     //const dashboardElement = document.getElementById('dashboard');
     console.log("Receive data", data);
+    dashboardData = data.data;
+    // initializeDashboard();
+    
     // This will be where magic needs to be happening
 }
