@@ -18,7 +18,7 @@
                 <!-- Placeholder for Font Awesome icon -->
                 <i class="fas fa-network-wired"></i>
             </div>
-            <div class="ip-address">
+            <div class="ip-address" id="ym-ip-address">
                 192.168.1.100
             </div>
         </div>
@@ -33,13 +33,13 @@
                             <i class="fas fa-city"></i>
                         </div>
                         <div class="c-source">
-                            <div class="sngpl-source clight0">
+                            <div class="sngpl-source clight0" id="ym-source">
                                 192.168.0.1      
                             </div>
-                            <div class="sngpl-location clight1">
+                            <div class="sngpl-location clight1" id="ym-location">
                                 Harbancpura      
                             </div>
-                            <div class="sngpl-region clight0">        
+                            <div class="sngpl-region clight0" id="ym-region">        
                                 Lahore-D
                             </div> 
                         </div>
@@ -52,63 +52,21 @@
                         <div class="icon">
                             <i class="fas fa-barcode"></i>
                         </div>
-                        <div class="c-mac">
-                                AA:BB:CC:DD:EE:F1      
-                        </div>
-                    </div> 
-                    <div class="eis-dhcp">
-                        <div class="c-icon-content"> <!-- User Details -->
-                            <div class="icon">
-                                <!-- Placeholder for Font Awesome icon -->
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="c-user">
-                                <div class="sngpl-name clight0">
-                                    John Doe
-                                </div>
-                                <div class="sngpl-emp clight1">
-                                    11223344
-                                </div>
-                                <div class="sngpl-dept clight0">
-                                    Marketing
-                                </div>
-                            </div>
-                        </div>
-                        <div class="c-icon-content">    <!-- PC Details, as its Tied to MAC-->    
-                            <div class="icon">
-                                    <!-- Placeholder for Font Awesome icon -->
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <div class="c-pc">
-                                <div>
-                                    <div class="pc-name clight0">
-                                        PC20345
-                                    </div>
-                                    <div class="pc-os clight1">
-                                        Windows 10
-                                    </div>
-                                    <div class="sngpl-dhcp clight0">   
-                                        DHCP Name
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="c-icon-mac">    <!-- MAC Details--> 
-                        <div class="icon">
-                            <i class="fas fa-barcode"></i>
-                        </div>
-                        <div class="c-mac">
+                        <div class="c-mac" id="ym-mac">
                                 AA:BB:CC:DD:EE:F1      
                         </div>
                     </div>
-                    <div class="dev-history">
+                    <div class="dev-history" id="ym-history">
                         <!-- First Row: Headings -->
                         <div class="dev-history-head">First Seen</div>
                         <div class="dev-history-head">Last Seen</div>
                     
+                        <!-- Second Row: Dates -->
+                        <div class="dev-history-dates">July 10, 2024</div>
+                        <div class="dev-history-dates">August 10, 2024</div>
+                        <!-- Second Row: Dates -->
+                        <div class="dev-history-dates">July 10, 2024</div>
+                        <div class="dev-history-dates">August 10, 2024</div>
                         <!-- Second Row: Dates -->
                         <div class="dev-history-dates">July 10, 2024</div>
                         <div class="dev-history-dates">August 10, 2024</div>
@@ -119,14 +77,14 @@
                                 <!-- Placeholder for Font Awesome icon -->
                                 <i class="fas fa-user"></i>
                             </div>
-                            <div class="c-user">
+                            <div class="c-user" id="ym-eis-emp-name">
                                 <div class="sngpl-name clight0">
                                     John Doe
                                 </div>
-                                <div class="sngpl-emp clight1">
+                                <div class="sngpl-emp clight1" id="ym-eis-emp-no">
                                     11223344
                                 </div>
-                                <div class="sngpl-dept clight0">
+                                <div class="sngpl-dept clight0" id="ym-eis-dept">
                                     Marketing
                                 </div>
                             </div>
@@ -138,13 +96,13 @@
                             </div>
                             <div class="c-pc">
                                 <div>
-                                    <div class="pc-name clight0">
+                                    <div class="pc-name clight0" id="ym-adname">
                                         PC20345
                                     </div>
                                     <div class="pc-os clight1">
                                         Windows 10
                                     </div>
-                                    <div class="sngpl-dhcp clight0">   
+                                    <div class="sngpl-dhcp clight0" id="ym-dhcp-name">   
                                         DHCP Name
                                     </div>
                                 </div>
