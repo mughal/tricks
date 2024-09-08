@@ -4,6 +4,18 @@ const Sources = require('../models/sources'); // Adjust the path as needed
 
 const router = express.Router();
 
+// WebSocket broadcast function (will be set from server.js)
+let broadcastUpdate;
+
+// Populate dashboard data function (will be set from server.js)
+let populateDashboardData;
+
+// Function to set helpers
+function setHelpers(broadcastFunc, populateFunc) {
+    broadcastUpdate = broadcastFunc;
+    populateDashboardData = populateFunc;
+}
+
 // GET endpoint to fetch source information by IP
 router.get('/source', async (req, res) => {
     const { source_ip } = req.query; // Get source_ip from query parameter
@@ -42,10 +54,14 @@ router.post('/source', async (req, res) => {
           return res.status(404).json({ message: 'Source not found' });
       }
 
+      // Trigger the dashboard data population in the background
+      populateDashboardData(); // Call without await to run it in the background
+      console.log('populateDashboardData triggered in the background.');
       res.json({ message: 'Source updated successfully', source });
   } catch (error) {
       console.error('Error updating source:', error);
       res.status(500).json({ message: 'Server error' });
   }
 });
-module.exports = router;
+
+module.exports = { router, setHelpers };

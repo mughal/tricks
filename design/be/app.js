@@ -9,7 +9,8 @@ const authRoutes = require('./routes/auth'); // Adjust the path as needed
 const macTotalRoute = require('./routes/macTotal'); // Import the macTotal route
 const authMiddleware = require('./middleware/authMiddleware');
 const macDashRoute = require('./routes/macDash'); // Import the macDash route
-const upDateSourceRoute = require('./routes/updateSource'); // Import the macDash route
+// const upDateSourceRoute = require('./routes/updateSource'); // Import the macDash route
+const { router: updateSourceRouter, setHelpers } = require('./routes/updateSource'); // Import the macDash route
 const WebSocket = require('ws');
 
 // Import the helper functions from the helpers file
@@ -68,6 +69,9 @@ function startWebSocketServer() {
       });
   }
 
+  // Call setHelpers to provide the functions to the router
+  setHelpers(broadcastUpdate, populateDashboardData);
+  
   // Example: Simulate data update broadcast after data update interval
   setInterval(() => {
       if (dashboardDataCache.data) {
@@ -93,7 +97,7 @@ app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }
 app.use('/auth', authRoutes);
 app.use('/api', macTotalRoute); // All routes in macTotal.js will be prefixed with /api
 app.use('/api', macDashRoute);
-app.use('/api', upDateSourceRoute);
+app.use('/api', updateSourceRouter);
 // Default route
 app.get('/', (req, res) => {
   res.send('Welcome to the API!');
