@@ -5,66 +5,154 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Unified Network Info Card</title>
+    <!-- Assuming Font Awesome is available -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>IP and MAC Details Card</title>
 </head>
 <body>
-    <div class="network-card">
-        <!-- Main Content Section -->
-        <div class="main-section">
-            <!-- Left Radiant Color Section -->
-            <div class="left-color-shard"></div>
-
-            <!-- Right Data Section -->
-            <div class="right-data-section">
-                <!-- Title Section -->
-                <div class="title-section">
-                    <strong>Searched:</strong> You searched
-                </div>
-
-                <!-- Data Sections as they become available -->
-                <div class="data-section">
-                    <div class="card-item">
-                        <div class="label"><strong>IP Address:</strong></div>
-                        <div class="data">192.168.1.100</div>
-                    </div>
-                    <div class="card-item">
-                        <div class="label"><strong>MAC Address:</strong></div>
-                        <div class="data">00:1A:2B:3C:4D:5E</div>
-                    </div>
-                    <div class="card-item">
-                        <div class="label"><strong>Manufacturer:</strong></div>
-                        <div class="data">Dell Inc.</div>
-                    </div>
-                </div>
-
-                <div class="data-section">
-                    <div class="card-item">
-                        <div class="label"><strong>User Name:</strong></div>
-                        <div class="data">John Doe</div>
-                    </div>
-                    <div class="card-item">
-                        <div class="label"><strong>Station:</strong></div>
-                        <div class="data">Workstation-01</div>
-                    </div>
-                </div>
-
-                <div class="data-section">
-                    <div class="card-item">
-                        <div class="label"><strong>Date Seen:</strong></div>
-                        <div class="data">2024-09-05</div>
-                    </div>
-                    <div class="card-item">
-                        <div class="label"><strong>DHCP Entry:</strong></div>
-                        <div class="data">Active</div>
-                    </div>
-                </div>
-
-                <!-- Footer Section -->
-                <div class="footer-section">
-                    <strong>Remarks:</strong> There will be remarks
-                </div>
+    <!-- Main Card Container -->
+    <div class="ip-details-card">
+        <!-- Header Section -->
+        <div class="card-header">
+            <div class="icon">
+                <!-- Placeholder for Font Awesome icon -->
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="ip-address">
+                192.168.1.100
             </div>
         </div>
-    </div>
+
+        <!-- Content Section for Each MAC Address -->
+        <!-- MAC Address Section 1 -->
+        <div class="ym-grid">
+            <div class="ym-column-1">
+                <div class="card-content">   
+                    <div class="c-icon-content">    <!-- Source Details --> 
+                        <div class="icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="c-source">
+                            <div class="sngpl-source clight0">
+                                192.168.0.1      
+                            </div>
+                            <div class="sngpl-location clight1">
+                                Harbancpura      
+                            </div>
+                            <div class="sngpl-region clight0">        
+                                Lahore-D
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ym-column-2">
+                <div class="card-content">
+                    <div class="c-icon-mac">    <!-- MAC Details--> 
+                        <div class="icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <div class="c-mac">
+                                AA:BB:CC:DD:EE:F1      
+                        </div>
+                    </div> 
+                    <div class="eis-dhcp">
+                        <div class="c-icon-content"> <!-- User Details -->
+                            <div class="icon">
+                                <!-- Placeholder for Font Awesome icon -->
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="c-user">
+                                <div class="sngpl-name clight0">
+                                    John Doe
+                                </div>
+                                <div class="sngpl-emp clight1">
+                                    11223344
+                                </div>
+                                <div class="sngpl-dept clight0">
+                                    Marketing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-icon-content">    <!-- PC Details, as its Tied to MAC-->    
+                            <div class="icon">
+                                    <!-- Placeholder for Font Awesome icon -->
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="c-pc">
+                                <div>
+                                    <div class="pc-name clight0">
+                                        PC20345
+                                    </div>
+                                    <div class="pc-os clight1">
+                                        Windows 10
+                                    </div>
+                                    <div class="sngpl-dhcp clight0">   
+                                        DHCP Name
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="c-icon-mac">    <!-- MAC Details--> 
+                        <div class="icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <div class="c-mac">
+                                AA:BB:CC:DD:EE:F1      
+                        </div>
+                    </div>
+                    <div class="dev-history">
+                        <!-- First Row: Headings -->
+                        <div class="dev-history-head">First Seen</div>
+                        <div class="dev-history-head">Last Seen</div>
+                    
+                        <!-- Second Row: Dates -->
+                        <div class="dev-history-dates">July 10, 2024</div>
+                        <div class="dev-history-dates">August 10, 2024</div>
+                    </div>
+                    <div class="eis-dhcp">
+                        <div class="c-icon-content"> <!-- User Details -->
+                            <div class="icon">
+                                <!-- Placeholder for Font Awesome icon -->
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="c-user">
+                                <div class="sngpl-name clight0">
+                                    John Doe
+                                </div>
+                                <div class="sngpl-emp clight1">
+                                    11223344
+                                </div>
+                                <div class="sngpl-dept clight0">
+                                    Marketing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-icon-content">    <!-- PC Details, as its Tied to MAC-->    
+                            <div class="icon">
+                                    <!-- Placeholder for Font Awesome icon -->
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="c-pc">
+                                <div>
+                                    <div class="pc-name clight0">
+                                        PC20345
+                                    </div>
+                                    <div class="pc-os clight1">
+                                        Windows 10
+                                    </div>
+                                    <div class="sngpl-dhcp clight0">   
+                                        DHCP Name
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>     
+        </div>
 </body>
 </html>

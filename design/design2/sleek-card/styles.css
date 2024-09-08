@@ -166,10 +166,9 @@ body {
 
 .c-icon-content .icon {
     display: flex; /* Use flexbox to align icon */
-    justify-content: center; /* Center icon horizontally */
-    align-items: center; /* Center icon vertically */
-    width: 40px; /* Adjust width as needed */
-    height: 40px; /* Adjust height as needed */
+    margin-right: 5px;
+    justify-content: flex-start; /* Center icon horizontally */
+    align-items: flex-start; /* Center icon vertically */
     color: var(--icon-color); /* Optional: add background color */
     border-radius: 50%; /* Optional: make icon container circular */
 }
@@ -200,4 +199,33 @@ body {
 
 .sngpl-dept {
     color: #333;
+}
+
+/* Grid Container */
+.dev-history {
+    display: grid; /* Enable CSS Grid */
+    grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+    grid-template-rows: auto auto; /* Two rows with auto height */
+    gap: 2px; /* Space between grid items */
+    width: 100%; /* Full width of the container */
+    background-color: var(--secondary-color); /* Background color */
+    box-sizing: border-box; /* Include padding and border in width and height */
+    margin-left: 20px;
+}
+
+/* Grid Item: Headings */
+.dev-history-head {
+    font-weight: bold; /* Make the font bold */
+    font-size: .7rem;
+    text-align: left; /* Center-align the text */
+    border-radius: 5px; /* Rounded corners for header */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Grid Item: Dates */
+.dev-history-dates {
+    text-align: left; /* Center-align the text */
+    font-size: .7rem;
+    border-radius: 5px; /* Rounded corners for dates */
+    box-sizing: border-box; /* Include padding and border in width */
 }
