@@ -186,34 +186,18 @@ body {
 
 }
 
-.mac-table table {
-    width: 100%; /* Full width table */
-    border-collapse: collapse; /* Merge table borders */
-    margin-top: 10px;
-}
-
-.mac-table th, .mac-table td {
-    text-align: left; /* Align text to the left */
-    vertical-align: top; /* Align content to the top for consistency */
-    margin-left: 10px;
-}
-
-.mac-table th {
-    background-color: var(--secondary-color); /* Background for header */
-    font-size: small;
-}
-
-.table-data-wrapper {
-    display: flex; /* Flexbox to control date and time layout */
-}
-
-.table-data {
-    padding: auto;
-    font-size: smaller;
-    /* Add additional styling as needed */
-}
-
 .eis-dhcp {
     display: flex;
     margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.sngpl-dhcp, .pc-name, .sngpl-name {
+    font-weight: 700;
+}
+
+.sngpl-dept {
+    color: #333;
 }
