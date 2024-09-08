@@ -88,11 +88,6 @@ body {
 }
 
 
-.ym-column-1 {
- 
-    align-items: center;
-}
-
 
 .ym-column-2 {
 
@@ -113,7 +108,7 @@ body {
     min-height: 5rem;
     border: 1px solid var(--border-color); /* Add border to differentiate records */
     border-radius: 8px; /* Optional: Rounded corners for a softer look */
-    align-items: center;
+    align-items: flex-start;
 }
 
 .card-content .icon {
@@ -124,17 +119,49 @@ body {
 
 
 .clight0 {
-    font-weight: bold;
+    font-size: .8rem;
 }
 
+.clight1 {
+    font-size: .7rem;
+}
+
+.clight2 {
+    font-size: .6rem;
+}
+
+.sngpl-source {
+    font-weight: bold;
+}
 .c-icon-content {
     display: flex; /* Flexbox for arranging icon and content */
-    gap: 10px; /* Space between icon and content */
+    gap: 2px; /* Space between icon and content */
     align-items: flex-start; /* Align items at the top */
     padding: 10px; /* Padding inside the content */
+    padding-left: 2px;
     border-radius: 8px; /* Rounded corners */
     flex-grow: 1; /* Allow to grow equally by default */
     flex-basis: 0; /* Allow the width to be flexible */
+}
+
+.c-icon-mac {
+    display: flex; /* Flexbox for arranging icon and content */
+    gap: 10px; /* Space between icon and content */
+    align-items: flex-start; /* Align items at the top */
+    padding-top: 10px; /* Padding inside the content */
+    border-radius: 8px; /* Rounded corners */
+    flex-grow: 1; /* Allow to grow equally by default */
+    flex-basis: 0; /* Allow the width to be flexible */
+}
+
+
+.c-icon-mac .icon {
+    display: flex; /* Use flexbox to align icon */
+    justify-content: flex-start; /* Center icon horizontally */
+    align-items: flex-start; /* Center icon vertically */
+    margin-top: 0;
+    color: var(--icon-color); /* Optional: add background color */
+    border-radius: 50%; /* Optional: make icon container circular */
 }
 
 .c-icon-content .icon {
@@ -147,7 +174,7 @@ body {
     border-radius: 50%; /* Optional: make icon container circular */
 }
 
-.clight2 {
+.sngpl-dept, .sngpl-dhcp {
     margin-top: 15px;
 }
 
@@ -155,6 +182,7 @@ body {
 .c-mac {
     display: flex; /* Flexbox for stacking items vertically */
     flex-direction: column; /* Stacks MAC address and table vertically */
+    font-size: 0.8rem;
 
 }
 
