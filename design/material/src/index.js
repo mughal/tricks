@@ -7,12 +7,15 @@ import { loadDashboard } from './features/dashboard/dashboard';
 import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
 import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/controlVars';
+import { loadSourceForm } from './forms/sources/loadSourceForm.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
     const content = document.getElementById('content-id');
     document.getElementById('dashboard-link').addEventListener('click', loadDashboard);
     document.getElementById('login-link').addEventListener('click', loadLogin);
+    // Assuming there is a link with ID 'sources-link' to load the source form
+    document.getElementById('sources-link').addEventListener('click', loadSourceForm);
     loadWelcome();
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
