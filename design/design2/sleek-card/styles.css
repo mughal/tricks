@@ -40,8 +40,7 @@ body {
     color: var(--neutral-color);
     display: flex;
     align-items: center;
-    padding: 15px; /* Padding for internal content */
-    width: calc(100% - 30px); /* Adjusted width for padding */
+    width: 100%;
     box-sizing: border-box; /* Include padding in width calculation */
     border-bottom: 1px solid #ddd; /* Optional: Add border to distinguish header from content */
     margin: 0 auto; /* Center align */
@@ -51,7 +50,7 @@ body {
 .ym-grid {
     display: grid;
     grid-template-columns: 35% 65%; /* Define column widths */
-    width: calc(100% - 30px); /* Adjusted width for padding */
+    width: 100%; /* Adjusted width for padding */
     align-items: stretch; /* Stretch grid items to fill the height */
     padding: 15px; /* Padding for internal content */
     box-sizing: border-box; /* Include padding and borders in width and height */
