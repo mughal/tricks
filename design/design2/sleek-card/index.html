@@ -25,72 +25,105 @@
 
         <!-- Content Section for Each MAC Address -->
         <!-- MAC Address Section 1 -->
-        <div class="card-content">
-            <div class="c-icon-content">
-                <div class="icon">
-                    <!-- Placeholder for Font Awesome icon -->
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="c-user">
-                    <div class="clight0">
-                        John Doe
-                    </div>
-                    <div class="clight1">
-                        11223344
-                    </div>
-                    <div class="clight2">
-                        Marketing
+        <div class="ym-grid">
+            <div class="ym-column-1">
+                <div class="card-content">   
+                    <div class="c-icon-content">    <!-- Source Details --> 
+                        <div class="icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="c-source">
+                            <div class="clight0">
+                                192.168.0.1      
+                            </div>
+                            <div class="clight1">
+                                Harbancpura      
+                            </div>
+                            <div class="clight2">        
+                                Lahore-D
+                            </div> 
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="c-icon-content">     
-                <div class="icon">
-                    <i class="fas fa-city"></i>
+            <div class="ym-column-2">
+                <div class="card-content">
+                    <div class="c-icon-content">    <!-- MAC Details--> 
+                        <div class="icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="c-mac">
+                            <div class="clight0">
+                                AA:BB:CC:DD:EE:F1      
+                            </div>
+                            <!-- Table for First Seen and Last Seen -->
+                <div class="mac-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>First Seen</th>
+                                <th>Last Seen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >
+                                    <div class="table-data-wrapper">
+                                        <div class="table-data">2024-09-01</div>
+                                        <div class="table-data">10:15</div>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div class="table-data-wrapper">
+                                        <div class="table-data">2024-09-05</div>
+                                        <div class="table-data">14:30</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Additional rows can be added here if needed -->
+                        </tbody>
+                    </table>
                 </div>
-                <div class="c-source">
-                    <div class="clight0">
-                        192.168.0.1      
+                        </div>
+                    </div> 
+                    <div class="c-icon-content"> <!-- User Details -->
+                        <div class="icon">
+                            <!-- Placeholder for Font Awesome icon -->
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="c-user">
+                            <div class="clight0">
+                                John Doe
+                            </div>
+                            <div class="clight1">
+                                11223344
+                            </div>
+                            <div class="clight2">
+                                Marketing
+                            </div>
+                        </div>
                     </div>
-                    <div class="clight1">
-                        Harbancpura      
-                    </div>
-                    <div class="clight2">        
-                        Lahore-D
+                    <div class="c-icon-content">    <!-- PC Details, as its Tied to MAC-->    
+                        <div class="icon">
+                                <!-- Placeholder for Font Awesome icon -->
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="c-pc">
+                            <div>
+                                <div class="clight0">
+                                    PC20345
+                                </div>
+                                <div class="clight1">
+                                    Windows 10
+                                </div>
+                                <div class="clight2">   
+                                    DHCP Name
+                                </div>
+                            </div>
+                        </div>
                     </div> 
                 </div>
-            </div>
+            </div>     
         </div>
-        <div class="card-content">
-            <div class="c-icon-content">     
-                <div class="icon">
-                    <i class="fas fa-city"></i>
-                </div>
-                <div class="c-source">
-                    <div class="clight0">
-                        AA:BB:CC:DD:EE:F1      
-                    </div>
-                </div>
-            </div>  
-            <div class="c-icon-content">            
-                <div class="icon">
-                        <!-- Placeholder for Font Awesome icon -->
-                    <i class="fas fa-desktop"></i>
-                </div>
-                <div class="c-pc">
-                    <div>
-                        <div class="clight0">
-                            PC20345
-                        </div>
-                        <div class="clight1">
-                            Windows 10
-                        </div>
-                        <div>
-                            DHCP Name
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        </div>     
 </body>
 </html>

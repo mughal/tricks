@@ -20,16 +20,18 @@ body {
     padding-top: 30px; /* Add padding to prevent content from being hidden */
 }
 
-/* Main Card Styles */
+/* Parent Container */
 .ip-details-card {
-    background-color: var(--neutral-color);
-    width: 500px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    width: 500px; /* Fixed width for demonstration */
+    padding: 0; /* Remove padding to avoid conflict */
+    background-color: red; /* Visualize the parent container */
     border-radius: 12px;
     box-shadow: 0 4px 8px var(--shadow-color);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    margin: 5px;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* Header Section */
@@ -38,8 +40,29 @@ body {
     color: var(--neutral-color);
     display: flex;
     align-items: center;
+    padding: 15px; /* Padding for internal content */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    border-bottom: 1px solid #ddd; /* Optional: Add border to distinguish header from content */
+    margin: 0; /* Remove margin to align with parent */
+    background-color: var(--primary-color);
+    color: var(--neutral-color);
+    display: flex;
+    align-items: center;
     padding: 15px;
     gap: 10px; /* Space between icon and IP address */
+}
+
+/* Grid Section */
+.ym-grid {
+    display: grid;
+    grid-template-columns: 35% 65%; /* Define column widths */
+    width: 100%; /* Full width */
+    align-items: stretch; /* Stretch grid items to fill the height */
+    gap: 15px; /* Use gap for spacing instead of padding */
+    box-sizing: border-box; /* Include padding and borders in width and height */
+    padding: 0; /* Remove padding to avoid width mismatch */
+    margin: 0; /* Remove margin for consistent alignment */
 }
 
 .icon {
@@ -50,57 +73,51 @@ body {
     font-weight: bold;
 }
 
+.ym-grid {
+    display: grid;
+    grid-template-columns: 35% 65%; /* Define column widths */
+    width: 100%;
+    height: 100%;
+    align-items: stretch; /* Stretch grid items to fill the height */
+    padding: 15px;
+}
+
+.ym-column-1, .ym-column-2 {
+    display: flex;
+    flex-direction: column; /* Flex layout inside each grid item */
+    flex-wrap: wrap; /* Allow items to wrap */
+    box-sizing: border-box; /* Ensure padding and borders are included in the width and height */
+    height: 100%;
+   
+}
+
+
+.ym-column-1 {
+    background-color: #2A9D8F;
+    align-items: center;
+}
+
+
+.ym-column-2 {
+    background-color: darkblue;
+    flex-grow: 1; /* Allow column 2 to grow and take available space */
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .container {
+        grid-template-columns: 1fr; /* Change to single column layout on smaller screens */
+    }
+}
 /* Content Section */
 .card-content {
     display: flex;
-    flex-direction: row; /* Two columns side by side */
-    padding: 5px;
-    padding-right: 20px;
-    padding-top: 20px;
+    flex-direction: column; /* Two columns side by side */
     background-color: var(--secondary-color);
     justify-content: space-between; /* Distribute space between items */
     min-height: 5rem;
     border: 1px solid var(--border-color); /* Add border to differentiate records */
     border-radius: 8px; /* Optional: Rounded corners for a softer look */
-    margin: 5px; /* Add margin to separate records visually */
-}
-
-.content-column {
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    flex: 1; /* Equal width for each column */
-    justify-content: space-between; /* Distribute space evenly between items */
-    flex-grow: 1; /* Allows columns to grow and fill the available space */
-    min-height: 4rem; /* Minimum height to provide initial spacing */
-}
-
-.entity { /* Replacing entity-border class if needed */
-    padding: 10px; /* Maintain padding for better spacing */
-    background-color: var(--neutral-color); /* Background for entity */
-    width: 100%; /* Make sure each div takes full width */
-}
-
-.dates-details ul {
-    padding-left: 20px;
-    margin: 0;
-    list-style-type: disc;
-}
-
-/* Footer Section */
-.card-footer {
-    background-color: var(--secondary-color);
-    color: var(--font-color);
-    padding: 10px;
-    text-align: center;
-    font-size: 0.9em;
-    border-top: 1px solid var(--primary-color);
-}
-
-.dhcp-details {
-    display: flex;
-    align-items: flex-start;
-    padding-top: 10px;
-    gap: 10px;
+    align-items: center;
 }
 
 .card-content .icon {
@@ -108,19 +125,21 @@ body {
     margin-top: 5px;
     font-size: 1rem;
 }
-.dhcp-text {
-    margin-top: 5px;
-    font-size: 0.75rem;
-}
+
 
 .clight0 {
     font-weight: bold;
 }
 
 .c-icon-content {
-
-    display: flex;
-
+    display: flex; /* Flexbox for arranging icon and content */
+    gap: 10px; /* Space between icon and content */
+    align-items: flex-start; /* Align items at the top */
+    padding: 10px; /* Padding inside the content */
+    border: 1px solid var(--border-color); /* Optional: Border for separation */
+    border-radius: 8px; /* Rounded corners */
+    flex-grow: 1; /* Allow to grow equally by default */
+    flex-basis: 0; /* Allow the width to be flexible */
 }
 
 .c-icon-content .icon {
@@ -131,4 +150,41 @@ body {
     height: 40px; /* Adjust height as needed */
     color: var(--icon-color); /* Optional: add background color */
     border-radius: 50%; /* Optional: make icon container circular */
+}
+
+.clight2 {
+    margin-top: 15px;
+}
+
+
+.c-mac {
+    display: flex; /* Flexbox for stacking items vertically */
+    flex-direction: column; /* Stacks MAC address and table vertically */
+
+}
+
+.mac-table table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse; /* Merge table borders */
+    margin-top: 10px;
+}
+
+.mac-table th, .mac-table td {
+    text-align: left; /* Align text to the left */
+    vertical-align: top; /* Align content to the top for consistency */
+}
+
+.mac-table th {
+    background-color: var(--secondary-color); /* Background for header */
+    font-size: small;
+}
+
+.table-data-wrapper {
+    display: flex; /* Flexbox to control date and time layout */
+}
+
+.table-data {
+    padding: auto;
+    font-size: smaller;
+    /* Add additional styling as needed */
 }
