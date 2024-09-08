@@ -66,6 +66,7 @@ body {
 
 .ip-address {
     font-weight: bold;
+    margin-left: 8px;
 }
 
 .ym-grid {
