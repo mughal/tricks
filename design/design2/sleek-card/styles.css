@@ -26,7 +26,6 @@ body {
     flex-direction: column; /* Stack children vertically */
     width: 500px; /* Define a fixed width */
     padding: 0; /* Remove padding to avoid conflict */
-    background-color: red; /* Visualize the parent container */
     border-radius: 12px;
     box-shadow: 0 4px 8px var(--shadow-color);
     overflow: hidden; /* Ensure no content spills out */
@@ -40,11 +39,15 @@ body {
     color: var(--neutral-color);
     display: flex;
     align-items: center;
+    height: 4rem;
     width: 100%;
+    
     box-sizing: border-box; /* Include padding in width calculation */
     border-bottom: 1px solid #ddd; /* Optional: Add border to distinguish header from content */
     margin: 0 auto; /* Center align */
+    padding-left: 15px;
 }
+
 
 /* Grid Section */
 .ym-grid {
@@ -72,6 +75,7 @@ body {
     height: 100%;
     align-items: stretch; /* Stretch grid items to fill the height */
     padding: 15px;
+    background-color: var(--secondary-color);
 }
 
 .ym-column-1, .ym-column-2 {
@@ -85,13 +89,13 @@ body {
 
 
 .ym-column-1 {
-    background-color: #2A9D8F;
+ 
     align-items: center;
 }
 
 
 .ym-column-2 {
-    background-color: darkblue;
+
     flex-grow: 1; /* Allow column 2 to grow and take available space */
 }
 
@@ -128,7 +132,6 @@ body {
     gap: 10px; /* Space between icon and content */
     align-items: flex-start; /* Align items at the top */
     padding: 10px; /* Padding inside the content */
-    border: 1px solid var(--border-color); /* Optional: Border for separation */
     border-radius: 8px; /* Rounded corners */
     flex-grow: 1; /* Allow to grow equally by default */
     flex-basis: 0; /* Allow the width to be flexible */
@@ -164,6 +167,7 @@ body {
 .mac-table th, .mac-table td {
     text-align: left; /* Align text to the left */
     vertical-align: top; /* Align content to the top for consistency */
+    margin-left: 10px;
 }
 
 .mac-table th {
@@ -179,4 +183,9 @@ body {
     padding: auto;
     font-size: smaller;
     /* Add additional styling as needed */
+}
+
+.eis-dhcp {
+    display: flex;
+    margin-top: 10px;
 }
