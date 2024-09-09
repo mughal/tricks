@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Assuming Font Awesome is available -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>IP and MAC Details Card</title>
+</head>
+<body>
+    <!-- Main Card Container -->
+    <div class="ip-details-card">
+        <!-- Header Section -->
+        <div class="card-header">
+            <div class="icon">
+                <!-- Placeholder for Font Awesome icon -->
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="ip-address" id="ym-ip-address">
+                192.168.1.100
+            </div>
+        </div>
+
+        <!-- Content Section for Each MAC Address -->
+        <!-- MAC Address Section 1 -->
+        <div class="ym-grid">
+            <div class="ym-column-1">
+                <div class="card-content">   
+                    <div class="c-icon-content">    <!-- Source Details --> 
+                        <div class="icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="c-source">
+                            <div class="sngpl-source clight0" id="ym-source">
+                                192.168.0.1      
+                            </div>
+                            <div class="sngpl-location clight1" id="ym-location">
+                                Harbancpura      
+                            </div>
+                            <div class="sngpl-region clight0" id="ym-region">        
+                                Lahore-D
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ym-column-2">
+                <div class="card-content">
+                    <div class="c-icon-mac">    <!-- MAC Details--> 
+                        <div class="icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <div class="c-mac" id="ym-mac">
+                                AA:BB:CC:DD:EE:F1      
+                        </div>
+                    </div>
+                    <div class="dev-history" id="ym-history">
+                        <!-- First Row: Headings -->
+                        <div class="dev-history-head">First Seen</div>
+                        <div class="dev-history-head">Last Seen</div>
+                    
+                        <!-- Second Row: Dates -->
+                        <div class="dev-history-dates">July 10, 2024</div>
+                        <div class="dev-history-dates">August 10, 2024</div>
+                        <!-- Second Row: Dates -->
+                        <div class="dev-history-dates">July 10, 2024</div>
+                        <div class="dev-history-dates">August 10, 2024</div>
+                        <!-- Second Row: Dates -->
+                        <div class="dev-history-dates">July 10, 2024</div>
+                        <div class="dev-history-dates">August 10, 2024</div>
+                    </div>
+                    <div class="eis-dhcp">
+                        <div class="c-icon-content"> <!-- User Details -->
+                            <div class="icon">
+                                <!-- Placeholder for Font Awesome icon -->
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="c-user" id="ym-eis-emp-name">
+                                <div class="sngpl-name clight0">
+                                    John Doe
+                                </div>
+                                <div class="sngpl-emp clight1" id="ym-eis-emp-no">
+                                    11223344
+                                </div>
+                                <div class="sngpl-dept clight0" id="ym-eis-dept">
+                                    Marketing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-icon-content">    <!-- PC Details, as its Tied to MAC-->    
+                            <div class="icon">
+                                    <!-- Placeholder for Font Awesome icon -->
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="c-pc">
+                                <div>
+                                    <div class="pc-name clight0" id="ym-adname">
+                                        PC20345
+                                    </div>
+                                    <div class="pc-os clight1">
+                                        Windows 10
+                                    </div>
+                                    <div class="sngpl-dhcp clight0" id="ym-dhcp-name">   
+                                        DHCP Name
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>     
+        </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* Form Container */
+.form-container {
+    max-width: 500px; /* Set a maximum width for the form */
+    margin: 0 auto; /* Center the form on the page */
+    padding: 20px; /* Add padding around the form */
+    background-color: var(--secondary-color); /* Background color */
+    border: 1px solid var(--border-color); /* Border around the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px var(--shadow-color); /* Subtle shadow */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Form Header */
+.form-header {
+    text-align: center; /* Center-align the header text */
+    color: var(--primary-color); /* Header font color */
+    margin-bottom: 20px; /* Spacing below the header */
+    font-weight: bold; /* Make the header bold */
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px; /* Spacing between form groups */
+}
+
+/* Form Input */
+.form-input {
+    width: 100%; /* Full width of the input */
+    padding: 10px; /* Padding inside the input */
+    border: 1px solid var(--border-color); /* Border for inputs */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 1rem; /* Font size for input text */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Submit Button */
+.submit-button {
+    width: 100%; /* Full width of the button */
+    padding: 10px; /* Padding inside the button */
+    background-color: var(--primary-color); /* Button background color */
+    color: var(--neutral-color); /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-weight: bold; /* Bold button text */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.submit-button:hover {
+    background-color: var(--header-font-color); /* Hover effect color */
+}

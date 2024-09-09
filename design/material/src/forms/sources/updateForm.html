@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sources/formStyles.css"> <!-- Link to the CSS file -->
+    <title>Update Source Information</title>
+</head>
+<body>
+    <div class="form-container">
+        <form id="updateForm" class="update-form">
+            <!-- Form Header -->
+            <h2 class="form-header">Update Source Information</h2>
+
+            <!-- Source IP Field (Read-Only) -->
+            <div class="form-group">
+                <label for="source_ip">Source IP:</label>
+                <input type="text" id="source_ip" name="source_ip" class="form-input" placeholder="Enter source IP" readonly>
+            </div>
+
+            <!-- Main Office Field -->
+            <div class="form-group">
+                <label for="main_office">Main Office:</label>
+                <input type="text" id="main_office" name="main_office" class="form-input" placeholder="Enter main office" required>
+            </div>
+
+            <!-- Community String Field -->
+            <div class="form-group">
+                <label for="community_string">Community String:</label>
+                <input type="text" id="community_string" name="community_string" class="form-input" placeholder="Enter community string" required>
+            </div>
+
+            <!-- Region Field -->
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <input type="text" id="region" name="region" class="form-input" placeholder="Enter region" required>
+            </div>
+
+            <!-- Location Field -->
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" class="form-input" placeholder="Enter location" required>
+            </div>
+
+            <!-- OID Field -->
+            <div class="form-group">
+                <label for="OID">OID:</label>
+                <input type="text" id="OID" name="OID" class="form-input" placeholder="Enter OID" required>
+            </div>
+
+            <!-- Active Field -->
+            <div class="form-group">
+                <label for="active">Active:</label>
+                <select id="active" name="active" class="form-input">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="submit-button">Update Source</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

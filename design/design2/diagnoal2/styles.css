@@ -1,0 +1,23 @@
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.connected-strip-box {
+    width: 300px; /* Width of the box */
+    height: 300px; /* Height of the box */
+    background: 
+        /* Top right strip moving diagonally and horizontally */
+        linear-gradient(to bottom left, #2A9D8F 0%, #2A9D8F 3%, transparent 3% 50%), 
+        /* Bottom left strip moving diagonally and vertically */
+        linear-gradient(to top right, #2A9D8F 0%, #2A9D8F 3%, transparent 3% 50%),
+        /* Connecting upper half */
+        linear-gradient(to bottom, transparent 0%, transparent 50%, #2A9D8F 50%, #2A9D8F 100%);
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    position: relative; /* Relative position to adjust backgrounds */
+}

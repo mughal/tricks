@@ -1,0 +1,232 @@
+:root {
+    --primary-color: #333;              /* Primary color: Dark gray */
+    --secondary-color: #e5e5e5;         /* Secondary color: Light neutral gray */
+    --neutral-color: #f3e8e8;           /* Neutral background: White */
+    --font-color: #333;                 /* Font color: Consistent with primary color */
+    --header-font-color: #2A9D8F;       /* Header color: Greenish-teal */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color: Subtle black */
+    --border-color: #ddd;               /* Border color: Slightly darker gray for subtle contrast */
+    --icon-color: #666;   
+}
+
+body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to start vertically */
+    height: 100vh;
+    margin: 0;
+    padding-top: 30px; /* Add padding to prevent content from being hidden */
+}
+
+/* Parent Container */
+.ip-details-card {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    width: 500px; /* Define a fixed width */
+    padding: 0; /* Remove padding to avoid conflict */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow: hidden; /* Ensure no content spills out */
+    margin: 5px;
+    box-sizing: border-box; /* Include padding in width and height calculation */
+}
+
+/* Header Section */
+.card-header {
+    background-color: var(--primary-color);
+    color: var(--neutral-color);
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    width: 100%;
+    
+    box-sizing: border-box; /* Include padding in width calculation */
+    border-bottom: 1px solid #ddd; /* Optional: Add border to distinguish header from content */
+    margin: 0 auto; /* Center align */
+    padding-left: 15px;
+}
+
+
+/* Grid Section */
+.ym-grid {
+    display: grid;
+    grid-template-columns: 35% 65%; /* Define column widths */
+    width: 100%; /* Adjusted width for padding */
+    align-items: stretch; /* Stretch grid items to fill the height */
+    padding: 15px; /* Padding for internal content */
+    box-sizing: border-box; /* Include padding and borders in width and height */
+    margin: 0 auto; /* Center align */
+}
+
+.icon {
+    font-size: 24px; /* Adjust icon size */
+}
+
+.ip-address {
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.ym-grid {
+    display: grid;
+    grid-template-columns: 35% 65%; /* Define column widths */
+    width: 100%;
+    height: 100%;
+    align-items: stretch; /* Stretch grid items to fill the height */
+    padding: 15px;
+    background-color: var(--secondary-color);
+}
+
+.ym-column-1, .ym-column-2 {
+    display: flex;
+    flex-direction: column; /* Flex layout inside each grid item */
+    flex-wrap: wrap; /* Allow items to wrap */
+    box-sizing: border-box; /* Ensure padding and borders are included in the width and height */
+    height: 100%;
+   
+}
+
+
+
+.ym-column-2 {
+
+    flex-grow: 1; /* Allow column 2 to grow and take available space */
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .container {
+        grid-template-columns: 1fr; /* Change to single column layout on smaller screens */
+    }
+}
+/* Content Section */
+.card-content {
+    display: flex;
+    flex-direction: column; /* Two columns side by side */
+    background-color: var(--secondary-color);
+    justify-content: space-between; /* Distribute space between items */
+    min-height: 5rem;
+    border: 1px solid var(--border-color); /* Add border to differentiate records */
+    border-radius: 8px; /* Optional: Rounded corners for a softer look */
+    align-items: flex-start;
+}
+
+.card-content .icon {
+    color: #2A9D8F;
+    margin-top: 5px;
+    font-size: 1rem;
+}
+
+
+.clight0 {
+    font-size: .8rem;
+}
+
+.clight1 {
+    font-size: .7rem;
+}
+
+.clight2 {
+    font-size: .6rem;
+}
+
+.sngpl-source {
+    font-weight: bold;
+}
+.c-icon-content {
+    display: flex; /* Flexbox for arranging icon and content */
+    gap: 2px; /* Space between icon and content */
+    align-items: flex-start; /* Align items at the top */
+    padding: 10px; /* Padding inside the content */
+    padding-left: 2px;
+    border-radius: 8px; /* Rounded corners */
+    flex-grow: 1; /* Allow to grow equally by default */
+    flex-basis: 0; /* Allow the width to be flexible */
+}
+
+.c-icon-mac {
+    display: flex; /* Flexbox for arranging icon and content */
+    gap: 10px; /* Space between icon and content */
+    align-items: flex-start; /* Align items at the top */
+    padding-top: 10px; /* Padding inside the content */
+    border-radius: 8px; /* Rounded corners */
+    flex-grow: 1; /* Allow to grow equally by default */
+    flex-basis: 0; /* Allow the width to be flexible */
+}
+
+
+.c-icon-mac .icon {
+    display: flex; /* Use flexbox to align icon */
+    justify-content: flex-start; /* Center icon horizontally */
+    align-items: flex-start; /* Center icon vertically */
+    margin-top: 0;
+    color: var(--icon-color); /* Optional: add background color */
+    border-radius: 50%; /* Optional: make icon container circular */
+}
+
+.c-icon-content .icon {
+    display: flex; /* Use flexbox to align icon */
+    margin-right: 5px;
+    justify-content: flex-start; /* Center icon horizontally */
+    align-items: flex-start; /* Center icon vertically */
+    color: var(--icon-color); /* Optional: add background color */
+    border-radius: 50%; /* Optional: make icon container circular */
+}
+
+.sngpl-dept, .sngpl-dhcp {
+    margin-top: 15px;
+}
+
+
+.c-mac {
+    display: flex; /* Flexbox for stacking items vertically */
+    flex-direction: column; /* Stacks MAC address and table vertically */
+    font-size: 0.8rem;
+
+}
+
+.eis-dhcp {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.sngpl-dhcp, .pc-name, .sngpl-name {
+    font-weight: 700;
+}
+
+.sngpl-dept {
+    color: #333;
+}
+
+/* Grid Container */
+.dev-history {
+    display: grid; /* Enable CSS Grid */
+    grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+    grid-template-rows: auto auto; /* Two rows with auto height */
+    gap: 2px; /* Space between grid items */
+    width: 100%; /* Full width of the container */
+    background-color: var(--secondary-color); /* Background color */
+    box-sizing: border-box; /* Include padding and border in width and height */
+    margin-left: 20px;
+}
+
+/* Grid Item: Headings */
+.dev-history-head {
+    font-weight: bold; /* Make the font bold */
+    font-size: .7rem;
+    text-align: left; /* Center-align the text */
+    border-radius: 5px; /* Rounded corners for header */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Grid Item: Dates */
+.dev-history-dates {
+    text-align: left; /* Center-align the text */
+    font-size: .7rem;
+    border-radius: 5px; /* Rounded corners for dates */
+    box-sizing: border-box; /* Include padding and border in width */
+}

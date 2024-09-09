@@ -78,6 +78,8 @@ export async function loadDashboard() {
     console.log(data);
     dashboardData = data;
     initializeDashboard();
+    // After loading initial data, set up WebSocket connection for live updates
+    setupWebSocket();
     // Clear existing content in the cell
     // clearCellContent(cell1);
 
@@ -402,3 +404,47 @@ function addCellListeners() {
 // }
 
 // // Call the initialize function
+// Function to set up WebSocket connection
+function setupWebSocket() {
+    // Establish a WebSocket connection to the server
+    const socket = new WebSocket('ws://localhost:3000'); // Use ws:// for testing over HTTP
+
+    // Handle incoming messages
+    socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.status === 'success') {
+            console.log('Received updated dashboard data:', data);
+            updateDashboard(data); // Call function to update dashboard
+        } else {
+            console.error('Error received from server:', data.message);
+        }
+    };
+
+    // Handle WebSocket connection open
+    socket.onopen = () => {
+        console.log('Connected to WebSocket server');
+    };
+
+    // Handle WebSocket errors
+    socket.onerror = (error) => {
+        console.error('WebSocket error:', error);
+    };
+
+    // Handle WebSocket connection close
+    socket.onclose = () => {
+        console.log('Disconnected from WebSocket server');
+    };
+}
+
+// Function to update the dashboard with new data received from WebSocket
+function updateDashboard(data) {
+    const activeSites = document.querySelector('#magic-upper-right .curiozdb-cell-number');
+    activeSites.textContent = data.data.sites_active.sites.active;
+    //const dashboardElement = document.getElementById('dashboard');
+    console.log("Receive data", data);
+    dashboardData = data.data;
+    // initializeDashboard();
+    
+    // This will be where magic needs to be happening
+}
