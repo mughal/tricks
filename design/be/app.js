@@ -88,6 +88,19 @@ function startWebSocketServer() {
   }, 30000); // Every 30 seconds (adjust as needed)
 }
 // Enable CORS for all routes
+const networkData = {
+    '192.168.1.1': {
+        macAddress: '00:1A:2B:3C:4D:5E',
+        manufacturer: 'Cisco Systems, Inc.',
+        userDetails: 'John Doe',
+        lastSeen: '2024-07-26 12:34 PM',
+        mainOffice: 'New York',
+        subOffice: 'San Francisco',
+        source: '10.0.0.1',
+    },
+    // Add more entries as needed
+};
+
 app.use(cors());
 
 app.use(express.json());
@@ -98,6 +111,14 @@ app.use('/auth', authRoutes);
 app.use('/api', macTotalRoute); // All routes in macTotal.js will be prefixed with /api
 app.use('/api', macDashRoute);
 app.use('/api', updateSourceRouter);
+app.get('/api/network', (req, res) => {
+    const ip = req.query.ip;
+    if (networkData[ip]) {
+        res.json({ip, ...networkData[ip]});
+    } else {
+        res.status(404).json({ error: 'IP address not found' });
+    }
+});
 // Default route
 app.get('/', (req, res) => {
   res.send('Welcome to the API!');

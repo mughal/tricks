@@ -2,7 +2,7 @@ import './welcome.css'
 import welcomeImage from '../../images/welcome.png';
 import { loadLogin } from '../login/login';
 export function loadWelcome() {
-    const content = document.getElementById('content');
+    const content = document.getElementById('content-id');
     content.innerHTML = `
     <section id="welcome-section">
     <img src="${welcomeImage}" alt="Welcome Image" class="welcome-image">

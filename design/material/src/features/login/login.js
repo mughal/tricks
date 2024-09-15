@@ -1,7 +1,7 @@
 import './login.css';
 import { setFun, setLoggedIn, updateUI } from '../controlVars';
 export function loadLogin() {
-    const content = document.getElementById('content');
+    const content = document.getElementById('content-id');
     setFun(false);
     content.innerHTML = `
         <section id="login-section">
@@ -38,14 +38,16 @@ export function loadLogin() {
             });
     
             const data = await response.text();
-    
-            if (data === 'Login successful') {
-                setLoggedIn(true);
-                content.innerHTML = ''; // Update the content as needed
-            } else {
-                alert('Login failed');
-            }
-        } catch (error) {
+            setLoggedIn(true);
+            content.innerHTML = ''; // Update the content as needed
+        
+        //     if (data === 'Login successful') {
+        //         setLoggedIn(true);
+        //         content.innerHTML = ''; // Update the content as needed
+        //     } else {
+        //         alert('Login failed');
+        //     }
+         } catch (error) {
             console.error('Error:', error);
         }
     });
