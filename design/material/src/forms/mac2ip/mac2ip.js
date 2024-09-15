@@ -1,10 +1,9 @@
-import './ip2mac.css'
+import './mac2ip.css'
   // Example usage:
   // document.body.appendChild(getCard(data));
-import { ip2Macdata } from '../../dummy/dummyData.js';
-
-function getIpCard(data) {
-  // Create main container for IP details card
+import { macSamples } from '../../dummy/dummyData.js';
+function getMacToIp(data) {
+  // Create main container for MAC to IP details card
   const container = document.createElement('div');
   container.classList.add('ip-details-card');
 
@@ -14,23 +13,23 @@ function getIpCard(data) {
 
   const iconHeader = document.createElement('div');
   iconHeader.classList.add('icon');
-  iconHeader.innerHTML = '<i class="fas fa-network-wired"></i>';
+  iconHeader.innerHTML = '<i class="fas fa-barcode"></i>';
 
-  const ipAddress = document.createElement('div');
-  ipAddress.classList.add('ip-address');
-  ipAddress.id = 'ym-ip-address';
-  ipAddress.textContent = data.ipAddress;
+  const macAddress = document.createElement('div');
+  macAddress.classList.add('search-mac-ip');
+  macAddress.id = 'ym-mac';
+  macAddress.textContent = data.macAddress;
 
   // Append Header Elements
   cardHeader.appendChild(iconHeader);
-  cardHeader.appendChild(ipAddress);
+  cardHeader.appendChild(macAddress);
   container.appendChild(cardHeader);
 
-  // Create Content Section
+  // Create Content Section for each IP
   const ymGrid = document.createElement('div');
   ymGrid.classList.add('ym-grid');
 
-  data.macDetails.forEach(macDetail => {
+  data.ipDetails.forEach(ipDetail => {
     // Create Column 1 for Source Details
     const column1 = document.createElement('div');
     column1.classList.add('ym-column-1');
@@ -51,19 +50,19 @@ function getIpCard(data) {
     const sourceIp = document.createElement('div');
     sourceIp.classList.add('sngpl-source', 'clight0');
     sourceIp.id = 'ym-source';
-    sourceIp.textContent = macDetail.source.ip;
+    sourceIp.textContent = ipDetail.source.ip;
 
     const sourceLocation = document.createElement('div');
     sourceLocation.classList.add('sngpl-location', 'clight1');
     sourceLocation.id = 'ym-location';
-    sourceLocation.textContent = macDetail.source.location;
+    sourceLocation.textContent = ipDetail.source.location;
 
     const sourceRegion = document.createElement('div');
     sourceRegion.classList.add('sngpl-region', 'clight0');
     sourceRegion.id = 'ym-region';
-    sourceRegion.textContent = macDetail.source.region;
+    sourceRegion.textContent = ipDetail.source.region;
 
-    // Append elements to Column 1
+    // Append Source Details to Column 1
     cSource.appendChild(sourceIp);
     cSource.appendChild(sourceLocation);
     cSource.appendChild(sourceRegion);
@@ -72,7 +71,7 @@ function getIpCard(data) {
     cardContent1.appendChild(cIconContent1);
     column1.appendChild(cardContent1);
 
-    // Create Column 2 for MAC and User Details
+    // Create Column 2 for IP and User Details
     const column2 = document.createElement('div');
     column2.classList.add('ym-column-2');
 
@@ -82,17 +81,17 @@ function getIpCard(data) {
     const cIconMac = document.createElement('div');
     cIconMac.classList.add('c-icon-mac');
 
-    const iconMac = document.createElement('div');
-    iconMac.classList.add('icon');
-    iconMac.innerHTML = '<i class="fas fa-barcode"></i>';
+    const iconNetwork = document.createElement('div');
+    iconNetwork.classList.add('icon');
+    iconNetwork.innerHTML = '<i class="fas fa-network-wired"></i>';
 
     const cMac = document.createElement('div');
     cMac.classList.add('c-mac');
-    cMac.id = 'ym-mac';
-    cMac.textContent = macDetail.macAddress;
+    cMac.id = 'ym-ip';
+    cMac.textContent = ipDetail.ipAddress;
 
-    // Append MAC Details
-    cIconMac.appendChild(iconMac);
+    // Append IP Details to Column 2
+    cIconMac.appendChild(iconNetwork);
     cIconMac.appendChild(cMac);
     cardContent2.appendChild(cIconMac);
 
@@ -114,22 +113,20 @@ function getIpCard(data) {
     devHistory.appendChild(devHistoryHead2);
 
     // Dates
-    macDetail.history.forEach(item => {
-      const firstSeen = document.createElement('div');
-      firstSeen.classList.add('dev-history-dates');
-      firstSeen.textContent = item.firstSeen;
+    const firstSeen = document.createElement('div');
+    firstSeen.classList.add('dev-history-dates');
+    firstSeen.textContent = ipDetail.firstSeen;
 
-      const lastSeen = document.createElement('div');
-      lastSeen.classList.add('dev-history-dates');
-      lastSeen.textContent = item.lastSeen;
+    const lastSeen = document.createElement('div');
+    lastSeen.classList.add('dev-history-dates');
+    lastSeen.textContent = ipDetail.lastSeen;
 
-      devHistory.appendChild(firstSeen);
-      devHistory.appendChild(lastSeen);
-    });
+    devHistory.appendChild(firstSeen);
+    devHistory.appendChild(lastSeen);
 
     cardContent2.appendChild(devHistory);
 
-    // User and PC Details
+    // User Details
     const eisDhcp = document.createElement('div');
     eisDhcp.classList.add('eis-dhcp');
 
@@ -146,17 +143,17 @@ function getIpCard(data) {
 
     const userName = document.createElement('div');
     userName.classList.add('sngpl-name', 'clight0');
-    userName.textContent = macDetail.user.name;
+    userName.textContent = ipDetail.user.name;
 
     const empNo = document.createElement('div');
     empNo.classList.add('sngpl-emp', 'clight1');
     empNo.id = 'ym-eis-emp-no';
-    empNo.textContent = macDetail.user.employeeNumber;
+    empNo.textContent = ipDetail.user.employeeNumber;
 
     const dept = document.createElement('div');
     dept.classList.add('sngpl-dept', 'clight0');
     dept.id = 'ym-eis-dept';
-    dept.textContent = macDetail.user.department;
+    dept.textContent = ipDetail.user.department;
 
     // Append User Details
     cUser.appendChild(userName);
@@ -180,16 +177,16 @@ function getIpCard(data) {
     const pcName = document.createElement('div');
     pcName.classList.add('pc-name', 'clight0');
     pcName.id = 'ym-adname';
-    pcName.textContent = macDetail.pc.pcName;
+    pcName.textContent = ipDetail.pc.pcName;
 
     const pcOs = document.createElement('div');
     pcOs.classList.add('pc-os', 'clight1');
-    pcOs.textContent = macDetail.pc.operatingSystem;
+    pcOs.textContent = ipDetail.pc.operatingSystem;
 
     const dhcpName = document.createElement('div');
     dhcpName.classList.add('sngpl-dhcp', 'clight0');
     dhcpName.id = 'ym-dhcp-name';
-    dhcpName.textContent = macDetail.pc.dhcpName;
+    dhcpName.textContent = ipDetail.pc.dhcpName;
 
     // Append PC Details
     cPc.appendChild(pcName);
@@ -215,10 +212,10 @@ function getIpCard(data) {
   return container;
 }
 
-export function loadIp2Mac(){
+export function loadmac2IP(){
   const content = document.getElementById('content-id');  
     // Clear existing content
   content.innerHTML = '';
-  const ipcard = getIpCard(ip2Macdata);
-  content.appendChild(ipcard);
+  const maccard = getMacToIp(macSamples[2]);
+  content.appendChild(maccard);
 }

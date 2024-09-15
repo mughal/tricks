@@ -445,7 +445,9 @@ function updateDashboard(data) {
         console.log("Receive data", data);
         dashboardData = data.data;
         const activeSites = document.querySelector('#magic-upper-right .curiozdb-cell-number');
-        activeSites.textContent = dashboardData.sites_active.sites.active;
+        if (activeSites) {
+            activeSites.textContent = dashboardData.sites_active.sites.active;
+        }
     }
     // initializeDashboard();
     

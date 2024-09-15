@@ -8,6 +8,9 @@ import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
 import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/controlVars';
 import { loadSourceForm } from './forms/sources/loadSourceForm.js';
+import { loadIp2Mac } from './forms/ip2mac/ip2mac.js';
+import { loadmac2IP } from './forms/mac2ip/mac2ip.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
@@ -16,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('login-link').addEventListener('click', loadLogin);
     // Assuming there is a link with ID 'sources-link' to load the source form
     document.getElementById('sources-link').addEventListener('click', loadSourceForm);
+    document.getElementById('ipmac-link').addEventListener('click', loadIp2Mac);
+    document.getElementById('macip-link').addEventListener('click', loadmac2IP);
     loadWelcome();
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
