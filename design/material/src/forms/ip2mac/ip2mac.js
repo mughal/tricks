@@ -3,7 +3,7 @@ import './ip2mac.css'
   // document.body.appendChild(getCard(data));
 import { ip2Macdata } from '../../dummy/dummyData.js';
 
-function getIpCard(data) {
+export function getIpCard(data) {
   // Create main container for IP details card
   const container = document.createElement('div');
   container.classList.add('ip-details-card');

@@ -8,7 +8,7 @@ import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
 import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/controlVars';
 import { loadSourceForm } from './forms/sources/loadSourceForm.js';
-import { loadIp2Mac } from './forms/ip2mac/ip2mac.js';
+import { loadIp2Mac, getIpCard } from './forms/ip2mac/ip2mac.js';
 import { loadmac2IP } from './forms/mac2ip/mac2ip.js';
 
 
@@ -34,12 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(ip)
 
         try {
-            const response = await fetch(`http://localhost:3000/api/network?ip=${ip}`);
+            // const response = await fetch(`http://localhost:3000/api/network?ip=${ip}`);
+            const response = await fetch(`http://localhost:3000/api/ip/${ip}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            addCard(data);
+            //alert(data.macDetails);
+            //addCard(data);
+            content.appendChild(getIpCard(data));
         } catch (error) {
             alert('Error fetching data: ' + error.message);
         }
