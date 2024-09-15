@@ -10,6 +10,7 @@ const macTotalRoute = require('./routes/macTotal'); // Import the macTotal route
 const authMiddleware = require('./middleware/authMiddleware');
 const macDashRoute = require('./routes/macDash'); // Import the macDash route
 const ip2macRoute = require('./routes/ip2mac');
+const mac2ipRoute = require('./routes/mac2ip');
 // const upDateSourceRoute = require('./routes/updateSource'); // Import the macDash route
 const { router: updateSourceRouter, setHelpers } = require('./routes/updateSource'); // Import the macDash route
 const WebSocket = require('ws');
@@ -112,6 +113,7 @@ app.use('/auth', authRoutes);
 app.use('/api', macTotalRoute); // All routes in macTotal.js will be prefixed with /api
 app.use('/api', macDashRoute);
 app.use('/api', ip2macRoute);
+app.use('/api', mac2ipRoute);
 app.use('/api', updateSourceRouter);
 app.get('/api/network', (req, res) => {
     const ip = req.query.ip;

@@ -2,7 +2,7 @@ import './mac2ip.css'
   // Example usage:
   // document.body.appendChild(getCard(data));
 import { macSamples } from '../../dummy/dummyData.js';
-function getMacToIp(data) {
+export function getMacToIp(data) {
   // Create main container for MAC to IP details card
   const container = document.createElement('div');
   container.classList.add('ip-details-card');
