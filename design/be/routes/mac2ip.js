@@ -99,6 +99,7 @@ router.get('/mac/:macAddress', async (req, res) => {
 
     // Construct the final JSON response
     const response = {
+      type: 'MAC',
       macAddress: macAddress,
       ipDetails: ipDetails,
     };

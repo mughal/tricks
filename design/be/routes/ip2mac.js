@@ -90,6 +90,7 @@ router.get('/ip/:ipAddress', async (req, res) => {
 
     // Construct the final JSON response
     const response = {
+      type: 'IP',
       ipAddress: ipAddress,
       macDetails: macDetails.map(detail => ({
         ...detail,

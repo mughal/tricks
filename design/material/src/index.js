@@ -36,15 +36,30 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // const response = await fetch(`http://localhost:3000/api/network?ip=${ip}`);
             // const response = await fetch(`http://localhost:3000/api/ip/${ip}`);
-            const response = await fetch(`http://localhost:3000/api/mac/${ip}`);
+            // Regular expression to validate an IP address
+            const ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
+            // Regular expression to validate a MAC address
+            const macRegex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
+            let response = {};
+            if (ipRegex.test(ip)) {
+                response = await fetch(`http://localhost:3000/api/ip/${ip}`);
+            } else if (macRegex.test(ip)) {
+                response = await fetch(`http://localhost:3000/api/mac/${ip}`);
+            }
+            
+            
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
             //alert(data.macDetails);
             //addCard(data);
-            // content.appendChild(getIpCard(data));
-            content.appendChild(getMacToIp(data));
+            if (data.type === 'IP') {
+                content.appendChild(getIpCard(data));
+            } else if (data.type === 'MAC') {
+                content.appendChild(getMacToIp(data));
+            }
         } catch (error) {
             alert('Error fetching data: ' + error.message);
         }
