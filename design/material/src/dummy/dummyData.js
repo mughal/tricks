@@ -161,6 +161,29 @@ export const ip2Macdata = {
           "operatingSystem": "Windows 10",
           "dhcpName": "DHCP Name"
         }
+      },
+      {
+        "macAddress": "AA:BB:CC:DD:EE:F1",
+        "source": {
+          "ip": "192.168.0.1",
+          "location": "Harbancpura",
+          "region": "Lahore-D"
+        },
+        "history": [
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" },
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" },
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" }
+        ],
+        "user": {
+          "name": "John Doe",
+          "employeeNumber": "11223344",
+          "department": "Marketing"
+        },
+        "pc": {
+          "pcName": "PC20345",
+          "operatingSystem": "Windows 10",
+          "dhcpName": "DHCP Name"
+        }
       }
     ]
   }
