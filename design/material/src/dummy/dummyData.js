@@ -1,5 +1,193 @@
 // src/dummyData.js
-
+export const macSamples = [
+    {
+        "macAddress": "AA:BB:CC:DD:EE:F1",
+        "ipDetails": [
+          {
+            "ipAddress": "192.168.1.100",
+            "source": {
+              "ip": "192.168.0.1",
+              "location": "Harbancpura",
+              "region": "Lahore-D"
+            },
+            "firstSeen": "July 10, 2024",
+            "lastSeen": "August 10, 2024",
+            "user": {
+              "name": "John Doe",
+              "employeeNumber": "11223344",
+              "department": "Marketing"
+            },
+            "pc": {
+              "pcName": "PC20345",
+              "operatingSystem": "Windows 10",
+              "dhcpName": "DHCP Name"
+            }
+          }
+        ]
+      },
+      {
+        "macAddress": "AA:BB:CC:DD:EE:F1",
+        "ipDetails": [
+          {
+            "ipAddress": "192.168.1.100",
+            "source": {
+              "ip": "192.168.0.1",
+              "location": "Harbancpura",
+              "region": "Lahore-D"
+            },
+            "firstSeen": "July 10, 2024",
+            "lastSeen": "August 10, 2024",
+            "user": {
+              "name": "John Doe",
+              "employeeNumber": "11223344",
+              "department": "Marketing"
+            },
+            "pc": {
+              "pcName": "PC20345",
+              "operatingSystem": "Windows 10",
+              "dhcpName": "DHCP Name"
+            }
+          },
+          {
+            "ipAddress": "192.168.1.101",
+            "source": {
+              "ip": "192.168.0.2",
+              "location": "Model Town",
+              "region": "Lahore-C"
+            },
+            "firstSeen": "September 1, 2024",
+            "lastSeen": "October 1, 2024",
+            "user": {
+              "name": "Jane Smith",
+              "employeeNumber": "22334455",
+              "department": "IT"
+            },
+            "pc": {
+              "pcName": "PC20346",
+              "operatingSystem": "Windows 11",
+              "dhcpName": "DHCP New Name"
+            }
+          }
+        ]
+      },
+      {
+        "macAddress": "AA:BB:CC:DD:EE:F1",
+        "ipDetails": [
+          {
+            "ipAddress": "192.168.1.100",
+            "source": {
+              "ip": "192.168.0.1",
+              "location": "Harbancpura",
+              "region": "Lahore-D"
+            },
+            "firstSeen": "July 10, 2024",
+            "lastSeen": "August 10, 2024",
+            "user": {
+              "name": "John Doe",
+              "employeeNumber": "11223344",
+              "department": "Marketing"
+            },
+            "pc": {
+              "pcName": "PC20345",
+              "operatingSystem": "Windows 10",
+              "dhcpName": "DHCP Name"
+            }
+          },
+          {
+            "ipAddress": "192.168.1.101",
+            "source": {
+              "ip": "192.168.0.2",
+              "location": "Model Town",
+              "region": "Lahore-C"
+            },
+            "firstSeen": "September 1, 2024",
+            "lastSeen": "October 1, 2024",
+            "user": {
+              "name": "Jane Smith",
+              "employeeNumber": "22334455",
+              "department": "IT"
+            },
+            "pc": {
+              "pcName": "PC20346",
+              "operatingSystem": "Windows 11",
+              "dhcpName": "DHCP New Name"
+            }
+          },
+          {
+            "ipAddress": "192.168.1.102",
+            "source": {
+              "ip": "192.168.0.3",
+              "location": "Gulberg",
+              "region": "Lahore-B"
+            },
+            "firstSeen": "November 5, 2024",
+            "lastSeen": "December 5, 2024",
+            "user": {
+              "name": "Alex Johnson",
+              "employeeNumber": "33445566",
+              "department": "Finance"
+            },
+            "pc": {
+              "pcName": "PC20347",
+              "operatingSystem": "Windows 7",
+              "dhcpName": "Old DHCP Name"
+            }
+          }
+        ]
+      }                  
+];
+export const ip2Macdata = {
+    "ipAddress": "192.168.1.100",
+    "macDetails": [
+      {
+        "macAddress": "AA:BB:CC:DD:EE:F1",
+        "source": {
+          "ip": "192.168.0.1",
+          "location": "Harbancpura",
+          "region": "Lahore-D"
+        },
+        "history": [
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" },
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" },
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" }
+        ],
+        "user": {
+          "name": "John Doe",
+          "employeeNumber": "11223344",
+          "department": "Marketing"
+        },
+        "pc": {
+          "pcName": "PC20345",
+          "operatingSystem": "Windows 10",
+          "dhcpName": "DHCP Name"
+        }
+      },
+      {
+        "macAddress": "AA:BB:CC:DD:EE:F1",
+        "source": {
+          "ip": "192.168.0.1",
+          "location": "Harbancpura",
+          "region": "Lahore-D"
+        },
+        "history": [
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" },
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" },
+          { "firstSeen": "July 10, 2024", "lastSeen": "August 10, 2024" }
+        ],
+        "user": {
+          "name": "John Doe",
+          "employeeNumber": "11223344",
+          "department": "Marketing"
+        },
+        "pc": {
+          "pcName": "PC20345",
+          "operatingSystem": "Windows 10",
+          "dhcpName": "DHCP Name"
+        }
+      }
+    ]
+  }
+  
 // Function to generate a random number following a normal distribution
 function generateNormalDistribution(mean, stdDev) {
     let u1 = Math.random();
@@ -420,57 +608,9 @@ export const mac_total = {
         "Houston": 392,
         "Phoenix": 470,
         "Philadelphia": 475,
-        "San Antonio": 335,
-        "San Diego": 322,
-        "Dallas": 499,
-        "San Jose": 420,
-        "Austin": 304,
-        "Jacksonville": 385,
-        "Fort Worth": 467,
-        "Columbus": 359,
-        "San Francisco": 483,
-        "Charlotte": 370,
-        "Indianapolis": 437,
-        "Seattle": 487,
-        "Denver": 400,
         "Washington": 474
     },
     "manufacturer": {
-        "Intel": 155,
-        "Broadcom": 108,
-        "Qualcomm": 148,
-        "Realtek": 132,
-        "Cisco": 163,
-        "Juniper": 152,
-        "Arista": 129,
-        "Netgear": 130,
-        "TP-Link": 145,
-        "Ubiquiti": 152,
-        "MikroTik": 154,
-        "Linksys": 144,
-        "Zyxel": 150,
-        "D-Link": 136,
-        "TRENDnet": 144,
-        "HP": 154,
-        "Dell": 132,
-        "IBM": 140,
-        "Fujitsu": 136,
-        "Huawei": 135,
-        "Alcatel-Lucent": 136,
-        "Ericsson": 151,
-        "Nokia": 145,
-        "Sony": 140,
-        "Samsung": 138,
-        "Xiaomi": 140,
-        "LG": 145,
-        "Motorola": 134,
-        "NVIDIA": 132,
-        "AMD": 134,
-        "Asus": 131,
-        "MSI": 135,
-        "Gigabyte": 138,
-        "Supermicro": 138,
-        "Toshiba": 131,
         "Panasonic": 137,
         "Hitachi": 136,
         "NEC": 132,

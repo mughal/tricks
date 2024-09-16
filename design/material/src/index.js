@@ -8,6 +8,9 @@ import { loadLogin } from './features/login/login';
 import { loadWelcome} from './features/welcome/welcome';
 import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/controlVars';
 import { loadSourceForm } from './forms/sources/loadSourceForm.js';
+import { loadIp2Mac, getIpCard } from './forms/ip2mac/ip2mac.js';
+import { loadmac2IP, getMacToIp } from './forms/mac2ip/mac2ip.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
@@ -16,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('login-link').addEventListener('click', loadLogin);
     // Assuming there is a link with ID 'sources-link' to load the source form
     document.getElementById('sources-link').addEventListener('click', loadSourceForm);
+    document.getElementById('ipmac-link').addEventListener('click', loadIp2Mac);
+    document.getElementById('macip-link').addEventListener('click', loadmac2IP);
     loadWelcome();
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -29,12 +34,32 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(ip)
 
         try {
-            const response = await fetch(`http://localhost:3000/api/network?ip=${ip}`);
+            // const response = await fetch(`http://localhost:3000/api/network?ip=${ip}`);
+            // const response = await fetch(`http://localhost:3000/api/ip/${ip}`);
+            // Regular expression to validate an IP address
+            const ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
+            // Regular expression to validate a MAC address
+            const macRegex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
+            let response = {};
+            if (ipRegex.test(ip)) {
+                response = await fetch(`http://localhost:3000/api/ip/${ip}`);
+            } else if (macRegex.test(ip)) {
+                response = await fetch(`http://localhost:3000/api/mac/${ip}`);
+            }
+            
+            
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            addCard(data);
+            //alert(data.macDetails);
+            //addCard(data);
+            if (data.type === 'IP') {
+                content.appendChild(getIpCard(data));
+            } else if (data.type === 'MAC') {
+                content.appendChild(getMacToIp(data));
+            }
         } catch (error) {
             alert('Error fetching data: ' + error.message);
         }
