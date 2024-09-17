@@ -1,0 +1,36 @@
+<!-- deviceForm.html -->
+<div id="device-section">
+    <form id="device-form">
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="eis_eligible" name="eis_eligible">
+                EIS Eligible
+            </label>
+            <label>
+                <input type="checkbox" id="dhcp_eligible" name="dhcp_eligible">
+                DHCP Eligible
+            </label>
+            <label>
+                <input type="checkbox" id="company_owned" name="company_owned">
+                Company Owned
+            </label>
+        </div>
+        <div class="input-container">
+            <input type="text" id="type" name="type" placeholder=" " required>
+            <label for="type">Type</label>
+        </div>
+        <div class="input-container">
+            <input type="text" id="procured_by" name="procured_by" placeholder=" " required>
+            <label for="procured_by">Procured By</label>
+        </div>
+        <div class="input-container">
+            <input type="text" id="managed_by" name="managed_by" placeholder=" " required>
+            <label for="managed_by">Managed By</label>
+        </div>
+        <div class="input-container">
+            <textarea id="remarks" name="remarks" placeholder=" " required></textarea>
+            <label for="remarks">Remarks</label>
+        </div>
+        <button class="submit-button" type="submit">Acknowledge</button>
+    </form>
+</div>

@@ -1,14 +1,12 @@
 /* Device section styling */
 #device-section {
-    max-width: 400px;
-    min-width: 300px;
-    width: 100%;  
-    margin: 5px 0; 
+    width: 30%;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: white;
-    border: 1px solid var(--primary-color);
+    border: 1px solid #3498db;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -70,12 +68,12 @@
     top: -10px;
     left: 10px;
     font-size: 0.8em;
-    color:var(--primary-color);
+    color: #3498db;
 }
 
 /* Submit button styling */
 .submit-button {
-    background-color: var(--icon-color);
+    background-color: #3498db;
     color: white;
     border: none;
     border-radius: 25px;
@@ -87,7 +85,7 @@
 }
 
 .submit-button:hover {
-    background-color: var(--primary-color);
+    background-color: #2980b9;
 }
 
 .checkbox-container {
@@ -95,5 +93,4 @@
     display: flex;
     justify-items: stretch;
     justify-content: space-between;
-    font-size: .7rem;
 }

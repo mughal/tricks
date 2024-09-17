@@ -10,7 +10,7 @@ import { setFun, getFun, setLoggedIn, updateUI, isLoggedIn } from './features/co
 import { loadSourceForm } from './forms/sources/loadSourceForm.js';
 import { loadIp2Mac, getIpCard } from './forms/ip2mac/ip2mac.js';
 import { loadmac2IP, getMacToIp } from './forms/mac2ip/mac2ip.js';
-
+import { ackMac } from './features/device/device'
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('search-form');
@@ -58,7 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.type === 'IP') {
                 content.appendChild(getIpCard(data));
             } else if (data.type === 'MAC') {
+                const formElement = await ackMac();
                 content.appendChild(getMacToIp(data));
+                content.appendChild(formElement);
             }
         } catch (error) {
             alert('Error fetching data: ' + error.message);
