@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="device.css">
+    <script src="device.js" defer></script>
+    <title>Device Form</title>
+</head>
+<body>
+    <section id="device-section">
+        <h1>Device Information</h1>
+        <form id="device-form">
+            <div class="checkbox-container">
+                <label>
+                    <input type="checkbox" id="eis_eligible" name="eis_eligible">
+                    EIS Eligible
+                </label>
+                <label>
+                    <input type="checkbox" id="dhcp_eligible" name="dhcp_eligible">
+                    DHCP Eligible
+                </label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="type" name="type" placeholder=" " required>
+                <label for="type">Type</label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="procured_by" name="procured_by" placeholder=" " required>
+                <label for="procured_by">Procured By</label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="managed_by" name="managed_by" placeholder=" " required>
+                <label for="managed_by">Managed By</label>
+            </div>
+           
+            <div class="input-container">
+                <textarea id="remarks" name="remarks" placeholder=" " required></textarea>
+                <label for="remarks">Remarks</label>
+            </div>
+            <button class="submit-button" type="submit">Acknowledge</button>
+        </form>
+    </section>
+</body>
+</html>
