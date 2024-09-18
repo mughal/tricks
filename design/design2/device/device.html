@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="device.css">
+    <title>Device Information Entry</title>
+</head>
+<body>
+    <div class="device-entry-card">
+        <div class="card-header">Device Information Entry</div>
+        <form class="device-form">
+            <!-- Device Type -->
+            <div class="form-group">
+                <input type="text" id="device_type" name="device_type" list="device_types" placeholder="Device Type">
+                <datalist id="device_types">
+                    <option value="PC">
+                    <option value="Laptop">
+                    <option value="Printer">
+                </datalist>
+            </div>
+
+            <!-- Managed By and Owned By -->
+            <div class="form-group">
+                <input type="text" id="device_owner" name="device_owner" placeholder="Procured By">
+                <input type="text" id="department_owner" name="department_owner" placeholder="Managed By">
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="eis_eligible" name="eis_eligible">
+                    EIS Eligible
+                </label>
+                <label>
+                    <input type="checkbox" id="dhcp_eligible" name="dhcp_eligible">
+                    DHCP Eligible
+                </label>
+            </div>
+
+            <!-- Remarks -->
+            <div class="form-group">
+                <textarea id="remarks" name="remarks" placeholder="Remarks" rows="4"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" title="Click to acknowledge the device">Acknowledge</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

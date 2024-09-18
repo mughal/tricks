@@ -109,6 +109,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }));
 
+app.use('/static', express.static('static'));
 app.use('/auth', authRoutes);
 app.use('/api', macTotalRoute); // All routes in macTotal.js will be prefixed with /api
 app.use('/api', macDashRoute);

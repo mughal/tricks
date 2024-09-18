@@ -28,15 +28,19 @@
 }
 
 
-/* Grid Section */
+
+
 .ym-grid {
-    display: grid;
-    grid-template-columns: 35% 65%; /* Define column widths */
-    width: 100%; /* Adjusted width for padding */
-    align-items: stretch; /* Stretch grid items to fill the height */
     padding: 15px; /* Padding for internal content */
     box-sizing: border-box; /* Include padding and borders in width and height */
     margin: 0 auto; /* Center align */
+    display: grid;
+    grid-template-columns: 35% 65%; /* Define column widths */
+    width: 100%;
+    height: 100%;
+    align-items: stretch; /* Stretch grid items to fill the height */
+    padding: 15px;
+    background-color: var(--secondary-color);
 }
 
 .icon {
@@ -46,16 +50,6 @@
 .search-mac-ip {
     font-weight: bold;
     margin-left: 8px;
-}
-
-.ym-grid {
-    display: grid;
-    grid-template-columns: 35% 65%; /* Define column widths */
-    width: 100%;
-    height: 100%;
-    align-items: stretch; /* Stretch grid items to fill the height */
-    padding: 15px;
-    background-color: var(--secondary-color);
 }
 
 .ym-column-1, .ym-column-2 {
