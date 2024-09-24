@@ -38,15 +38,15 @@ export function loadLogin() {
             });
     
             const data = await response.text();
-            setLoggedIn(true);
-            content.innerHTML = ''; // Update the content as needed
+            // setLoggedIn(true);
+            // content.innerHTML = ''; 
         
-        //     if (data === 'Login successful') {
-        //         setLoggedIn(true);
-        //         content.innerHTML = ''; // Update the content as needed
-        //     } else {
-        //         alert('Login failed');
-        //     }
+            if (data === 'Login successful') {
+                setLoggedIn(true);
+                content.innerHTML = ''; // Update the content as needed
+            } else {
+                alert('Login failed');
+            }
          } catch (error) {
             console.error('Error:', error);
         }
