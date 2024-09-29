@@ -1,24 +1,3 @@
-:root {
-    --primary-color: #333;              /* Primary color: Dark gray */
-    --secondary-color: #e5e5e5;         /* Secondary color: Light neutral gray */
-    --neutral-color: #f3e8e8;           /* Neutral background: White */
-    --font-color: #333;                 /* Font color: Consistent with primary color */
-    --header-font-color: #2A9D8F;       /* Header color: Greenish-teal */
-    --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color: Subtle black */
-    --border-color: #ddd;               /* Border color: Slightly darker gray for subtle contrast */
-    --icon-color: #666;   
-}
-
-body {
-    font-family: 'Roboto', 'Open Sans', sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align items to start vertically */
-    height: 100vh;
-    margin: 0;
-    padding-top: 30px; /* Add padding to prevent content from being hidden */
-}
 
 /* Parent Container */
 .ip-details-card {
