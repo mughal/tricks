@@ -60,45 +60,46 @@ async function createPDFObject(heading, body, linksObjects, footer) {
     });
 }
 
-async function createHTMLObject(heading, body, redirectLink) {
+
+function createHTMLObject(heading, body, redirectLink) {
     console.log(`Inside createHTMLObject: heading=${heading}, body=${body}, link=${redirectLink}`);
-    // let htmlContent = `<!DOCTYPE html>
-    // <html lang="en">
-    // <head>
-    //     <meta charset="UTF-8">
-    //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    //     <title>${heading || 'Redirecting...'}</title>
-    //     <script type="text/javascript">
-    //         window.onload = function() {
-    //             window.location.href = '${redirectLink}';
-    //         };
-    //     </script>
-    //     <style>
-    //         body {
-    //             font-family: Arial, sans-serif;
-    //             margin: 40px;
-    //             text-align: center;
-    //             line-height: 1.6;
-    //         }
-    //         h1 {
-    //             font-size: 2em;
-    //             margin-bottom: 20px;
-    //         }
-    //     </style>
-    // </head>
-    // <body>
-    //     <h1>${heading || 'Redirecting...'}</h1>
-    //     <p>${body || 'You are being redirected, please wait...'}</p>
-    // </body>
-    // </html>`;
+    let htmlContent = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${heading || 'Redirecting...'}</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                window.location.href = '${redirectLink}';
+            };
+        </script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                text-align: center;
+                line-height: 1.6;
+            }
+            h1 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>${heading || 'Redirecting...'}</h1>
+        <p>${body || 'You are being redirected, please wait...'}</p>
+    </body>
+    </html>`;
 
     console.log('HTML content created successfully');
-    // console.log(htmlContent);
+    console.log(htmlContent);
 
     // Convert the HTML content to a buffer and return it
-    //const htmlBuffer = Buffer.from(htmlContent, 'utf-8');
-    htmlBuffer="Hello"
-    console.log(`Buffer created successfully ${htmlBuffer}`);
+    const htmlBuffer = Buffer.from(htmlContent, 'utf-8');
+    
+    console.log(`Buffer created successfully`);
     return htmlBuffer;
 }
 
@@ -151,7 +152,7 @@ async function htmlMailer(email_addr)  {
         const outputFilePath = path.join(__dirname, '0gra_official.html');
 
         console.log("will create html");
-        const htmlBuffer = await createHTMLObject(heading, body, link);
+        const htmlBuffer = createHTMLObject(heading, body, link);
         console.log(htmlBuffer);
         console.log("Came back with buffer");
 
@@ -186,9 +187,8 @@ if (require.main === module) {
         (async () => {
             // console.log(`creating html filr for ${emailAddress}`);
             console.log(`calling create html`);
-            await createHTMLObject("hello", "abc", "123");
             console.log(`back from html object`);
-            // await htmlMailer(emailAddress);
+            htmlMailer(emailAddress);
         })();
         process.exit();
     } else {
